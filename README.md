@@ -27,8 +27,8 @@ ChromeCRISPR is a comprehensive hybrid machine learning framework for predicting
 
 | Model | Spearman Correlation | MSE | Architecture |
 |-------|---------------------|-----|--------------|
-| CNN-GRU+GC | 0.8768 | 0.0095 | Hybrid CNN-RNN with GC |
-| CNN-BiLSTM+GC | 0.8756 | 0.0098 | Hybrid CNN-RNN with GC |
+| BiLSTM+MLP-Mixer+GC | 0.8768 | 0.0095 | BiLSTM with MLP Mixer and GC Content |
+| CNN-GRU+GC | 0.8756 | 0.0098 | Hybrid CNN-RNN with GC |
 | Deep CNN+GC | 0.8732 | 0.0101 | Deep CNN with GC |
 | CNN-LSTM+GC | 0.8701 | 0.0105 | Hybrid CNN-RNN with GC |
 
@@ -86,7 +86,7 @@ from src.training.trainer import Trainer
 
 # Initialize model
 model = DynamicModel(
-    model_type='cnn_gru',
+    model_type='bilstm_mlp_mixer',
     input_size=21,
     hidden_size=128,
     num_layers=2,
