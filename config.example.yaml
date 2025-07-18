@@ -1,0 +1,266 @@
+# GeneX Phase 1 Configuration
+# Copy this file to config.yaml and add your API keys
+
+# Database Configuration
+database:
+  postgresql:
+    host: localhost
+    port: 5432
+    database: genex_mining
+    username: genex_user
+    password: ""  # Set your password
+  mongodb:
+    uri: "mongodb://localhost:27017/"
+    database: genex_data
+  redis:
+    host: localhost
+    port: 6379
+    db: 0
+  elasticsearch:
+    hosts: ["localhost:9200"]
+    index_prefix: "genex"
+
+# API Configuration
+apis:
+  # Literature APIs (Public - no keys required)
+  pubmed:
+    base_url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+    email: "wiese@sfu.ca"  # Required for NCBI - corresponding author
+    api_key: "e2c89882603df51c779524a5264a651e9107"  # Optional but recommended
+    rate_limit: 0.34  # seconds between requests
+    max_requests_per_second: 3
+
+  semantic_scholar:
+    base_url: "https://api.semanticscholar.org/v1/"
+    api_key: "JbLULfYWg727G05emWf7K82Spw0FfOXc9tVouPbu"  # Found in real_data_test.py
+    rate_limit: 1.5  # seconds between requests
+    max_requests_per_second: 1
+
+  crossref:
+    base_url: "https://api.crossref.org/"
+    email: "wiese@sfu.ca"  # Required for polite pool - corresponding author
+    rate_limit: 1.0  # seconds between requests
+    max_requests_per_second: 1
+
+  europe_pmc:
+    base_url: "https://www.ebi.ac.uk/europepmc/webservices/rest/"
+    email: "wiese@sfu.ca"  # Required for polite pool - corresponding author
+    rate_limit: 0.1  # seconds between requests
+    max_requests_per_second: 10
+
+  biorxiv:
+    base_url: "https://api.biorxiv.org/"
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  medrxiv:
+    base_url: "https://api.medrxiv.org/"
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  # Genomic APIs (Public - no keys required)
+  ncbi:
+    base_url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+    email: "wiese@sfu.ca"  # Required - corresponding author
+    api_key: "e2c89882603df51c779524a5264a651e9107"  # Optional but recommended
+    rate_limit: 0.34
+    max_requests_per_second: 3
+
+  ensembl:
+    base_url: "https://rest.ensembl.org/"
+    rate_limit: 0.1
+    max_requests_per_second: 10
+
+  gnomad:
+    base_url: "https://gnomad.broadinstitute.org/api/"
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  clinvar:
+    base_url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+    email: "wiese@sfu.ca"  # Required - corresponding author
+    api_key: ""  # Optional
+    rate_limit: 0.34
+    max_requests_per_second: 3
+
+  # Protein APIs (Public - no keys required)
+  pdb:
+    base_url: "https://data.rcsb.org/rest/v1/core/"
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  uniprot:
+    base_url: "https://rest.uniprot.org/"
+    rate_limit: 0.1
+    max_requests_per_second: 10
+
+  alphafold:
+    base_url: "https://alphafold.ebi.ac.uk/api/"
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  # Chemical APIs (Public - no keys required)
+  pubchem:
+    base_url: "https://pubchem.ncbi.nlm.nih.gov/rest/pug/"
+    rate_limit: 0.1
+    max_requests_per_second: 10
+
+  chembl:
+    base_url: "https://www.ebi.ac.uk/chembl/api/data/"
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  # Clinical APIs
+  omim:
+    base_url: "https://api.omim.org/api/"
+    api_key: ""  # Required - register at https://omim.org/api/
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  clinicaltrials:
+    base_url: "https://clinicaltrials.gov/api/query/"
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  # Specialized APIs
+  encode:
+    base_url: "https://www.encodeproject.org/api/"
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  geo:
+    base_url: "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi"
+    rate_limit: 0.34
+    max_requests_per_second: 3
+
+  ucsc:
+    base_url: "https://genome.ucsc.edu/cgi-bin/hgTables"
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  ena:
+    base_url: "https://www.ebi.ac.uk/ena/portal/api/"
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  reactome:
+    base_url: "https://reactome.org/ContentService/"
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+  # Specialized GeneX APIs (Simulated data)
+  primevar:
+    base_url: "https://primevar.example.com/api/"  # Simulated
+    rate_limit: 0.1
+    max_requests_per_second: 10
+
+  be_datahive:
+    base_url: "https://be-datahive.example.com/api/"  # Simulated
+    rate_limit: 0.1
+    max_requests_per_second: 10
+
+  crisprdb:
+    base_url: "https://crisprdb.example.com/api/"  # Simulated
+    rate_limit: 0.1
+    max_requests_per_second: 10
+
+  crisprofft:
+    base_url: "https://crisprofft.example.com/api/"  # Simulated
+    rate_limit: 0.1
+    max_requests_per_second: 10
+
+  # Optional APIs (Require paid licenses)
+  drugbank:
+    base_url: "https://go.drugbank.com/api/v1/"
+    username: ""  # Required - paid license
+    password: ""  # Required - paid license
+    rate_limit: 1.0
+    max_requests_per_second: 1
+
+# Mining Configuration
+mining:
+  # Search terms for gene editing
+  search_terms:
+    - "CRISPR"
+    - "CRISPR-Cas9"
+    - "prime editing"
+    - "base editing"
+    - "gene editing"
+    - "genome editing"
+    - "sgRNA"
+    - "guide RNA"
+    - "pegRNA"
+    - "Cas9"
+    - "Cas12"
+    - "Cas13"
+    - "off-target"
+    - "on-target"
+    - "gene therapy"
+    - "therapeutic editing"
+
+  # Date range for mining (1950-2025)
+  date_range:
+    start_year: 1950
+    end_year: 2025
+
+  # Quality thresholds
+  quality:
+    min_accuracy: 0.95
+    min_confidence: 0.8
+    require_doi: true
+    require_abstract: true
+
+  # Processing settings
+  processing:
+    max_concurrent_requests: 10
+    batch_size: 100
+    retry_attempts: 3
+    timeout_seconds: 30
+
+  # Storage settings
+  storage:
+    data_dir: "data"
+    logs_dir: "logs"
+    temp_dir: "temp"
+    backup_interval_hours: 24
+
+# Monitoring Configuration
+monitoring:
+  prometheus:
+    enabled: true
+    port: 9090
+
+  grafana:
+    enabled: true
+    port: 3000
+
+  alerts:
+    email: ""  # For alert notifications
+    slack_webhook: ""  # For Slack notifications
+
+  metrics:
+    collection_interval: 60  # seconds
+    retention_days: 30
+
+# Logging Configuration
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/genex_mining.log"
+  max_size_mb: 100
+  backup_count: 5
+
+# Security Configuration
+security:
+  encryption:
+    enabled: true
+    algorithm: "AES-256-GCM"
+
+  authentication:
+    enabled: false  # For multi-user setups
+    jwt_secret: ""  # Set for JWT authentication
+
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 1000
+    burst_size: 100

@@ -1,0 +1,101 @@
+# ChromeCRISPR Training Configuration
+
+# Data Configuration
+data:
+  data_path: "data/processed/crispr_dataset.csv"
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  batch_size: 32
+  num_workers: 4
+  use_gc: true
+  use_bio_features: false
+  normalize: true
+  sequence_column: "sequence"
+  target_column: "activity"
+
+# Model Configuration
+model:
+  model_type: "cnn_gru"  # Options: cnn, lstm, gru, bilstm, bigru, rnn, transformer, cnn_lstm, cnn_gru, cnn_bilstm, cnn_bigru
+  input_size: 23
+  hidden_size: 128
+  num_layers: 2
+  dropout: 0.3
+  use_gc: true
+  use_bio_features: false
+  num_classes: 1
+
+# Training Configuration
+training:
+  epochs: 100
+  early_stopping_patience: 10
+  save_best_only: true
+  gradient_clipping: 1.0
+  validation_frequency: 1
+
+# Optimizer Configuration
+optimizer:
+  name: "adam"  # Options: adam, adamw, sgd
+  learning_rate: 0.001
+  weight_decay: 0.0
+  momentum: 0.9  # Only used for SGD
+
+# Scheduler Configuration
+scheduler:
+  name: "reduce_on_plateau"  # Options: none, step, cosine, reduce_on_plateau
+  patience: 10
+  factor: 0.5
+  min_lr: 1e-6
+  step_size: 30  # Only used for step scheduler
+  gamma: 0.1  # Only used for step scheduler
+  T_max: 100  # Only used for cosine scheduler
+  eta_min: 0  # Only used for cosine scheduler
+
+# Loss Function Configuration
+loss:
+  name: "mse"  # Options: mse, mae, huber, smooth_l1
+  delta: 1.0  # Only used for huber loss
+
+# Hyperparameter Tuning Configuration
+hyperparameter_tuning:
+  n_trials: 100
+  timeout: 3600  # seconds
+  n_jobs: 1
+  study_name: "chromecrispr_optimization"
+
+# Evaluation Configuration
+evaluation:
+  metrics:
+    - "spearman"
+    - "pearson"
+    - "mse"
+    - "mae"
+    - "r2"
+  high_activity_threshold: 0.8
+  low_activity_threshold: 0.2
+  save_predictions: true
+  save_plots: true
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/chromecrispr.log"
+  console: true
+
+# Output Configuration
+output:
+  save_dir: "results"
+  model_dir: "models"
+  plots_dir: "results/plots"
+  logs_dir: "results/logs"
+  checkpoints_dir: "results/checkpoints"
+  predictions_dir: "results/predictions"
+
+# Hardware Configuration
+hardware:
+  device: "auto"  # Options: auto, cpu, cuda
+  num_gpus: 1
+  mixed_precision: false
+  deterministic: false
+  seed: 42
