@@ -27,9 +27,7 @@ ChromeCRISPR is a comprehensive hybrid machine learning framework for predicting
 
 | Model | Spearman Correlation | MSE | Architecture |
 |-------|---------------------|-----|--------------|
-| BiLSTM+MLP-Mixer+GC | 0.8768 | 0.0095 | BiLSTM with MLP Mixer and GC Content |
-| CNN-GRU+GC | 0.8756 | 0.0098 | Hybrid CNN-RNN with GC |
-| Deep CNN+GC | 0.8732 | 0.0101 | Deep CNN with GC |
+| CNN-GRU+GC (Trial 74, Spearman 0.87698) | 0.87698 | 0.0095 | CNN-GRU with GC Content |
 | CNN-LSTM+GC | 0.8701 | 0.0105 | Hybrid CNN-RNN with GC |
 
 ## Repository Structure
@@ -119,6 +117,8 @@ The repository includes comprehensive documentation for all model architectures:
 - [Hybrid Models](model_architectures/README.md#hybrid-models)
 - [Advanced Models](model_architectures/README.md#advanced-models)
 - [Feature-Enhanced Models](model_architectures/README.md#feature-enhanced-models)
+- **Best Model:** CNN-GRU + GC Content (Trial 74, Spearman 0.87698)
+- See [model_architectures/BEST_MODEL_CNN_GRU_GC.md](model_architectures/BEST_MODEL_CNN_GRU_GC.md) for full details.
 
 ## Data Format
 
