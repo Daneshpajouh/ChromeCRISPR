@@ -113,9 +113,33 @@ ChromeCRISPR/
 ├── models/                      # Model code and utilities
 ├── docs/                        # Documentation
 │   └── MODEL_ARCHITECTURES.md   # Detailed architecture descriptions
-├── 2024.md                      # Complete manuscript
 ├── requirements.txt             # Python dependencies
 ├── setup.py                     # Installation script
+├── LICENSE                      # MIT License
+├── AUTHORS                      # Author information
+├── DATASET_REFERENCE.md         # Dataset citations
+└── README.md                    # This file
+```ChromeCRISPR/
+├── exact_20_manuscript_models/  # All 20 models from manuscript
+│   ├── base_models/             # Base models (CNN, GRU, LSTM, BiLSTM)
+│   ├── base_models_with_gc/     # Base models + GC content
+│   ├── deep_models/             # Deep models (4+ layers)
+│   ├── deep_models_with_gc/     # Deep models + GC content
+│   ├── chromecrispr_hybrid_models/  # Hybrid CNN-RNN models
+│   ├── best_performing/         # Best model (CNN_GRU+GC)
+│   ├── performance_data/        # Performance metrics
+│   └── training_configs/        # Training configurations
+├── src/                         # Source code
+│   ├── models/                  # Model implementations
+│   ├── data/                    # Data loading and preprocessing
+│   ├── evaluation/              # Evaluation metrics
+│   └── training/                # Training utilities
+├── models/                      # Model code and utilities
+├── docs/                        # Documentation
+│   └── MODEL_ARCHITECTURES.md   # Detailed architecture descriptions
+
+├── DATASET_REFERENCE.md         # Dataset citations
+├── requirements.txt             # Python dependencies├── setup.py                     # Installation script
 ├── LICENSE                      # MIT License
 ├── AUTHORS                      # Author information
 ├── DATASET_REFERENCE.md         # Dataset citations
