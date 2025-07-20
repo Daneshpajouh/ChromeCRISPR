@@ -15,7 +15,7 @@ We use the **DeepHF dataset** from the original paper:
 The DeepHF dataset contains approximately **60,000 sgRNA-target pairs** with experimentally measured off-target activity scores. The dataset is publicly available and can be accessed through:
 
 1. **Original Paper Supplementary Materials**
-2. **GitHub Repository:** https://github.com/bm2-lab/DeepHF
+2. **GitHub Repository:** https://github.com/izhangcd/DeepHF
 3. **Direct Download:** Available from the authors upon request
 
 ### Data Processing
