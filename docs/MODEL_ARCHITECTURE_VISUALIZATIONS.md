@@ -25,7 +25,7 @@ Each model has been visualized using the following approaches:
   - Detailed layer information
   - Clear data flow arrows
   - Professional appearance
-- **Status**: ✅ **Available for all models**
+- **Status**: Available for all models
 
 #### 2. TorchViz Computation Graphs
 - **Tool**: torchviz library
@@ -47,12 +47,12 @@ Each model has been visualized using the following approaches:
 
 ### Installed Tools
 
-1. **Matplotlib** ✅
+1. **Matplotlib** 
    - Used for manual architecture diagrams
    - Provides full control over visualization
    - Professional quality output
 
-2. **TorchViz** ✅
+2. **TorchViz** 
    - Installed: `pip install torchviz`
    - Generates computation graphs
    - Shows detailed data flow

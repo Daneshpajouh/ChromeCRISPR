@@ -126,8 +126,8 @@ If you use these models in your research, please cite:
 
 ## Manuscript Compliance
 
-✅ **ONLY 20 models mentioned in the manuscript included**
-✅ **Exact performance metrics from manuscript tables**
-✅ **Correct model architecture descriptions**
-✅ **Proper training configurations**
-✅ **Complete manuscript compliance**
+- Only 20 models mentioned in the manuscript included
+- Exact performance metrics from manuscript tables
+- Correct model architecture descriptions
+- Proper training configurations
+- Complete manuscript compliance

@@ -218,13 +218,13 @@ python scripts/professional_3d_visualizer.py \
 
 | Feature | Our Tool | Basic Matplotlib | TensorSpace | PlotNeuralNet |
 |---------|----------|------------------|-------------|---------------|
-| **3D Geometry** | ✅ Real 3D | ❌ Flat 2D | ✅ Real 3D | ❌ Flat 2D |
-| **Professional Lighting** | ✅ Advanced | ❌ Basic | ✅ Advanced | ❌ Basic |
-| **Academic Colors** | ✅ Research-based | ❌ Default | ✅ Good | ❌ Basic |
-| **Layer-Specific Design** | ✅ Intelligent | ❌ Uniform | ✅ Good | ❌ Basic |
-| **Publication Quality** | ✅ 300 DPI | ❌ Low res | ✅ Good | ✅ Good |
-| **Easy CLI Usage** | ✅ Simple | ❌ Complex | ❌ Complex | ❌ Complex |
-| **No Dependencies** | ✅ Pure Python | ✅ Pure Python | ❌ JavaScript | ❌ LaTeX |
+| **3D Geometry** | Real 3D | Flat 2D | Real 3D | Flat 2D |
+| **Professional Lighting** | Advanced | Basic | Advanced | Basic |
+| **Academic Colors** | Research-based | Default | Good | Basic |
+| **Layer-Specific Design** | Intelligent | Uniform | Good | Basic |
+| **Publication Quality** | 300 DPI | Low res | Good | Good |
+| **Easy CLI Usage** | Simple | Complex | Complex | Complex |
+| **No Dependencies** | Pure Python | Pure Python | JavaScript | LaTeX |
 
 ## 🎉 **Generated Examples**
 
