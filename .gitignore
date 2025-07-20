@@ -1,3 +1,8 @@
+# ChromeCRISPR Repository .gitignore
+
+# Manuscript file (internal only - DO NOT UPLOAD)
+2024.md
+
 # Python
 __pycache__/
 *.py[cod]
@@ -25,11 +30,13 @@ MANIFEST
 *.pth
 *.pt
 *.pkl
+*.pickle
+*.joblib
 
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Environment
+# Environment variables
 .env
 .venv
 env/
@@ -57,19 +64,67 @@ Thumbs.db
 # Logs
 *.log
 logs/
+*.out
 
-# Data
-data/
-datasets/
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Data files (large datasets)
 *.csv
 *.tsv
 *.json
+*.npy
+*.npz
+data/
+datasets/
+raw_data/
+processed_data/
 
-# Models (except the best model)
-models/*.pth
-!models/BestModel_Bio_53054713.9_trial_62_epoch_73_Sp_0.8765.pth
+# Model files (except the exact 20 manuscript models)
+models/
+!exact_20_manuscript_models/
+!exact_20_manuscript_models/**/*.joblib
+!exact_20_manuscript_models/**/*.json
+!exact_20_manuscript_models/**/*.py
 
-# Temporary files
-tmp/
-temp/
-*.tmp
+# Backup files
+*.bak
+*.backup
+backup/
+backups/
+
+# Cluster and external drive files
+cluster_*
+beluga_*
+external_*
+*.cluster
+
+# Test files
+test_*
+*_test.py
+*_test_*.py
+
+# Documentation drafts
+*_draft.md
+*_temp.md
+*_old.md
+
+# Performance reports (keep only final ones)
+*_PERFORMANCE_*.md
+!FINAL_EXACT_20_MANUSCRIPT_COMPLIANCE_REPORT.md
+!CHROMECRISPR_EXACT_20_MANUSCRIPT_ORGANIZATION_SUMMARY.md
+
+# Organizer scripts (keep only the final one)
+*_organizer.py
+!exact_20_manuscript_models_organizer.py
+
+# Keep only essential files
+# ✅ KEEP: exact_20_manuscript_models/ (complete manuscript models)
+# ✅ KEEP: src/ (source code)
+# ✅ KEEP: README.md (main documentation)
+# ✅ KEEP: requirements.txt (dependencies)
+# ✅ KEEP: setup.py (installation)
+# ✅ KEEP: Final compliance reports
