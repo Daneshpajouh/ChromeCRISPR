@@ -1,0 +1,33 @@
+# ChromeCRISPR Authors
+
+## Primary Authors
+
+**Amirhossein Daneshpajouh**
+School of Computing Science, Simon Fraser University
+Email: amir_dp@sfu.ca
+
+**Megan Fowler**
+School of Computing Science, Simon Fraser University
+Email: megan_fowler_2@sfu.ca
+
+**Kay C. Wiese** (Corresponding Author)
+School of Computing Science, Simon Fraser University
+Email: wiese@sfu.ca
+
+## Institution
+School of Computing Science
+Simon Fraser University
+8888 University Dr W
+Burnaby, Canada
+
+## Citation
+If you use ChromeCRISPR in your research, please cite:
+
+```bibtex
+@article{chromeCRISPR2024,
+  title={ChromeCRISPR - A High Efficacy Hybrid Machine Learning Model for CRISPR/Cas On-Target Predictions},
+  author={Daneshpajouh, Amirhossein and Fowler, Megan and Wiese, Kay C.},
+  journal={Journal Name},
+  year={2024}
+}
+```

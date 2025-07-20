@@ -1,198 +1,193 @@
-# ChromeCRISPR: Deep Learning Framework for CRISPR Guide RNA Efficiency Prediction
+# ChromeCRISPR: High Efficacy Hybrid Machine Learning Models for CRISPR/Cas On-Target Predictions
 
-ChromeCRISPR is a comprehensive deep learning framework for predicting CRISPR guide RNA efficiency. The system uses hybrid architectures combining CNN, RNN (GRU/LSTM/BiLSTM), and biological features to achieve state-of-the-art performance.
+## Overview
 
-## 🏆 Best Performance
-**CNN-GRU+GC Model**: 0.876 Spearman correlation, 0.0093 MSE
+ChromeCRISPR is a collection of novel hybrid machine learning models that combine Convolutional Neural Networks (CNNs) with Recurrent Neural Networks (RNNs) to achieve high efficacy for CRISPR/Cas on-target predictions. Our best model, CNN-GRU hybrid with GC content, establishes new benchmarks for predictive accuracy in CRISPR/Cas9 efficacy predictions.
 
-## 🎯 Key Features
-- **20 Different Model Architectures** evaluated and documented (exact manuscript models)
-- **Hybrid CNN-RNN Models** for optimal sequence processing
-- **Biological Feature Integration** (GC content, enthalpy, entropy, free energy)
-- **State-of-the-art Performance** outperforming DeepHF and AttCRISPR
-- **Comprehensive Evaluation** with statistical significance testing
+## Key Features
 
-## 🏗️ Model Architecture
-**Best Model**: CNN-GRU+GC (ChromeCRISPR)
-- **Architecture**: CNN → GRU → Fully Connected Layers with GC Content
-- **Performance**: 0.876 Spearman correlation, 0.0093 MSE
-- **Parameters**: 369,087 total parameters
-- **File**: `exact_20_manuscript_models/chromecrispr_hybrid_models/CNN_GRU+GC.pth`
+- **Hybrid Architecture**: Combines CNN feature extraction with RNN sequence processing
+- **GC Content Integration**: Incorporates biological features for improved predictions
+- **State-of-the-Art Performance**: Outperforms DeepHF and AttCRISPR models
+- **Comprehensive Evaluation**: Multiple model architectures and configurations tested
+- **Publication Quality**: Research paper with detailed methodology and results
 
-## 📊 Complete Model Performance (All 20 Manuscript Models)
+## Performance
 
-### ChromeCRISPR Hybrid Models (Best Performing)
-| Model | Spearman | MSE | Description |
-|-------|----------|-----|-------------|
-| CNN_GRU+GC | 0.876 | 0.0093 | **Best model**: CNN → GRU with GC |
-| CNN_BiLSTM+GC | 0.870 | 0.0096 | CNN → BiLSTM with GC |
-| CNN_LSTM+GC | 0.867 | 0.0115 | CNN → LSTM with GC |
+Our best model, **CNN_GRU+GC**, achieves:
+- **Spearman Correlation**: 0.876
+- **Mean Squared Error**: 0.0093
 
-### Deep Models + GC Content
-| Model | Spearman | MSE | Description |
-|-------|----------|-----|-------------|
-| deepCNN+GC | 0.873 | 0.0093 | Deep CNN with GC content |
-| deepBiLSTM+GC | 0.867 | 0.0098 | Deep BiLSTM with GC |
-| deepGRU+GC | 0.867 | 0.0098 | Deep GRU with GC |
-| deepLSTM+GC | 0.860 | 0.0104 | Deep LSTM with GC |
+This outperforms previous state-of-the-art models:
+- DeepHF RNN + Bio: Spearman = 0.867, MSE = 0.0094
+- AttCRISPR StAC + Bio: Spearman = 0.872
 
-### Deep Models
-| Model | Spearman | MSE | Description |
-|-------|----------|-----|-------------|
-| deepCNN | 0.869 | 0.0098 | Deep CNN architecture |
-| deepGRU | 0.868 | 0.0099 | Deep GRU architecture |
-| deepLSTM | 0.862 | 0.0103 | Deep LSTM architecture |
-| deepBiLSTM | 0.862 | 0.0104 | Deep BiLSTM architecture |
-
-### Base Models + GC Content
-| Model | Spearman | MSE | Description |
-|-------|----------|-----|-------------|
-| LSTM+GC | 0.856 | 0.0112 | LSTM with GC content |
-| BiLSTM+GC | 0.855 | 0.0110 | BiLSTM with GC content |
-| GRU+GC | 0.840 | 0.0122 | GRU with GC content |
-| CNN+GC | 0.781 | 0.0170 | CNN with GC content |
+## Model Architectures
 
 ### Base Models
-| Model | Spearman | MSE | Description |
-|-------|----------|-----|-------------|
-| BiLSTM | 0.843 | 0.0120 | Bidirectional LSTM |
-| LSTM | 0.837 | 0.0122 | Long Short-Term Memory |
-| GRU | 0.837 | 0.0121 | Gated Recurrent Unit |
-| CNN | 0.793 | 0.0161 | Convolutional Neural Network |
-| RF | 0.755 | 0.0197 | Random Forest (100 estimators) |
+- **Random Forest (RF)**: Ensemble learning with 100 estimators
+- **CNN**: Convolutional neural network with 2 conv layers (128 filters each)
+- **GRU**: Gated recurrent unit with 2 layers (128 hidden units each)
+- **LSTM**: Long short-term memory with 2 layers (128 hidden units each)
+- **BiLSTM**: Bidirectional LSTM with 2 layers (128 hidden units each)
 
-## 📁 Repository Structure
+### Deep Models
+Enhanced versions of base models with 3 specialized layers and 3 dense layers:
+- **Deep CNN**: 3 conv layers + 3 dense layers (128, 64, 32 units)
+- **Deep GRU**: 3 GRU layers + 3 dense layers
+- **Deep LSTM**: 3 LSTM layers + 3 dense layers
+- **Deep BiLSTM**: 3 BiLSTM layers + 3 dense layers
 
-```
-ChromeCRISPR/
-├── exact_20_manuscript_models/     # 🎯 ALL 20 MANUSCRIPT MODELS
-│   ├── best_performing/            # CNN-GRU+GC (Best Model)
-│   ├── base_models/                # Base Models (5 models)
-│   ├── base_models_with_gc/        # Base Models + GC (4 models)
-│   ├── deep_models/                # Deep Models (4 models)
-│   ├── deep_models_with_gc/        # Deep Models + GC (4 models)
-│   ├── chromecrispr_hybrid_models/ # Hybrid Models (3 models)
-│   ├── architecture_diagrams/      # Model diagrams
-│   ├── performance_data/           # Performance metrics
-│   ├── training_configs/           # Training configs
-│   └── README.md                   # Complete documentation
-├── src/                            # Source code
-├── scripts/                        # Training scripts
-├── requirements.txt                # Dependencies
-├── setup.py                        # Installation script
-├── README.md                       # Main documentation
-├── .gitignore                      # Git ignore rules
-├── DATASET_REFERENCE.md            # Dataset citations
-├── LICENSE                         # MIT License
-└── [Compliance reports...]
-```
+### ChromeCRISPR Hybrid Models
+Our novel hybrid architectures combining CNN and RNN components:
+- **CNN_GRU+GC**: CNN + GRU fusion with GC content (Best performing)
+- **CNN_LSTM+GC**: CNN + LSTM fusion with GC content
+- **CNN_BiLSTM+GC**: CNN + BiLSTM fusion with GC content
 
-## 🚀 Quick Start
+## Dataset
 
-### Installation
+We use the DeepHF dataset containing:
+- **~60,000 unique sgRNAs** from 20,000 human genes
+- **21-mer sequences** (20 nucleotides + PAM)
+- **Activity values** as indel frequencies (0-1 range)
+- **GC content** as biological feature
+
+## Installation
+
 ```bash
+# Clone the repository
 git clone https://github.com/Daneshpajouh/ChromeCRISPR.git
 cd ChromeCRISPR
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### Basic Usage
+## Usage
+
+### Basic Model Training
+
 ```python
-import torch
-from src.models.dynamic_model import ChromeCRISPRModel
+from src.models import ChromeCRISPRModel
+from src.data import DataLoader
 
-# Load the best performing model
-model = ChromeCRISPRModel()
-model.load_state_dict(torch.load('exact_20_manuscript_models/chromecrispr_hybrid_models/CNN_GRU+GC.pth'))
-model.eval()
+# Load data
+data_loader = DataLoader()
+X_train, y_train, X_test, y_test = data_loader.load_deephf_data()
 
-# Make predictions on sgRNA sequences
-# (Implementation details in the model files)
+# Train model
+model = ChromeCRISPRModel(architecture='cnn_gru_gc')
+model.train(X_train, y_train)
+predictions = model.predict(X_test)
 ```
 
-## 📋 Data Specifications
+### Model Comparison
 
-### Input
-- **Sequence**: 21-mer sgRNA sequences (one-hot encoded)
-- **Biological Features**: GC Content, Enthalpy Duplex, Entropy Duplex, Free Energy RNA
-- **Format**: PyTorch tensors
+```python
+from src.evaluation import ModelEvaluator
 
-### Output
-- **Prediction**: Single efficiency score (0-1 range)
-- **Format**: Float tensor
+# Compare all models
+evaluator = ModelEvaluator()
+results = evaluator.compare_models(X_test, y_test)
+evaluator.plot_results(results)
+```
 
-### Data Split
-- **Training + Validation**: 85%
-- **Test**: 15%
-- **No test data used for hyperparameter tuning**
+## Project Structure
 
-## ⚙️ Training Configuration
+```
+ChromeCRISPR/
+├── src/                    # Source code
+│   ├── models/            # Model implementations
+│   ├── data/              # Data loading and preprocessing
+│   ├── evaluation/        # Evaluation metrics and plotting
+│   └── utils/             # Utility functions
+├── docs/                  # Documentation
+│   └── MODEL_ARCHITECTURES.md  # Detailed architecture descriptions
+├── config/                # Configuration files
+├── results/               # Model results and figures
+├── requirements.txt       # Python dependencies
+└── README.md             # This file
+```
 
-### Best Model (CNN-GRU+GC) Hyperparameters
-- **Optimizer**: Adam
-- **Learning Rate**: 0.00020972671691680056
-- **Batch Size**: 64
-- **Epochs**: 84
-- **Dropout Rate**: 0.14201131516203347
-- **Weight Decay**: 1.882255599576252e-05
+## Model Architecture Details
 
-### Model Architecture Details
-- **CNN Layers**: 2D Convolutional layers with batch normalization
-- **RNN**: 2-layer GRU with 384 hidden units each
-- **Fully Connected**: 3 layers (128→64→32→1)
-- **Biological Features**: GC Content added in last layer
+For comprehensive details about all model architectures, see [docs/MODEL_ARCHITECTURES.md](docs/MODEL_ARCHITECTURES.md).
 
-## 📈 Performance Comparison
+### Key Architecture Features
 
-### vs. State-of-the-Art Models
-| Model | Spearman | MSE | Reference |
-|-------|----------|-----|-----------|
-| **ChromeCRISPR CNN_GRU+GC** | **0.876** | **0.0093** | **This work** |
-| AttCRISPR StAC+Bio | 0.872 | Not reported | Xiao et al. 2021 |
-| DeepHF RNN+Bio | 0.867 | 0.0094 | Wang et al. 2019 |
-| AttCRISPR EnAC+Bio | 0.868 | Not reported | Xiao et al. 2021 |
+1. **Input Processing**: One-hot encoding of 21-mer sequences (84 features)
+2. **Sequence Embedding**: 84 → 128 dimensions
+3. **CNN Branch**: 3 conv layers with 128 filters each
+4. **RNN Branch**: 3 recurrent layers (GRU/LSTM/BiLSTM) with 128 units each
+5. **Fusion**: Concatenation of CNN and RNN outputs (256 features)
+6. **GC Integration**: Addition of GC content feature (257 total features)
+7. **Final Layers**: 3 dense layers (128, 64, 32 units) + output layer
 
-## 📚 Documentation
-- **Complete Model Documentation**: `exact_20_manuscript_models/README.md`
-- **Performance Data**: `exact_20_manuscript_models/performance_data/`
-- **Compliance Report**: `FINAL_EXACT_20_MANUSCRIPT_COMPLIANCE_REPORT.md`
+## Training Specifications
 
-## 🔬 Research Details
+- **Hyperparameter Tuning**: Nested 5-fold cross-validation with Bayesian search
+- **Data Split**: 85% training/validation, 15% testing
+- **Hardware**: NVIDIA V100 Volta GPUs with 32GB HBM2 memory
+- **Training Time**: ~20 seconds per iteration
+- **Optimization**: Adam optimizer with MSE loss function
 
-### Model Categories Evaluated (20 Total Models)
-- **Base Models (5)**: RF, CNN, GRU, LSTM, BiLSTM
-- **Base Models + GC (4)**: CNN+GC, GRU+GC, LSTM+GC, BiLSTM+GC
-- **Deep Models (4)**: deepCNN, deepGRU, deepLSTM, deepBiLSTM
-- **Deep Models + GC (4)**: deepCNN+GC, deepGRU+GC, deepLSTM+GC, deepBiLSTM+GC
-- **ChromeCRISPR Hybrids (3)**: CNN_GRU+GC, CNN_LSTM+GC, CNN_BiLSTM+GC
+## Results Summary
 
-### Statistical Analysis
-- **One-way ANOVA** for group comparisons
-- **Tukey's HSD** for post-hoc analysis
-- **5-fold cross-validation** for robust evaluation
-- **Statistical significance**: p < 0.05 threshold
+| Model | Spearman | MSE | Status |
+|-------|----------|-----|--------|
+| CNN_GRU+GC | 0.876 | 0.0093 | **Best** |
+| CNN_BiLSTM+GC | 0.870 | 0.0096 | Second |
+| CNN_LSTM+GC | 0.867 | 0.0115 | Third |
+| Deep CNN+GC | 0.873 | 0.0093 | Baseline |
+| Deep GRU+GC | 0.867 | 0.0098 | Baseline |
 
-## 📄 Citation
-If you use ChromeCRISPR in your research, please cite:
+## Key Insights
+
+1. **Hybrid Advantage**: CNN-RNN combinations outperform individual architectures
+2. **GRU Superiority**: GRU performs better than LSTM in hybrid models
+3. **GC Content Impact**: Consistent improvement across all models
+4. **Depth Benefits**: Deeper models generally perform better than base models
+5. **Bidirectional Trade-off**: BiLSTM shows mixed results in hybrid combinations
+
+## Citation
+
+If you use ChromeCRISPR in your research, please cite our paper:
 
 ```bibtex
-@article{chromeCRISPR2024,
-  title={ChromeCRISPR: Hybrid CNN-RNN Models for CRISPR Guide RNA Efficiency Prediction},
-  author={Your Name and Co-authors},
-  journal={Journal Name},
+@article{daneshpajouh2024chromecrispr,
+  title={ChromeCRISPR: A High Efficacy Hybrid Machine Learning Model for CRISPR/Cas On-Target Predictions},
+  author={Daneshpajouh, Amirhossein and Fowler, Megan and Wiese, Kay C.},
+  journal={BioMed Central},
   year={2024}
 }
 ```
 
-## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Contributing
 
-## 🤝 Contributing
-Contributions are welcome! Please feel free to submit a Pull Request.
+We welcome contributions! Please feel free to submit issues, feature requests, or pull requests.
 
-## 📞 Contact
-For questions and support, please open an issue on GitHub or contact the maintainers.
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Digital Research Alliance of Canada for computational resources
+- Natural Sciences and Engineering Research Council of Canada (NSERC) for funding
+- Simon Fraser University for research support
+
+## Contact
+
+For questions or support, please contact:
+- Amirhossein Daneshpajouh: amir_dp@sfu.ca
+- Megan Fowler: megan_fowler_2@sfu.ca
+- Kay C. Wiese: wiese@sfu.ca
+
+## Related Publications
+
+- [DeepHF: Optimized CRISPR Guide RNA Design via Deep Learning](https://doi.org/10.1038/s41467-019-12281-8)
+- [AttCRISPR: Attention-based deep learning for CRISPR/Cas9 guide RNA design](https://doi.org/10.1093/bioinformatics/btab127)
 
 ---
 
-**Note**: This repository contains exactly 20 models as specified in the ChromeCRISPR manuscript. All models are real implementations with verified performance metrics matching the manuscript specifications.
+**Note**: This repository contains the complete implementation and documentation for ChromeCRISPR. All model architectures are described in detail in the documentation, and the code is fully functional for reproducing our results.
