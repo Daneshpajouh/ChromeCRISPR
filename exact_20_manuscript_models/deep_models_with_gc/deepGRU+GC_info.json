@@ -1,0 +1,24 @@
+{
+  "model_name": "deepGRU+GC",
+  "architecture": "deepGRU",
+  "description": "Deep GRU with GC content integration",
+  "performance": {
+    "spearman": 0.8668,
+    "mse": 0.0098
+  },
+  "technical_specifications": {
+    "sequence_length": 21,
+    "embedding_dim": 128,
+    "use_gc": true,
+    "dropout_rate": 0.1,
+    "use_batch_norm": false,
+    "fc_sizes": [
+      128,
+      64,
+      32,
+      1
+    ],
+    "rnn_hidden_size": 128,
+    "rnn_layers": 4
+  }
+}
