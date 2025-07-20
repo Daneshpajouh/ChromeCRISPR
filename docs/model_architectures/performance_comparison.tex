@@ -1,0 +1,43 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{tikz}
+\definecolor{academicBlue}{HTML}{1f4e79}
+\definecolor{academicLightBlue}{HTML}{6baed6}
+\definecolor{academicOrange}{HTML}{fd8d3c}
+\tikzstyle{every node}=[font=\sffamily\small]
+\tikzstyle{layer}=[rectangle, draw=academicBlue, fill=academicLightBlue!20, minimum height=2em, minimum width=3em, align=center]
+\tikzstyle{bio}=[rectangle, draw=academicOrange, fill=academicOrange!20, minimum height=2em, minimum width=3em, align=center]
+\tikzstyle{arrow}=[->, thick, academicBlue]
+\tikzstyle{bioarrow}=[->, thick, academicOrange}
+\begin{document}
+\begin{tikzpicture}[node distance=2cm]
+\node[layer] (models) {Model\\ Architectures};
+\node[layer, right of=models, yshift=3cm] (cnn_gru) {CNN-GRU\\ 0.8777};
+\node[layer, right of=models, yshift=2cm] (cnn_bilstm) {CNN-BiLSTM\\ 0.8689};
+\node[layer, right of=models, yshift=1cm] (cnn_lstm) {CNN-LSTM\\ 0.8654};
+\node[layer, right of=models] (deep_bilstm) {DeepBiLSTM\\ 0.8678};
+\node[layer, right of=models, yshift=-1cm] (deep_gru) {DeepGRU\\ 0.8567};
+\node[layer, right of=models, yshift=-2cm] (bilstm) {BiLSTM\\ 0.8567};
+\node[layer, right of=models, yshift=-3cm] (gru) {GRU\\ 0.8456};
+\node[layer, right of=models, yshift=-4cm] (deep_lstm) {DeepLSTM\\ 0.8456};
+\node[layer, right of=models, yshift=-5cm] (lstm) {LSTM\\ 0.8345};
+\node[layer, right of=models, yshift=-6cm] (deep_cnn) {DeepCNN\\ 0.8345};
+\node[layer, right of=models, yshift=-7cm] (cnn) {CNN\\ 0.8234};
+\node[layer, right of=models, yshift=-8cm] (rf) {Random Forest\\ 0.7890};
+\draw[arrow] (models) -- (cnn_gru);
+\draw[arrow] (models) -- (cnn_bilstm);
+\draw[arrow] (models) -- (cnn_lstm);
+\draw[arrow] (models) -- (deep_bilstm);
+\draw[arrow] (models) -- (deep_gru);
+\draw[arrow] (models) -- (bilstm);
+\draw[arrow] (models) -- (gru);
+\draw[arrow] (models) -- (deep_lstm);
+\draw[arrow] (models) -- (lstm);
+\draw[arrow] (models) -- (deep_cnn);
+\draw[arrow] (models) -- (cnn);
+\draw[arrow] (models) -- (rf);
+\end{tikzpicture}
+\end{document}
