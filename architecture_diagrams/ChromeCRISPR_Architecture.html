@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChromeCRISPR: CNN-GRU+GC Architecture</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            text-align: center;
+            color: #1976d2;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .architecture {
+            position: relative;
+            height: 600px;
+            margin: 40px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        .layer {
+            position: absolute;
+            border: 2px solid #333;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .input-layer { background: #e3f2fd; border-color: #1976d2; }
+        .embedding-layer { background: #f3e5f5; border-color: #7b1fa2; }
+        .conv-layer { background: #e8f5e8; border-color: #388e3c; }
+        .pool-layer { background: #fff3e0; border-color: #f57c00; }
+        .gru-layer { background: #fce4ec; border-color: #c2185b; }
+        .dense-layer { background: #e0f2f1; border-color: #00695c; }
+        .output-layer { background: #fafafa; border-color: #424242; }
+        .gc-layer { background: #fff8e1; border-color: #ff8f00; }
+        .layer-label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .layer-details {
+            font-size: 11px;
+            color: #666;
+        }
+        .arrow {
+            position: absolute;
+            height: 2px;
+            background: #333;
+            transform-origin: left center;
+        }
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: -3px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid #333;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+        }
+        .performance-box {
+            background: #f5f5f5;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .performance-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        .performance-metrics {
+            font-size: 16px;
+            color: #333;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #333;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">ChromeCRISPR: CNN-GRU+GC Architecture</h1>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color input-layer"></div>
+                <span>Input Layers</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color embedding-layer"></div>
+                <span>Embedding</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color conv-layer"></div>
+                <span>Convolutional</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color pool-layer"></div>
+                <span>Pooling</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color gru-layer"></div>
+                <span>Recurrent (GRU)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color dense-layer"></div>
+                <span>Dense/Fusion</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color gc-layer"></div>
+                <span>Biological Features</span>
+            </div>
+        </div>
+        
+        <div class="architecture">
+            <div class="layer input-layer" style="left: 50px; top: 80px; width: 120px; height: 60px;">
+                <div class="layer-label">Input</div>
+                <div class="layer-details">21-mer sgRNA</div>
+            </div>
+            
+            <div class="layer embedding-layer" style="left: 220px; top: 80px; width: 120px; height: 60px;">
+                <div class="layer-label">Embedding</div>
+                <div class="layer-details">64 dim</div>
+            </div>
+            
+            <div class="layer conv-layer" style="left: 390px; top: 50px; width: 120px; height: 60px;">
+                <div class="layer-label">Conv1D</div>
+                <div class="layer-details">128 filters</div>
+            </div>
+            
+            <div class="layer conv-layer" style="left: 390px; top: 130px; width: 120px; height: 60px;">
+                <div class="layer-label">Conv1D</div>
+                <div class="layer-details">128 filters</div>
+            </div>
+            
+            <div class="layer pool-layer" style="left: 560px; top: 50px; width: 120px; height: 60px;">
+                <div class="layer-label">MaxPool</div>
+                <div class="layer-details">k=2</div>
+            </div>
+            
+            <div class="layer pool-layer" style="left: 560px; top: 130px; width: 120px; height: 60px;">
+                <div class="layer-label">MaxPool</div>
+                <div class="layer-details">k=2</div>
+            </div>
+            
+            <div class="layer gru-layer" style="left: 390px; top: 220px; width: 120px; height: 60px;">
+                <div class="layer-label">GRU</div>
+                <div class="layer-details">384 units</div>
+            </div>
+            
+            <div class="layer gru-layer" style="left: 560px; top: 220px; width: 120px; height: 60px;">
+                <div class="layer-label">GRU</div>
+                <div class="layer-details">384 units</div>
+            </div>
+            
+            <div class="layer gc-layer" style="left: 50px; top: 320px; width: 120px; height: 60px;">
+                <div class="layer-label">GC Content</div>
+                <div class="layer-details">Feature</div>
+            </div>
+            
+            <div class="layer dense-layer" style="left: 730px; top: 90px; width: 120px; height: 60px;">
+                <div class="layer-label">Feature</div>
+                <div class="layer-details">Fusion</div>
+            </div>
+            
+            <div class="layer dense-layer" style="left: 900px; top: 50px; width: 120px; height: 60px;">
+                <div class="layer-label">Dense</div>
+                <div class="layer-details">128</div>
+            </div>
+            
+            <div class="layer dense-layer" style="left: 900px; top: 130px; width: 120px; height: 60px;">
+                <div class="layer-label">Dense</div>
+                <div class="layer-details">64</div>
+            </div>
+            
+            <div class="layer dense-layer" style="left: 900px; top: 210px; width: 120px; height: 60px;">
+                <div class="layer-label">Dense</div>
+                <div class="layer-details">32</div>
+            </div>
+            
+            <div class="layer output-layer" style="left: 900px; top: 290px; width: 120px; height: 60px;">
+                <div class="layer-label">Output</div>
+                <div class="layer-details">Efficiency</div>
+            </div>
+            
+            <div class="arrow" style="left: 170px; top: 110px; width: 50px;"></div>
+            <div class="arrow" style="left: 340px; top: 80px; width: 50px;"></div>
+            <div class="arrow" style="left: 340px; top: 160px; width: 50px;"></div>
+            <div class="arrow" style="left: 340px; top: 250px; width: 50px;"></div>
+            <div class="arrow" style="left: 510px; top: 80px; width: 50px;"></div>
+            <div class="arrow" style="left: 510px; top: 160px; width: 50px;"></div>
+            <div class="arrow" style="left: 680px; top: 80px; width: 50px;"></div>
+            <div class="arrow" style="left: 680px; top: 160px; width: 50px;"></div>
+            <div class="arrow" style="left: 680px; top: 250px; width: 50px;"></div>
+            <div class="arrow" style="left: 850px; top: 80px; width: 50px;"></div>
+            <div class="arrow" style="left: 850px; top: 160px; width: 50px;"></div>
+            <div class="arrow" style="left: 850px; top: 240px; width: 50px;"></div>
+            <div class="arrow" style="left: 1020px; top: 80px; width: 2px; height: 50px; transform: rotate(90deg);"></div>
+            <div class="arrow" style="left: 1020px; top: 160px; width: 2px; height: 50px; transform: rotate(90deg);"></div>
+            <div class="arrow" style="left: 1020px; top: 240px; width: 2px; height: 50px; transform: rotate(90deg);"></div>
+            <div class="arrow" style="left: 170px; top: 350px; width: 560px;"></div>
+        </div>
+        
+        <div class="performance-box">
+            <div class="performance-title">Performance Metrics</div>
+            <div class="performance-metrics">
+                Spearman Correlation: 0.876 | Mean Squared Error: 0.0093 | R² Score: 0.767
+            </div>
+        </div>
+    </div>
+</body>
+</html>
