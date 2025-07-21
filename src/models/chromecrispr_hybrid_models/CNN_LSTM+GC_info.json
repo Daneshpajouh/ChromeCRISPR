@@ -1,0 +1,27 @@
+{
+  "model_name": "CNN_LSTM+GC",
+  "architecture": "CNN_LSTM",
+  "description": "CNN-LSTM hybrid with GC content",
+  "performance": {
+    "spearman": 0.8668,
+    "mse": 0.0115
+  },
+  "technical_specifications": {
+    "sequence_length": 21,
+    "embedding_dim": 128,
+    "use_gc": true,
+    "dropout_rate": 0.142,
+    "use_batch_norm": true,
+    "fc_sizes": [
+      128,
+      64,
+      32,
+      1
+    ],
+    "cnn_kernel_size": 5,
+    "cnn_filters": 64,
+    "cnn_layers": 2,
+    "rnn_hidden_size": 384,
+    "rnn_layers": 2
+  }
+}

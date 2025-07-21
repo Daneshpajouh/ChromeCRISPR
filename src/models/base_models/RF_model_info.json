@@ -1,0 +1,15 @@
+{
+  "model_name": "Random Forest (RF)",
+  "source": "Real model from external drive",
+  "file_path": "exact_20_manuscript_models/base_models/RF_model.joblib",
+  "model_type": "<class 'sklearn.ensemble._forest.RandomForestRegressor'>",
+  "parameters": {
+    "n_estimators": 100
+  },
+  "manuscript_performance": {
+    "MSE": 0.0197,
+    "Spearman": 0.755
+  },
+  "status": "real_model_loaded",
+  "note": "Model loaded successfully. Performance testing requires real dataset. Version compatibility warning noted."
+}
