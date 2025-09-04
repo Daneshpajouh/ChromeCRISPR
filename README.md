@@ -1,6 +1,6 @@
 # ChromeCRISPR: High Efficacy Hybrid Machine Learning Models for CRISPR/Cas On-Target Predictions
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13684951.svg)](https://doi.org/10.5281/zenodo.13684951)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17058362.svg)](https://doi.org/10.5281/zenodo.17058362)
 
 ## Overview
 
@@ -52,10 +52,10 @@ Our novel hybrid architectures combining CNN and RNN components:
 ## Dataset
 
 We use the DeepHF dataset containing:
-- **~60,000 unique sgRNAs** from 20,000 human genes
-- **21-mer sequences** (20 nucleotides + PAM)
-- **Activity values** as indel frequencies (0-1 range)
-- **GC content** as biological feature
+- ~60,000 unique sgRNAs from 20,000 human genes
+- 21-mer sequences (20 nucleotides + PAM)
+- Activity values as indel frequencies (0-1 range)
+- GC content as biological feature
 
 ## Installation
 
@@ -152,7 +152,7 @@ For comprehensive details about all model architectures, see [docs/MODEL_ARCHITE
 
 | Model | Spearman | MSE | Status |
 |-------|----------|-----|--------|
-| CNN_GRU+GC | 0.876 | 0.0093 | Best |
+| CNN_GRU+GC | 0.876 | 0.0093 | **Best** |
 | CNN_BiLSTM+GC | 0.870 | 0.0096 | Second |
 | CNN_LSTM+GC | 0.867 | 0.0115 | Third |
 | Deep CNN+GC | 0.873 | 0.0093 | Baseline |
@@ -196,9 +196,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Contact
 
 For questions or support, please contact:
-- Amirhossein Daneshpajouh: [amir_dp@sfu.ca](mailto:amir_dp@sfu.ca)
-- Megan Fowler: [megan_fowler_2@sfu.ca](mailto:megan_fowler_2@sfu.ca)
-- Kay C. Wiese: [wiese@sfu.ca](mailto:wiese@sfu.ca)
+- Amirhossein Daneshpajouh: amir_dp@sfu.ca
+- Megan Fowler: megan_fowler_2@sfu.ca
+- Kay C. Wiese: wiese@sfu.ca
 
 ## Related Publications
 
