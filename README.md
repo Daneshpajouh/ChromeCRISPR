@@ -1,5 +1,7 @@
 # ChromeCRISPR: High Efficacy Hybrid Machine Learning Models for CRISPR/Cas On-Target Predictions
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13684951.svg)](https://doi.org/10.5281/zenodo.13684951)
+
 ## Overview
 
 ChromeCRISPR is a collection of novel hybrid machine learning models that combine Convolutional Neural Networks (CNNs) with Recurrent Neural Networks (RNNs) to achieve high efficacy for CRISPR/Cas on-target predictions. Our best model, CNN-GRU hybrid with GC content, establishes new benchmarks for predictive accuracy in CRISPR/Cas9 efficacy predictions.
@@ -25,6 +27,7 @@ This outperforms previous state-of-the-art models:
 ## Model Architectures
 
 ### Base Models
+
 - **Random Forest (RF)**: Ensemble learning with 100 estimators
 - **CNN**: Convolutional neural network with 2 conv layers (128 filters each)
 - **GRU**: Gated recurrent unit with 2 layers (128 hidden units each)
@@ -32,6 +35,7 @@ This outperforms previous state-of-the-art models:
 - **BiLSTM**: Bidirectional LSTM with 2 layers (128 hidden units each)
 
 ### Deep Models
+
 Enhanced versions of base models with 3 specialized layers and 3 dense layers:
 - **Deep CNN**: 3 conv layers + 3 dense layers (128, 64, 32 units)
 - **Deep GRU**: 3 GRU layers + 3 dense layers
@@ -39,6 +43,7 @@ Enhanced versions of base models with 3 specialized layers and 3 dense layers:
 - **Deep BiLSTM**: 3 BiLSTM layers + 3 dense layers
 
 ### ChromeCRISPR Hybrid Models
+
 Our novel hybrid architectures combining CNN and RNN components:
 - **CNN_GRU+GC**: CNN + GRU fusion with GC content (Best performing)
 - **CNN_LSTM+GC**: CNN + LSTM fusion with GC content
@@ -119,43 +124,6 @@ ChromeCRISPR/
 ├── AUTHORS                      # Author information
 ├── DATASET_REFERENCE.md         # Dataset citations
 └── README.md                    # This file
-```ChromeCRISPR/
-├── exact_20_manuscript_models/  # All 20 models from manuscript
-│   ├── base_models/             # Base models (CNN, GRU, LSTM, BiLSTM)
-│   ├── base_models_with_gc/     # Base models + GC content
-│   ├── deep_models/             # Deep models (4+ layers)
-│   ├── deep_models_with_gc/     # Deep models + GC content
-│   ├── chromecrispr_hybrid_models/  # Hybrid CNN-RNN models
-│   ├── best_performing/         # Best model (CNN_GRU+GC)
-│   ├── performance_data/        # Performance metrics
-│   └── training_configs/        # Training configurations
-├── src/                         # Source code
-│   ├── models/                  # Model implementations
-│   ├── data/                    # Data loading and preprocessing
-│   ├── evaluation/              # Evaluation metrics
-│   └── training/                # Training utilities
-├── models/                      # Model code and utilities
-├── docs/                        # Documentation
-│   └── MODEL_ARCHITECTURES.md   # Detailed architecture descriptions
-
-├── DATASET_REFERENCE.md         # Dataset citations
-├── requirements.txt             # Python dependencies├── setup.py                     # Installation script
-├── LICENSE                      # MIT License
-├── AUTHORS                      # Author information
-├── DATASET_REFERENCE.md         # Dataset citations
-└── README.md                    # This file
-```ChromeCRISPR/
-├── src/                    # Source code
-│   ├── models/            # Model implementations
-│   ├── data/              # Data loading and preprocessing
-│   ├── evaluation/        # Evaluation metrics and plotting
-│   └── utils/             # Utility functions
-├── docs/                  # Documentation
-│   └── MODEL_ARCHITECTURES.md  # Detailed architecture descriptions
-├── config/                # Configuration files
-├── results/               # Model results and figures
-├── requirements.txt       # Python dependencies
-└── README.md             # This file
 ```
 
 ## Model Architecture Details
@@ -184,7 +152,7 @@ For comprehensive details about all model architectures, see [docs/MODEL_ARCHITE
 
 | Model | Spearman | MSE | Status |
 |-------|----------|-----|--------|
-| CNN_GRU+GC | 0.876 | 0.0093 | **Best** |
+| CNN_GRU+GC | 0.876 | 0.0093 | Best |
 | CNN_BiLSTM+GC | 0.870 | 0.0096 | Second |
 | CNN_LSTM+GC | 0.867 | 0.0115 | Third |
 | Deep CNN+GC | 0.873 | 0.0093 | Baseline |
@@ -228,9 +196,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Contact
 
 For questions or support, please contact:
-- Amirhossein Daneshpajouh: amir_dp@sfu.ca
-- Megan Fowler: megan_fowler_2@sfu.ca
-- Kay C. Wiese: wiese@sfu.ca
+- Amirhossein Daneshpajouh: [amir_dp@sfu.ca](mailto:amir_dp@sfu.ca)
+- Megan Fowler: [megan_fowler_2@sfu.ca](mailto:megan_fowler_2@sfu.ca)
+- Kay C. Wiese: [wiese@sfu.ca](mailto:wiese@sfu.ca)
 
 ## Related Publications
 
