@@ -21,7 +21,7 @@ ChromeCRISPR is a collection of novel hybrid machine learning models that combin
 - **Hybrid Architecture**: Combines CNN feature extraction with RNN sequence processing
 - **GC Content Integration**: Incorporates biological features for improved predictions
 - **State-of-the-Art Performance**: Outperforms DeepHF and AttCRISPR models
-- **Comprehensive Evaluation**: Multiple model architectures and configurations tested
+- **Comprehensive Evaluation**: 20 model architectures and configurations tested
 - **Publication Quality**: Research paper with detailed methodology and results
 
 ## Performance Summary
@@ -44,7 +44,7 @@ Our best model, **CNN_GRU+GC**, achieves:
 | **DeepHF** | 0.867 | 0.0094 | Previous SOTA |
 | **AttCRISPR** | 0.872 | - | Previous SOTA |
 
-*For complete performance comparison of all 19 models, see [Hyperparameter Documentation](docs/hyperparameters/)*
+*For complete performance comparison of all 20 models, see [Hyperparameter Documentation](docs/hyperparameters/)*
 
 ### Key Performance Insights
 
@@ -56,11 +56,12 @@ Our best model, **CNN_GRU+GC**, achieves:
 
 ## Model Architectures
 
-### Complete Model Collection (19 Models)
+### Complete Model Collection (20 Models)
 
 All models are organized in the `models/` directory with proper categorization.
 
-#### Base Models (4 models)
+#### Base Models (5 models)
+- **Random Forest**: Ensemble learning method with 100 estimators
 - **CNN**: Convolutional neural network with 2 conv layers (128 filters each)
 - **GRU**: Gated recurrent unit with 2 layers (128 hidden units each)
 - **LSTM**: Long short-term memory with 2 layers (128 hidden units each)
@@ -102,7 +103,7 @@ models/
 └── chromecrispr_hybrid_models/    # 3 hybrid models
 ```
 
-**Note**: Random Forest model not included (not found in available files)
+**Note**: All 20 models are included in the complete collection
 
 ## Dataset
 

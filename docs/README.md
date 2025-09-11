@@ -1,23 +1,23 @@
-# 📚 ChromeCRISPR Documentation
+# ChromeCRISPR Documentation
 
-Complete technical documentation for all 19 models, hyperparameters, training procedures, and performance analysis.
+Complete technical documentation for all 20 models, hyperparameters, training procedures, and performance analysis.
 
-## 📋 Documentation Overview
+## Documentation Overview
 
 | Section | Description | Files |
 |---------|-------------|-------|
-| **[Hyperparameters](hyperparameters/)** | Complete specifications for all 19 models | 19 JSON files + README |
+| **[Hyperparameters](hyperparameters/)** | Complete specifications for all 20 models | 20 JSON files + README |
 | **[Training Procedures](training_procedures/)** | Detailed training protocols and methodologies | README |
 | **[Model Architectures](../docs/MODEL_ARCHITECTURES.md)** | Technical architecture descriptions | Single comprehensive file |
 | **[Performance Analysis](../docs/COMPREHENSIVE_MODEL_DOCUMENTATION.md)** | Comparative analysis and benchmarking | Single analysis file |
 
-## 🔍 Quick Access Guide
+## Quick Access Guide
 
 ### Best Model Information
 ```bash
-🏆 BEST MODEL: CNN_GRU+GC
+BEST MODEL: CNN_GRU+GC
 ├── Performance: 0.876 Spearman, 0.0093 MSE
-├── File: ../exact_20_manuscript_models/chromecrispr_hybrid_models/CNN_GRU+GC.pth
+├── File: ../models/chromecrispr_hybrid_models/CNN_GRU+GC.pth
 ├── Hyperparameters: hyperparameters/CNN_GRU+GC_hyperparameters.json
 ├── Architecture: MODEL_ARCHITECTURES.md (Hybrid Models section)
 ```
@@ -28,51 +28,52 @@ Complete technical documentation for all 19 models, hyperparameters, training pr
 3. **Training Procedures**: See `training_procedures/README.md`
 4. **Comparative Analysis**: See `COMPREHENSIVE_MODEL_DOCUMENTATION.md`
 
-## 📊 Model Categories & Access
+## Model Categories & Access
 
 ### Hybrid Models (Best Performance)
 | Model | Performance | File Location | Hyperparameters |
 |-------|-------------|---------------|----------------|
-| **CNN_GRU+GC** ⭐ | 0.876 | `../chromecrispr_hybrid_models/` | [View](hyperparameters/CNN_GRU+GC_hyperparameters.json) |
-| CNN_BiLSTM+GC ⭐ | 0.870 | `../chromecrispr_hybrid_models/` | [View](hyperparameters/CNN_BiLSTM+GC_hyperparameters.json) |
-| CNN_LSTM+GC ⭐ | 0.867 | `../chromecrispr_hybrid_models/` | [View](hyperparameters/CNN_LSTM+GC_hyperparameters.json) |
+| **CNN_GRU+GC** | 0.876 | `../models/chromecrispr_hybrid_models/` | [View](hyperparameters/CNN_GRU+GC_hyperparameters.json) |
+| CNN_BiLSTM+GC | 0.870 | `../models/chromecrispr_hybrid_models/` | [View](hyperparameters/CNN_BiLSTM+GC_hyperparameters.json) |
+| CNN_LSTM+GC | 0.867 | `../models/chromecrispr_hybrid_models/` | [View](hyperparameters/CNN_LSTM+GC_hyperparameters.json) |
 
 ### Deep Models + GC Content
 | Model | Performance | File Location | Hyperparameters |
 |-------|-------------|---------------|----------------|
-| deepCNN+GC | 0.873 | `../deep_models_with_gc/` | [View](hyperparameters/deepCNN+GC_hyperparameters.json) |
-| deepBiLSTM+GC | 0.867 | `../deep_models_with_gc/` | [View](hyperparameters/deepBiLSTM+GC_hyperparameters.json) |
-| deepGRU+GC | 0.867 | `../deep_models_with_gc/` | [View](hyperparameters/deepGRU+GC_hyperparameters.json) |
-| deepLSTM+GC | 0.860 | `../deep_models_with_gc/` | [View](hyperparameters/deepLSTM+GC_hyperparameters.json) |
+| deepCNN+GC | 0.873 | `../models/deep_models_with_gc/` | [View](hyperparameters/deepCNN+GC_hyperparameters.json) |
+| deepBiLSTM+GC | 0.867 | `../models/deep_models_with_gc/` | [View](hyperparameters/deepBiLSTM+GC_hyperparameters.json) |
+| deepGRU+GC | 0.867 | `../models/deep_models_with_gc/` | [View](hyperparameters/deepGRU+GC_hyperparameters.json) |
+| deepLSTM+GC | 0.860 | `../models/deep_models_with_gc/` | [View](hyperparameters/deepLSTM+GC_hyperparameters.json) |
 
 ### Deep Models (No GC)
 | Model | Performance | File Location | Hyperparameters |
 |-------|-------------|---------------|----------------|
-| deepCNN | 0.869 | `../deep_models/` | [View](hyperparameters/deepCNN_hyperparameters.json) |
-| deepGRU | 0.868 | `../deep_models/` | [View](hyperparameters/deepGRU_hyperparameters.json) |
-| deepLSTM | 0.862 | `../deep_models/` | [View](hyperparameters/deepLSTM_hyperparameters.json) |
-| deepBiLSTM | 0.862 | `../deep_models/` | [View](hyperparameters/deepBiLSTM_hyperparameters.json) |
+| deepCNN | 0.869 | `../models/deep_models/` | [View](hyperparameters/deepCNN_hyperparameters.json) |
+| deepGRU | 0.868 | `../models/deep_models/` | [View](hyperparameters/deepGRU_hyperparameters.json) |
+| deepLSTM | 0.862 | `../models/deep_models/` | [View](hyperparameters/deepLSTM_hyperparameters.json) |
+| deepBiLSTM | 0.862 | `../models/deep_models/` | [View](hyperparameters/deepBiLSTM_hyperparameters.json) |
 
 ### Base Models + GC Content
 | Model | Performance | File Location | Hyperparameters |
 |-------|-------------|---------------|----------------|
-| LSTM+GC | 0.856 | `../base_models_with_gc/` | [View](hyperparameters/LSTM+GC_hyperparameters.json) |
-| BiLSTM+GC | 0.855 | `../base_models_with_gc/` | [View](hyperparameters/BiLSTM+GC_hyperparameters.json) |
-| GRU+GC | 0.840 | `../base_models_with_gc/` | [View](hyperparameters/GRU+GC_hyperparameters.json) |
-| CNN+GC | 0.781 | `../base_models_with_gc/` | [View](hyperparameters/CNN+GC_hyperparameters.json) |
+| LSTM+GC | 0.856 | `../models/base_models_with_gc/` | [View](hyperparameters/LSTM+GC_hyperparameters.json) |
+| BiLSTM+GC | 0.855 | `../models/base_models_with_gc/` | [View](hyperparameters/BiLSTM+GC_hyperparameters.json) |
+| GRU+GC | 0.840 | `../models/base_models_with_gc/` | [View](hyperparameters/GRU+GC_hyperparameters.json) |
+| CNN+GC | 0.781 | `../models/base_models_with_gc/` | [View](hyperparameters/CNN+GC_hyperparameters.json) |
 
 ### Base Models (No GC)
 | Model | Performance | File Location | Hyperparameters |
 |-------|-------------|---------------|----------------|
-| BiLSTM | 0.843 | `../base_models/` | [View](hyperparameters/BiLSTM_hyperparameters.json) |
-| GRU | 0.837 | `../base_models/` | [View](hyperparameters/GRU_hyperparameters.json) |
-| LSTM | 0.837 | `../base_models/` | [View](hyperparameters/LSTM_hyperparameters.json) |
-| CNN | 0.793 | `../base_models/` | [View](hyperparameters/CNN_hyperparameters.json) |
+| BiLSTM | 0.843 | `../models/base_models/` | [View](hyperparameters/BiLSTM_hyperparameters.json) |
+| GRU | 0.837 | `../models/base_models/` | [View](hyperparameters/GRU_hyperparameters.json) |
+| LSTM | 0.837 | `../models/base_models/` | [View](hyperparameters/LSTM_hyperparameters.json) |
+| CNN | 0.793 | `../models/base_models/` | [View](hyperparameters/CNN_hyperparameters.json) |
+| Random Forest | 0.789 | `../models/base_models/` | [View](hyperparameters/RF_hyperparameters.json) |
 
-## 🔧 Technical Documentation
+## Technical Documentation
 
 ### Hyperparameter Documentation
-- **19 Complete JSON Files**: Every model has full hyperparameter specifications
+- **20 Complete JSON Files**: Every model has full hyperparameter specifications
 - **Bayesian Optimization Results**: Search spaces and optimal configurations
 - **Training Details**: Hardware, memory, timing, and convergence information
 - **Performance Metrics**: Spearman correlation, MSE, cross-validation scores
@@ -89,12 +90,12 @@ Complete technical documentation for all 19 models, hyperparameters, training pr
 - **Input/Output Dimensions**: Data flow through each architecture
 - **GC Integration Methods**: Biological feature incorporation techniques
 
-## 📈 Performance Analysis
+## Performance Analysis
 
 ### Benchmark Comparisons
 ```
 ChromeCRISPR Results:
-CNN_GRU+GC    (0.876) ━━ NEW BENCHMARK ⭐
+CNN_GRU+GC    (0.876) ━━ NEW BENCHMARK
 deepCNN+GC    (0.873) ━━ Second Best
 CNN_BiLSTM+GC (0.870) ━━ Third Best
 
@@ -109,7 +110,7 @@ AttCRISPR      (0.872) ━━ Surpassed
 3. **GC Content Impact**: Consistent improvement across most model types
 4. **Depth Benefits**: Deeper models generally perform better than base models
 
-## 🎯 Quick Start Guide
+## Quick Start Guide
 
 ### Using the Best Model
 ```python
@@ -117,7 +118,7 @@ import torch
 from src.models import ChromeCRISPRModel
 
 # Load best performing model
-model = ChromeCRISPRModel.load_from_file('../exact_20_manuscript_models/chromecrispr_hybrid_models/CNN_GRU+GC.pth')
+model = ChromeCRISPRModel.load_from_file('../models/chromecrispr_hybrid_models/CNN_GRU+GC.pth')
 
 # Make predictions
 predictions = model.predict(your_sequence_data)

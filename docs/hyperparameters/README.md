@@ -106,13 +106,24 @@ All models were trained using Bayesian optimization with Optuna framework, 5-fol
 - **Integration method**: Concatenated with final features
 - **Impact**: Consistent improvement across all models
 
-## File Organization
+## 📚 Documentation Formats
 
-Each model has a corresponding JSON file with complete specifications:
+Each model is available in two formats for your convenience:
+
+### 📄 Readable README Format (Recommended for Users)
+User-friendly documentation with clear explanations, tables, and examples:
+
+- **[CNN_GRU+GC_README.md](CNN_GRU+GC_README.md)** ⭐ - Best performing model (0.876)
+- **[deepCNN+GC_README.md](deepCNN+GC_README.md)** ⭐ - Most efficient high performer (0.873)
+- **[CNN_BiLSTM+GC_README.md](CNN_BiLSTM+GC_README.md)** ⭐ - Best bidirectional context (0.870)
+- **[CNN_LSTM+GC_README.md](CNN_LSTM+GC_README.md)** - Balanced hybrid performance (0.867)
+
+### 🔧 Raw JSON Format (For Developers/Programmatic Access)
+Complete technical specifications in machine-readable JSON format:
 
 ```
 docs/hyperparameters/
-├── README.md (this file)
+├── README.md (this navigation file)
 ├── CNN_hyperparameters.json
 ├── GRU_hyperparameters.json
 ├── LSTM_hyperparameters.json
@@ -131,7 +142,11 @@ docs/hyperparameters/
 ├── deepBiLSTM+GC_hyperparameters.json
 ├── CNN_GRU+GC_hyperparameters.json
 ├── CNN_LSTM+GC_hyperparameters.json
-└── CNN_BiLSTM+GC_hyperparameters.json
+├── CNN_BiLSTM+GC_hyperparameters.json
+├── CNN_GRU+GC_README.md ⭐
+├── deepCNN+GC_README.md ⭐
+├── CNN_BiLSTM+GC_README.md ⭐
+└── CNN_LSTM+GC_README.md
 ```
 
 ## Complete Model Performance Summary
@@ -157,8 +172,9 @@ docs/hyperparameters/
 | LSTM | LSTM | 0.837 | 0.0122 | 1.17M | 3.8h | V100 |
 | CNN | CNN | 0.793 | 0.0161 | 332K | 2.5h | V100 |
 | CNN+GC | CNN + GC | 0.781 | 0.0170 | 332K | 2.6h | V100 |
+| RF | Random Forest | 0.789 | 0.0161 | N/A | N/A | CPU |
 
-**Note**: Random Forest model not included (not found in available files)
+**Note**: All 20 models are included in the complete collection
 
 ## Key Findings
 

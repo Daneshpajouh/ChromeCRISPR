@@ -1,4 +1,4 @@
-# ChromeCRISPR: Complete Model Collection (19 Models)
+# ChromeCRISPR: Complete Model Collection (20 Models)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17058362.svg)](https://doi.org/10.5281/zenodo.17058362)
 
@@ -30,14 +30,16 @@
 | LSTM | 0.837 | 0.0122 | LSTM | 1.17M |
 | CNN | 0.793 | 0.0161 | CNN | 332K |
 | CNN+GC | 0.781 | 0.0170 | CNN + GC | 332K |
+| RF | 0.789 | 0.0161 | Random Forest | N/A |
 
 ## Model Organization
 
-### Base Models (4 models)
+### Base Models (5 models)
 Standard implementations of individual architectures:
 
 | Model | File | Hyperparameters | Performance |
 |-------|------|----------------|--------------|
+| **Random Forest** | `base_models/RF.joblib` | [View](../docs/hyperparameters/RF_hyperparameters.json) | 0.789 Spearman |
 | **CNN** | `base_models/CNN.pth` | [View](../docs/hyperparameters/CNN_hyperparameters.json) | 0.793 Spearman |
 | **GRU** | `base_models/GRU.pth` | [View](../docs/hyperparameters/GRU_hyperparameters.json) | 0.837 Spearman |
 | **LSTM** | `base_models/LSTM.pth` | [View](../docs/hyperparameters/LSTM_hyperparameters.json) | 0.837 Spearman |
