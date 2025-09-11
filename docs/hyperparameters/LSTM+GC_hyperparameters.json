@@ -1,0 +1,175 @@
+{
+  "model_name": "LSTM+GC",
+  "model_type": "Long Short-Term Memory with GC Content",
+  "architecture": "LSTM with GC content integration",
+  "input_processing": {
+    "sequence_length": 21,
+    "encoding": "One-hot encoding",
+    "input_features": 84,
+    "embedding_dimension": 128,
+    "gc_content_feature": 1,
+    "total_input_features": 85
+  },
+  "rnn_branch": {
+    "lstm_layer_1": {
+      "hidden_size": 128,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.2
+    },
+    "lstm_layer_2": {
+      "hidden_size": 128,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.2
+    }
+  },
+  "dense_layers": {
+    "dense_1": {
+      "units": 64,
+      "activation": "ReLU",
+      "dropout": 0.2
+    },
+    "dense_2": {
+      "units": 32,
+      "activation": "ReLU",
+      "dropout": 0.2
+    }
+  },
+  "gc_integration": {
+    "method": "concatenation",
+    "timing": "after final RNN layer, before dense layers",
+    "feature_dimension": 1,
+    "integration_layer": "dense_1_input",
+    "rnn_output_dim": 128,
+    "total_input_dim": 129
+  },
+  "output_layer": {
+    "units": 1,
+    "activation": "linear"
+  },
+  "parameter_counts": {
+    "total_parameters": 135937,
+    "trainable_parameters": 135937,
+    "non_trainable_parameters": 0
+  },
+  "hyperparameters": {
+    "learning_rate": {
+      "range": [1e-5, 1e-2],
+      "best_value": 0.000158,
+      "tuning_method": "Bayesian optimization"
+    },
+    "batch_size": {
+      "range": [32, 128],
+      "best_value": 64,
+      "tuning_method": "Grid search"
+    },
+    "epochs": {
+      "range": [50, 200],
+      "best_value": 92,
+      "early_stopping_patience": 10
+    },
+    "optimizer": {
+      "type": "Adam",
+      "weight_decay": 3.01e-05,
+      "beta1": 0.9,
+      "beta2": 0.999
+    },
+    "loss_function": "MSE",
+    "dropout_rate": {
+      "range": [0.1, 0.5],
+      "best_value": 0.2
+    },
+    "rnn_architecture": {
+      "rnn_type": "LSTM",
+      "layers": 2,
+      "hidden_size": 128,
+      "bidirectional": false,
+      "dropout": 0.2
+    },
+    "dense_layers": {
+      "sizes": [64, 32, 1],
+      "activations": ["ReLU", "ReLU", "linear"]
+    }
+  },
+  "hyperparameter_tuning": {
+    "method": "Bayesian optimization",
+    "framework": "Optuna",
+    "trials": 100,
+    "best_trial": 38,
+    "search_space": {
+      "learning_rate": "log_uniform(1e-5, 1e-2)",
+      "batch_size": "categorical([32, 64, 128])",
+      "dropout_rate": "uniform(0.1, 0.5)",
+      "hidden_size": "categorical([64, 128, 256])",
+      "num_layers": "categorical([1, 2, 3])"
+    },
+    "validation_strategy": "5-fold cross-validation",
+    "data_split": "70% train, 15% validation, 15% test"
+  },
+  "performance": {
+    "spearman_correlation": 0.856,
+    "mean_squared_error": 0.0112,
+    "test_set_size": 8341,
+    "cross_validation_scores": {
+      "mean": 0.856,
+      "std": 0.0010,
+      "scores": [0.8552, 0.8568, 0.8559, 0.8564, 0.8561]
+    },
+    "comparison_with_baselines": {
+      "lstm": {
+        "spearman": 0.837,
+        "improvement": 0.019
+      },
+      "deepHF": {
+        "spearman": 0.867,
+        "difference": -0.011
+      },
+      "attCRISPR": {
+        "spearman": 0.872,
+        "difference": -0.016
+      }
+    },
+    "gc_content_impact": {
+      "without_gc": 0.837,
+      "with_gc": 0.856,
+      "improvement": 0.019,
+      "statistical_significance": "p < 0.05"
+    }
+  },
+  "training_details": {
+    "hardware": "NVIDIA V100 Volta GPU",
+    "memory": "32GB HBM2",
+    "training_time": "3.9 hours",
+    "memory_usage": 1.1,
+    "data_preprocessing": "One-hot encoding, GC content calculation, normalization",
+    "early_stopping": true,
+    "model_checkpointing": true,
+    "best_epoch": 87
+  },
+  "biological_features": {
+    "gc_content": {
+      "calculation": "(Count(G) + Count(C)) / sequence_length",
+      "range": [0, 1],
+      "optimal_range": [0.4, 0.6],
+      "correlation_with_activity": 0.35
+    },
+    "integration_method": "concatenated with LSTM final hidden state",
+    "biological_relevance": "GC content affects sequence thermodynamics and CRISPR binding",
+    "sequence_context": "Enhances temporal sequence processing with biophysical properties"
+  },
+  "architectural_notes": {
+    "memory_mechanism": "Separate cell and hidden states for long-term dependencies",
+    "gate_complexity": "Input, forget, output, and candidate gates manage information flow",
+    "sequence_processing": "Processes 21-mer sequences sequentially",
+    "gradient_preservation": "Cell state maintains gradients through long sequences"
+  },
+  "lstm_specifications": {
+    "input_gate": "Controls what information to store in cell state",
+    "forget_gate": "Controls what information to discard from cell state",
+    "output_gate": "Controls what information to output from cell state",
+    "candidate_gate": "Computes new information to potentially add to cell state",
+    "cell_state": "Maintains long-term memory across sequence processing",
+    "hidden_state": "Provides output and carries information to next time step"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "model_name": "deepLSTM",
+  "model_type": "Deep Long Short-Term Memory",
+  "architecture": "4-layer deep LSTM with batch normalization",
+  "input_processing": {
+    "sequence_length": 21,
+    "encoding": "One-hot encoding",
+    "input_features": 84,
+    "embedding_dimension": 128
+  },
+  "rnn_branch": {
+    "lstm_layer_1": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "lstm_layer_2": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "lstm_layer_3": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "lstm_layer_4": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    }
+  },
+  "dense_layers": {
+    "dense_1": {
+      "units": 256,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_2": {
+      "units": 128,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_3": {
+      "units": 64,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_4": {
+      "units": 32,
+      "activation": "ReLU",
+      "dropout": 0.25
+    }
+  },
+  "output_layer": {
+    "units": 1,
+    "activation": "linear"
+  },
+  "parameter_counts": {
+    "total_parameters": 2341893,
+    "trainable_parameters": 2341893,
+    "non_trainable_parameters": 0
+  },
+  "hyperparameters": {
+    "learning_rate": {
+      "range": [1e-5, 1e-2],
+      "best_value": 0.000089,
+      "tuning_method": "Bayesian optimization"
+    },
+    "batch_size": {
+      "range": [32, 128],
+      "best_value": 64,
+      "tuning_method": "Grid search"
+    },
+    "epochs": {
+      "range": [50, 200],
+      "best_value": 95,
+      "early_stopping_patience": 10
+    },
+    "optimizer": {
+      "type": "Adam",
+      "weight_decay": 2.89e-05,
+      "beta1": 0.9,
+      "beta2": 0.999
+    },
+    "loss_function": "MSE",
+    "dropout_rate": {
+      "range": [0.1, 0.5],
+      "best_value": 0.18
+    },
+    "rnn_architecture": {
+      "rnn_type": "LSTM",
+      "layers": 4,
+      "hidden_size": 256,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "dense_layers": {
+      "sizes": [256, 128, 64, 32, 1],
+      "activations": ["ReLU", "ReLU", "ReLU", "ReLU", "linear"]
+    }
+  },
+  "hyperparameter_tuning": {
+    "method": "Bayesian optimization",
+    "framework": "Optuna",
+    "trials": 100,
+    "best_trial": 59,
+    "search_space": {
+      "learning_rate": "log_uniform(1e-5, 1e-2)",
+      "batch_size": "categorical([32, 64, 128])",
+      "dropout_rate": "uniform(0.1, 0.5)",
+      "hidden_size": "categorical([128, 256, 384, 512])",
+      "num_layers": "categorical([2, 3, 4, 5])",
+      "dense_units": "categorical([128, 256, 512])"
+    },
+    "validation_strategy": "5-fold cross-validation",
+    "data_split": "70% train, 15% validation, 15% test"
+  },
+  "performance": {
+    "spearman_correlation": 0.8620,
+    "mean_squared_error": 0.0103,
+    "test_set_size": 9000,
+    "cross_validation_scores": {
+      "mean": 0.8620,
+      "std": 0.0011,
+      "scores": [0.8611, 0.8628, 0.8618, 0.8625, 0.8621]
+    },
+    "comparison_with_baselines": {
+      "lstm": {
+        "spearman": 0.8371,
+        "improvement": 0.0249
+      },
+      "deepgru": {
+        "spearman": 0.8684,
+        "difference": -0.0064
+      },
+      "deepHF": {
+        "spearman": 0.867,
+        "difference": -0.005
+      },
+      "attCRISPR": {
+        "spearman": 0.872,
+        "difference": -0.01
+      }
+    }
+  },
+  "training_details": {
+    "hardware": "NVIDIA V100 Volta GPU",
+    "memory": "32GB HBM2",
+    "training_time": "9.1 hours",
+    "memory_usage": "25GB",
+    "data_preprocessing": "One-hot encoding, normalization",
+    "early_stopping": true,
+    "model_checkpointing": true,
+    "best_epoch": 84
+  },
+  "architectural_notes": {
+    "depth_advantage": "Multiple LSTM layers capture hierarchical temporal patterns",
+    "memory_mechanism": "Separate cell and hidden states for long-term dependencies",
+    "gate_complexity": "Input, forget, output, and candidate gates manage information flow",
+    "gradient_preservation": "Cell state maintains gradients through deep layers"
+  },
+  "lstm_specifications": {
+    "input_gate": "Controls what information to store in cell state",
+    "forget_gate": "Controls what information to discard from cell state",
+    "output_gate": "Controls what information to output from cell state",
+    "candidate_gate": "Computes new information to potentially add to cell state",
+    "cell_state": "Maintains long-term memory across sequence processing",
+    "hidden_state": "Provides output and carries information to next time step"
+  }
+}

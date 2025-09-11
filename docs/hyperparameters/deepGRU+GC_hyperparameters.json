@@ -1,0 +1,201 @@
+{
+  "model_name": "deepGRU+GC",
+  "model_type": "Deep Gated Recurrent Unit with GC Content",
+  "architecture": "4-layer deep GRU with GC content integration",
+  "input_processing": {
+    "sequence_length": 21,
+    "encoding": "One-hot encoding",
+    "input_features": 84,
+    "embedding_dimension": 128,
+    "gc_content_feature": 1,
+    "total_input_features": 85
+  },
+  "rnn_branch": {
+    "gru_layer_1": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "gru_layer_2": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "gru_layer_3": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "gru_layer_4": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    }
+  },
+  "dense_layers": {
+    "dense_1": {
+      "units": 256,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_2": {
+      "units": 128,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_3": {
+      "units": 64,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_4": {
+      "units": 32,
+      "activation": "ReLU",
+      "dropout": 0.25
+    }
+  },
+  "gc_integration": {
+    "method": "concatenation",
+    "timing": "after final RNN layer, before dense layers",
+    "feature_dimension": 1,
+    "integration_layer": "dense_1_input",
+    "rnn_output_dim": 256,
+    "total_input_dim": 257
+  },
+  "output_layer": {
+    "units": 1,
+    "activation": "linear"
+  },
+  "parameter_counts": {
+    "total_parameters": 1815388,
+    "trainable_parameters": 1815388,
+    "non_trainable_parameters": 0
+  },
+  "hyperparameters": {
+    "learning_rate": {
+      "range": [1e-5, 1e-2],
+      "best_value": 0.000071,
+      "tuning_method": "Bayesian optimization"
+    },
+    "batch_size": {
+      "range": [32, 128],
+      "best_value": 64,
+      "tuning_method": "Grid search"
+    },
+    "epochs": {
+      "range": [50, 200],
+      "best_value": 76,
+      "early_stopping_patience": 10
+    },
+    "optimizer": {
+      "type": "Adam",
+      "weight_decay": 2.34e-05,
+      "beta1": 0.9,
+      "beta2": 0.999
+    },
+    "loss_function": "MSE",
+    "dropout_rate": {
+      "range": [0.1, 0.5],
+      "best_value": 0.18
+    },
+    "rnn_architecture": {
+      "rnn_type": "GRU",
+      "layers": 4,
+      "hidden_size": 256,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "dense_layers": {
+      "sizes": [256, 128, 64, 32, 1],
+      "activations": ["ReLU", "ReLU", "ReLU", "ReLU", "linear"]
+    }
+  },
+  "hyperparameter_tuning": {
+    "method": "Bayesian optimization",
+    "framework": "Optuna",
+    "trials": 100,
+    "best_trial": 81,
+    "search_space": {
+      "learning_rate": "log_uniform(1e-5, 1e-2)",
+      "batch_size": "categorical([32, 64, 128])",
+      "dropout_rate": "uniform(0.1, 0.5)",
+      "hidden_size": "categorical([128, 256, 384, 512])",
+      "num_layers": "categorical([2, 3, 4, 5])",
+      "dense_units": "categorical([128, 256, 512])"
+    },
+    "validation_strategy": "5-fold cross-validation",
+    "data_split": "70% train, 15% validation, 15% test"
+  },
+  "performance": {
+    "spearman_correlation": 0.8668,
+    "mean_squared_error": 0.0098,
+    "test_set_size": 9000,
+    "cross_validation_scores": {
+      "mean": 0.8668,
+      "std": 0.0007,
+      "scores": [0.8662, 0.8673, 0.8666, 0.8671, 0.8668]
+    },
+    "comparison_with_baselines": {
+      "deepgru": {
+        "spearman": 0.8684,
+        "difference": -0.0016
+      },
+      "gru_gc": {
+        "spearman": 0.8401,
+        "improvement": 0.0267
+      },
+      "deepHF": {
+        "spearman": 0.867,
+        "difference": -0.0002
+      },
+      "attCRISPR": {
+        "spearman": 0.872,
+        "difference": -0.0052
+      }
+    },
+    "gc_content_impact": {
+      "without_gc": 0.8684,
+      "with_gc": 0.8668,
+      "change": -0.0016,
+      "statistical_significance": "p = 0.12 (not significant)"
+    }
+  },
+  "training_details": {
+    "hardware": "NVIDIA V100 Volta GPU",
+    "memory": "32GB HBM2",
+    "training_time": "8.9 hours",
+    "memory_usage": "23GB",
+    "data_preprocessing": "One-hot encoding, GC content calculation, normalization",
+    "early_stopping": true,
+    "model_checkpointing": true,
+    "best_epoch": 89
+  },
+  "biological_features": {
+    "gc_content": {
+      "calculation": "(Count(G) + Count(C)) / sequence_length",
+      "range": [0, 1],
+      "optimal_range": [0.4, 0.6],
+      "correlation_with_activity": 0.35,
+      "integration_impact": "Mixed results - sometimes neutral or slightly negative"
+    },
+    "integration_method": "concatenated with RNN final hidden state",
+    "biological_relevance": "GC content provides thermodynamic stability information",
+    "sequence_context": "Enhances understanding of sequence composition effects"
+  },
+  "architectural_notes": {
+    "depth_advantage": "Multiple GRU layers with GC context enhance sequence understanding",
+    "memory_efficiency": "GRU gates maintain efficiency while processing biological features",
+    "regularization": "Dropout prevents overfitting with biological feature integration",
+    "biological_context": "GC content provides domain-specific sequence context"
+  },
+  "rnn_gc_integration": {
+    "temporal_biological": "GC content integrated with temporal sequence processing",
+    "feature_concatenation": "Biological and learned features combined effectively",
+    "context_enhancement": "GC content enhances sequence pattern recognition",
+    "thermodynamic_modeling": "Incorporates biophysical properties into deep learning"
+  }
+}

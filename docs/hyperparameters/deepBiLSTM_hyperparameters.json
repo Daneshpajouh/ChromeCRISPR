@@ -1,0 +1,180 @@
+{
+  "model_name": "deepBiLSTM",
+  "model_type": "Deep Bidirectional Long Short-Term Memory",
+  "architecture": "4-layer deep bidirectional LSTM with batch normalization",
+  "input_processing": {
+    "sequence_length": 21,
+    "encoding": "One-hot encoding",
+    "input_features": 84,
+    "embedding_dimension": 128
+  },
+  "rnn_branch": {
+    "bilstm_layer_1": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": true,
+      "total_hidden_size": 512,
+      "dropout": 0.18
+    },
+    "bilstm_layer_2": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": true,
+      "total_hidden_size": 512,
+      "dropout": 0.18
+    },
+    "bilstm_layer_3": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": true,
+      "total_hidden_size": 512,
+      "dropout": 0.18
+    },
+    "bilstm_layer_4": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": true,
+      "total_hidden_size": 512,
+      "dropout": 0.18
+    }
+  },
+  "dense_layers": {
+    "dense_1": {
+      "units": 512,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_2": {
+      "units": 256,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_3": {
+      "units": 128,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_4": {
+      "units": 64,
+      "activation": "ReLU",
+      "dropout": 0.25
+    }
+  },
+  "output_layer": {
+    "units": 1,
+    "activation": "linear"
+  },
+  "parameter_counts": {
+    "total_parameters": 5988277,
+    "trainable_parameters": 5988277,
+    "non_trainable_parameters": 0
+  },
+  "hyperparameters": {
+    "learning_rate": {
+      "range": [1e-5, 1e-2],
+      "best_value": 0.000076,
+      "tuning_method": "Bayesian optimization"
+    },
+    "batch_size": {
+      "range": [32, 128],
+      "best_value": 64,
+      "tuning_method": "Grid search"
+    },
+    "epochs": {
+      "range": [50, 200],
+      "best_value": 102,
+      "early_stopping_patience": 10
+    },
+    "optimizer": {
+      "type": "Adam",
+      "weight_decay": 2.45e-05,
+      "beta1": 0.9,
+      "beta2": 0.999
+    },
+    "loss_function": "MSE",
+    "dropout_rate": {
+      "range": [0.1, 0.5],
+      "best_value": 0.18
+    },
+    "rnn_architecture": {
+      "rnn_type": "BiLSTM",
+      "layers": 4,
+      "hidden_size": 256,
+      "bidirectional": true,
+      "total_hidden_size": 512,
+      "dropout": 0.18
+    },
+    "dense_layers": {
+      "sizes": [512, 256, 128, 64, 1],
+      "activations": ["ReLU", "ReLU", "ReLU", "ReLU", "linear"]
+    }
+  },
+  "hyperparameter_tuning": {
+    "method": "Bayesian optimization",
+    "framework": "Optuna",
+    "trials": 100,
+    "best_trial": 54,
+    "search_space": {
+      "learning_rate": "log_uniform(1e-5, 1e-2)",
+      "batch_size": "categorical([32, 64, 128])",
+      "dropout_rate": "uniform(0.1, 0.5)",
+      "hidden_size": "categorical([128, 256, 384, 512])",
+      "num_layers": "categorical([2, 3, 4, 5])",
+      "dense_units": "categorical([256, 512, 1024])"
+    },
+    "validation_strategy": "5-fold cross-validation",
+    "data_split": "70% train, 15% validation, 15% test"
+  },
+  "performance": {
+    "spearman_correlation": 0.8617,
+    "mean_squared_error": 0.0104,
+    "test_set_size": 9000,
+    "cross_validation_scores": {
+      "mean": 0.8617,
+      "std": 0.0012,
+      "scores": [0.8608, 0.8625, 0.8614, 0.8621, 0.8618]
+    },
+    "comparison_with_baselines": {
+      "bilstm": {
+        "spearman": 0.8432,
+        "improvement": 0.0185
+      },
+      "deeplstm": {
+        "spearman": 0.8620,
+        "difference": -0.0003
+      },
+      "deepHF": {
+        "spearman": 0.867,
+        "difference": -0.0053
+      },
+      "attCRISPR": {
+        "spearman": 0.872,
+        "difference": -0.0103
+      }
+    }
+  },
+  "training_details": {
+    "hardware": "NVIDIA V100 Volta GPU",
+    "memory": "32GB HBM2",
+    "training_time": "11.2 hours",
+    "memory_usage": "28GB",
+    "data_preprocessing": "One-hot encoding, normalization",
+    "early_stopping": true,
+    "model_checkpointing": true,
+    "best_epoch": 91
+  },
+  "architectural_notes": {
+    "bidirectional_advantage": "Processes sequences in both forward and backward directions",
+    "context_awareness": "Captures both preceding and following sequence context",
+    "depth_benefit": "Multiple bidirectional layers enhance contextual understanding",
+    "parameter_tradeoff": "Increased parameters for improved sequence understanding"
+  },
+  "bidirectional_specifications": {
+    "forward_pass": "Processes sequence from start to end",
+    "backward_pass": "Processes sequence from end to start",
+    "concatenation": "Forward and backward hidden states are concatenated",
+    "output_dimension": "2 × hidden_size (512 for 256 hidden units)",
+    "context_window": "Full sequence context available at each position",
+    "temporal_reasoning": "Enhanced understanding of sequence relationships"
+  }
+}

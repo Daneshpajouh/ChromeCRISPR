@@ -1,0 +1,176 @@
+{
+  "model_name": "deepCNN",
+  "model_type": "Deep Convolutional Neural Network",
+  "architecture": "4-layer deep CNN with batch normalization",
+  "input_processing": {
+    "sequence_length": 21,
+    "encoding": "One-hot encoding",
+    "input_features": 84,
+    "embedding_dimension": 128
+  },
+  "cnn_branch": {
+    "conv_layer_1": {
+      "filters": 128,
+      "kernel_size": 5,
+      "stride": 1,
+      "padding": "same",
+      "activation": "ReLU",
+      "batch_norm": true,
+      "dropout": 0.15
+    },
+    "conv_layer_2": {
+      "filters": 128,
+      "kernel_size": 5,
+      "stride": 1,
+      "padding": "same",
+      "activation": "ReLU",
+      "batch_norm": true,
+      "dropout": 0.15
+    },
+    "conv_layer_3": {
+      "filters": 128,
+      "kernel_size": 5,
+      "stride": 1,
+      "padding": "same",
+      "activation": "ReLU",
+      "batch_norm": true,
+      "dropout": 0.15
+    },
+    "conv_layer_4": {
+      "filters": 128,
+      "kernel_size": 5,
+      "stride": 1,
+      "padding": "same",
+      "activation": "ReLU",
+      "batch_norm": true,
+      "dropout": 0.15
+    },
+    "global_max_pooling": true
+  },
+  "dense_layers": {
+    "dense_1": {
+      "units": 256,
+      "activation": "ReLU",
+      "dropout": 0.2
+    },
+    "dense_2": {
+      "units": 128,
+      "activation": "ReLU",
+      "dropout": 0.2
+    },
+    "dense_3": {
+      "units": 64,
+      "activation": "ReLU",
+      "dropout": 0.2
+    },
+    "dense_4": {
+      "units": 32,
+      "activation": "ReLU",
+      "dropout": 0.2
+    }
+  },
+  "output_layer": {
+    "units": 1,
+    "activation": "linear"
+  },
+  "parameter_counts": {
+    "total_parameters": 664629,
+    "trainable_parameters": 664629,
+    "non_trainable_parameters": 0
+  },
+  "hyperparameters": {
+    "learning_rate": {
+      "range": [1e-5, 1e-2],
+      "best_value": 0.000087,
+      "tuning_method": "Bayesian optimization"
+    },
+    "batch_size": {
+      "range": [32, 128],
+      "best_value": 64,
+      "tuning_method": "Grid search"
+    },
+    "epochs": {
+      "range": [50, 200],
+      "best_value": 145,
+      "early_stopping_patience": 10
+    },
+    "optimizer": {
+      "type": "Adam",
+      "weight_decay": 3.45e-05,
+      "beta1": 0.9,
+      "beta2": 0.999
+    },
+    "loss_function": "MSE",
+    "dropout_rate": {
+      "range": [0.1, 0.5],
+      "best_value": 0.15
+    },
+    "cnn_architecture": {
+      "conv_layers": 4,
+      "filters_per_layer": [128, 128, 128, 128],
+      "kernel_sizes": [5, 5, 5, 5],
+      "activation": "ReLU",
+      "batch_norm": true
+    },
+    "dense_layers": {
+      "sizes": [256, 128, 64, 32, 1],
+      "activations": ["ReLU", "ReLU", "ReLU", "ReLU", "linear"]
+    }
+  },
+  "hyperparameter_tuning": {
+    "method": "Bayesian optimization",
+    "framework": "Optuna",
+    "trials": 100,
+    "best_trial": 78,
+    "search_space": {
+      "learning_rate": "log_uniform(1e-5, 1e-2)",
+      "batch_size": "categorical([32, 64, 128])",
+      "dropout_rate": "uniform(0.1, 0.5)",
+      "cnn_filters": "categorical([64, 128, 256])",
+      "kernel_size": "categorical([3, 5, 7])",
+      "dense_units": "categorical([128, 256, 512])"
+    },
+    "validation_strategy": "5-fold cross-validation",
+    "data_split": "70% train, 15% validation, 15% test"
+  },
+  "performance": {
+    "spearman_correlation": 0.8694,
+    "mean_squared_error": 0.0098,
+    "test_set_size": 9000,
+    "cross_validation_scores": {
+      "mean": 0.8694,
+      "std": 0.0008,
+      "scores": [0.8687, 0.8701, 0.8692, 0.8698, 0.8693]
+    },
+    "comparison_with_baselines": {
+      "cnn": {
+        "spearman": 0.7925,
+        "improvement": 0.0769
+      },
+      "deepHF": {
+        "spearman": 0.867,
+        "improvement": 0.0024
+      },
+      "attCRISPR": {
+        "spearman": 0.872,
+        "difference": -0.0026
+      }
+    }
+  },
+  "training_details": {
+    "hardware": "NVIDIA V100 Volta GPU",
+    "memory": "32GB HBM2",
+    "training_time": "6.2 hours",
+    "memory_usage": "14GB",
+    "data_preprocessing": "One-hot encoding, normalization",
+    "early_stopping": true,
+    "model_checkpointing": true,
+    "best_epoch": 98
+  },
+  "architectural_notes": {
+    "depth_advantage": "Additional convolutional layers capture more complex sequence patterns",
+    "parameter_efficiency": "Deeper architecture with fewer parameters than RNN models",
+    "regularization": "Multiple dropout layers prevent overfitting",
+    "feature_hierarchy": "Progressive feature extraction through multiple conv layers"
+  }
+}

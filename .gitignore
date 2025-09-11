@@ -91,6 +91,10 @@ models/
 !models/**/*.py
 !models/**/*.md
 
+# Documentation files
+!docs/**/*.json
+!docs/**/*.md
+
 # Backup files
 *.bak
 *.backup
