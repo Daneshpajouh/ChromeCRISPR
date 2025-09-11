@@ -44,6 +44,8 @@ Our best model, **CNN_GRU+GC**, achieves:
 | **DeepHF** | 0.867 | 0.0094 | Previous SOTA |
 | **AttCRISPR** | 0.872 | - | Previous SOTA |
 
+*For complete performance comparison of all 19 models, see [Hyperparameter Documentation](docs/hyperparameters/)*
+
 ### Key Performance Insights
 
 1. **Hybrid Advantage**: CNN-RNN combinations significantly outperform individual architectures
@@ -241,23 +243,6 @@ For comprehensive details about all model architectures, see [docs/MODEL_ARCHITE
 - **Training Time**: ~20 seconds per iteration
 - **Optimization**: Adam optimizer with MSE loss function
 
-## Results Summary
-
-| Model | Spearman | MSE | Status |
-|-------|----------|-----|--------|
-| CNN_GRU+GC | 0.876 | 0.0093 | **Best** |
-| CNN_BiLSTM+GC | 0.870 | 0.0096 | Second |
-| CNN_LSTM+GC | 0.867 | 0.0115 | Third |
-| Deep CNN+GC | 0.873 | 0.0093 | Baseline |
-| Deep GRU+GC | 0.867 | 0.0098 | Baseline |
-
-## Key Insights
-
-1. **Hybrid Advantage**: CNN-RNN combinations outperform individual architectures
-2. **GRU Superiority**: GRU performs better than LSTM in hybrid models
-3. **GC Content Impact**: Consistent improvement across all models
-4. **Depth Benefits**: Deeper models generally perform better than base models
-5. **Bidirectional Trade-off**: BiLSTM shows mixed results in hybrid combinations
 
 ## Citation
 
