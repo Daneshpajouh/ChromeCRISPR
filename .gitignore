@@ -83,12 +83,13 @@ datasets/
 raw_data/
 processed_data/
 
-# Model files (except the exact 20 manuscript models)
+# Model files (except the manuscript models)
 models/
-!exact_20_manuscript_models/
-!exact_20_manuscript_models/**/*.joblib
-!exact_20_manuscript_models/**/*.json
-!exact_20_manuscript_models/**/*.py
+!models/**/*.pth
+!models/**/*.joblib
+!models/**/*.json
+!models/**/*.py
+!models/**/*.md
 
 # Backup files
 *.bak
@@ -122,8 +123,9 @@ test_*
 !exact_20_manuscript_models_organizer.py
 
 # Keep only essential files
-# ✅ KEEP: exact_20_manuscript_models/ (complete manuscript models)
+# ✅ KEEP: models/ (complete manuscript models)
 # ✅ KEEP: src/ (source code)
+# ✅ KEEP: docs/ (documentation)
 # ✅ KEEP: README.md (main documentation)
 # ✅ KEEP: requirements.txt (dependencies)
 # ✅ KEEP: setup.py (installation)

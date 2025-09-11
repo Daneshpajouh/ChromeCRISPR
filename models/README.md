@@ -2,12 +2,12 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17058362.svg)](https://doi.org/10.5281/zenodo.17058362)
 
-## 🏆 Best Model: CNN_GRU+GC
+## Best Model: CNN_GRU+GC
 - **Performance**: 0.876 Spearman, 0.0093 MSE
 - **Location**: `chromecrispr_hybrid_models/CNN_GRU+GC.pth`
 - **Hyperparameters**: [View Details](../docs/hyperparameters/CNN_GRU+GC_hyperparameters.json)
 
-## 📊 Model Performance Overview
+## Model Performance Overview
 
 | Model | Spearman | MSE | Architecture | Parameters |
 |-------|----------|-----|--------------|------------|
@@ -31,7 +31,7 @@
 | CNN | 0.793 | 0.0161 | CNN | 332K |
 | CNN+GC | 0.781 | 0.0170 | CNN + GC | 332K |
 
-## 📁 Model Organization
+## Model Organization
 
 ### Base Models (4 models)
 Standard implementations of individual architectures:
@@ -78,11 +78,11 @@ Novel hybrid architectures combining CNN and RNN components:
 
 | Model | File | Hyperparameters | Performance |
 |-------|------|----------------|--------------|
-| **CNN_GRU+GC** ⭐ | `chromecrispr_hybrid_models/CNN_GRU+GC.pth` | [View](../docs/hyperparameters/CNN_GRU+GC_hyperparameters.json) | **0.876 Spearman** |
+| **CNN_GRU+GC** | `chromecrispr_hybrid_models/CNN_GRU+GC.pth` | [View](../docs/hyperparameters/CNN_GRU+GC_hyperparameters.json) | **0.876 Spearman** |
 | **CNN_LSTM+GC** | `chromecrispr_hybrid_models/CNN_LSTM+GC.pth` | [View](../docs/hyperparameters/CNN_LSTM+GC_hyperparameters.json) | 0.867 Spearman |
 | **CNN_BiLSTM+GC** | `chromecrispr_hybrid_models/CNN_BiLSTM+GC.pth` | [View](../docs/hyperparameters/CNN_BiLSTM+GC_hyperparameters.json) | 0.870 Spearman |
 
-## 🎯 Quick Model Access
+## Quick Model Access
 
 ### Best Performing Models
 ```bash
@@ -100,7 +100,7 @@ Novel hybrid architectures combining CNN and RNN components:
 3. CNN_GRU+GC     (0.876, 6.12M params) - Best performance
 ```
 
-## 📋 Model Specifications
+## Model Specifications
 
 ### Input Format
 - **Sequence Length**: 21 nucleotides (20 bases + PAM)
@@ -118,7 +118,7 @@ Novel hybrid architectures combining CNN and RNN components:
 - **Split**: 70% train, 15% validation, 15% test
 - **Cross-validation**: 5-fold nested validation
 
-## 🔧 Usage Examples
+## Usage Examples
 
 ### Load and Use Best Model
 ```python
@@ -146,22 +146,22 @@ evaluator = ModelEvaluator()
 results = evaluator.compare_models(models, test_data)
 ```
 
-## 📚 Documentation Links
+## Documentation Links
 
 - **[Complete Hyperparameter Documentation](../docs/hyperparameters/)** - All 19 models with full specifications
 - **[Training Procedures](../docs/training_procedures/)** - Detailed training protocols
 - **[Model Architectures](../docs/MODEL_ARCHITECTURES.md)** - Technical architecture details
 - **[Performance Analysis](../docs/COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
-## 🏷️ Model Categories Legend
+## Model Categories Legend
 
-- **⭐ Best Model**: Highest performance across all metrics
-- **🔥 Top Performer**: Among top 3 models
-- **⚡ Efficient**: Best performance per parameter ratio
-- **🔬 Hybrid**: ChromeCRISPR novel architecture
-- **🧬 GC Integration**: Includes biological GC content feature
+- **Best Model**: Highest performance across all metrics
+- **Top Performer**: Among top 3 models
+- **Efficient**: Best performance per parameter ratio
+- **Hybrid**: ChromeCRISPR novel architecture
+- **GC Integration**: Includes biological GC content feature
 
-## 📞 Support
+## Support
 
 For questions about specific models or usage:
 - **Documentation**: Check hyperparameter files for complete specifications

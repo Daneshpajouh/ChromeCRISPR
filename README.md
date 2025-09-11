@@ -58,7 +58,7 @@ Our best model, **CNN_GRU+GC**, achieves:
 
 ### Complete Model Collection (19 Models)
 
-All models are organized in `exact_20_manuscript_models/` directory with proper categorization.
+All models are organized in the `models/` directory with proper categorization.
 
 #### Base Models (4 models)
 - **CNN**: Convolutional neural network with 2 conv layers (128 filters each)
@@ -94,7 +94,7 @@ Novel hybrid architectures combining CNN and RNN components:
 ### Directory Structure
 
 ```
-exact_20_manuscript_models/
+models/
 ├── base_models/                    # 4 base models
 ├── base_models_with_gc/           # 4 base models + GC
 ├── deep_models/                   # 4 deep models
@@ -189,7 +189,7 @@ evaluator.plot_results(results)
 
 ```bash
 # Best performing model: CNN_GRU+GC
-# Location: exact_20_manuscript_models/chromecrispr_hybrid_models/CNN_GRU+GC.pth
+# Location: models/chromecrispr_hybrid_models/CNN_GRU+GC.pth
 # Performance: 0.876 Spearman, 0.0093 MSE
 # Hyperparameters: docs/hyperparameters/CNN_GRU+GC_hyperparameters.json
 ```
@@ -198,7 +198,7 @@ evaluator.plot_results(results)
 
 ```
 ChromeCRISPR/
-├── exact_20_manuscript_models/      # All 19 models from manuscript
+├── models/                          # All 19 trained models
 │   ├── base_models/                 # 4 base models
 │   ├── base_models_with_gc/         # 4 base models + GC content
 │   ├── deep_models/                 # 4 deep models
