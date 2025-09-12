@@ -107,9 +107,9 @@ with torch.no_grad():
 ## Related Documentation
 
 - **[Raw JSON Specs](../hyperparameters/deepLSTM_hyperparameters.json)** - Complete technical specifications
-- **[Training Procedures](../../training_procedures/)** - Detailed training protocols
-- **[Model Architectures](../../MODEL_ARCHITECTURES.md)** - Technical architecture details
-- **[Performance Analysis](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Detailed training protocols
+- **[Model Architectures](../MODEL_ARCHITECTURES.md)** - Technical architecture details
+- **[Performance Analysis](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 **deepLSTM provides deep memory modeling with 0.862 Spearman correlation, offering comprehensive temporal processing for sequence analysis.**

@@ -140,9 +140,9 @@ with torch.no_grad():
 ## Related Documentation
 
 - **[Raw JSON Specs](../hyperparameters/LSTM+GC_hyperparameters.json)** - Complete technical specifications
-- **[Training Procedures](../../training_procedures/)** - Detailed training protocols
-- **[Model Architectures](../../MODEL_ARCHITECTURES.md)** - Technical architecture details
-- **[Performance Analysis](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Detailed training protocols
+- **[Model Architectures](../MODEL_ARCHITECTURES.md)** - Technical architecture details
+- **[Performance Analysis](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 **LSTM+GC integrates biological features with long-term memory modeling, achieving 0.856 Spearman correlation with substantial improvement over base LSTM.**

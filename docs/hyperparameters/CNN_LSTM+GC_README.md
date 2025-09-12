@@ -218,9 +218,9 @@ model = trainer.train('cnn_lstm_gc', X_train, y_train)
 ##  Documentation Links
 
 - **[Raw JSON Specs](../hyperparameters/CNN_LSTM+GC_hyperparameters.json)** - Complete technical details
-- **[Training Procedures](../../training_procedures/)** - Hybrid training protocols
-- **[Architecture Details](../../MODEL_ARCHITECTURES.md)** - Technical specifications
-- **[Performance Comparison](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Hybrid training protocols
+- **[Architecture Details](../MODEL_ARCHITECTURES.md)** - Technical specifications
+- **[Performance Comparison](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 ** CNN_LSTM+GC provides a solid balance of performance and computational efficiency, making it a reliable choice for CRISPR prediction tasks.**

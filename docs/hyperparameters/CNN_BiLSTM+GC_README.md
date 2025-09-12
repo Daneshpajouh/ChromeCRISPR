@@ -244,9 +244,9 @@ model = trainer.train('cnn_bilstm_gc', X_train, y_train, **config)
 ##  Documentation Links
 
 - **[Raw JSON Specs](../hyperparameters/CNN_BiLSTM+GC_hyperparameters.json)** - Complete technical details
-- **[Training Procedures](../../training_procedures/)** - Bidirectional training protocols
-- **[Architecture Details](../../MODEL_ARCHITECTURES.md)** - Technical specifications
-- **[Performance Analysis](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Bidirectional training protocols
+- **[Architecture Details](../MODEL_ARCHITECTURES.md)** - Technical specifications
+- **[Performance Analysis](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 ** CNN_BiLSTM+GC provides the most comprehensive sequence understanding through bidirectional processing, making it ideal for applications requiring full sequence context awareness.**

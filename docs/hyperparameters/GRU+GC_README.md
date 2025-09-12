@@ -140,9 +140,9 @@ with torch.no_grad():
 ## Related Documentation
 
 - **[Raw JSON Specs](../hyperparameters/GRU+GC_hyperparameters.json)** - Complete technical specifications
-- **[Training Procedures](../../training_procedures/)** - Detailed training protocols
-- **[Model Architectures](../../MODEL_ARCHITECTURES.md)** - Technical architecture details
-- **[Performance Analysis](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Detailed training protocols
+- **[Model Architectures](../MODEL_ARCHITECTURES.md)** - Technical architecture details
+- **[Performance Analysis](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 **GRU+GC combines efficient sequence modeling with biological features, achieving 0.840 Spearman correlation with measurable improvement over base GRU.**

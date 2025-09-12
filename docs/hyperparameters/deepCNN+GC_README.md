@@ -216,9 +216,9 @@ model = trainer.train('deep_cnn_gc', X_train, y_train)
 ##  Documentation Links
 
 - **[Raw JSON Specs](../hyperparameters/deepCNN+GC_hyperparameters.json)** - Complete technical details
-- **[Training Procedures](../../training_procedures/)** - Deep CNN training protocols
-- **[Architecture Details](../../MODEL_ARCHITECTURES.md)** - Technical specifications
-- **[Performance Comparison](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Deep CNN training protocols
+- **[Architecture Details](../MODEL_ARCHITECTURES.md)** - Technical specifications
+- **[Performance Comparison](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 ** deepCNN+GC offers the best balance of high performance and computational efficiency, making it ideal for both research and production applications.**

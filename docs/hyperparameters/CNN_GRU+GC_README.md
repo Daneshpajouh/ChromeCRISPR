@@ -244,9 +244,9 @@ print(f"Spearman correlation: {spearman:.4f}")  # Should be ~0.876
 ##  Related Documentation
 
 - **[Raw JSON Specs](../hyperparameters/CNN_GRU+GC_hyperparameters.json)** - Complete technical specifications
-- **[Training Procedures](../../training_procedures/)** - Detailed training protocols
-- **[Model Architectures](../../MODEL_ARCHITECTURES.md)** - Technical architecture details
-- **[Performance Analysis](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Detailed training protocols
+- **[Model Architectures](../MODEL_ARCHITECTURES.md)** - Technical architecture details
+- **[Performance Analysis](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 ** This model represents the current state-of-the-art in CRISPR/Cas9 on-target efficacy prediction, achieving a Spearman correlation of 0.876 and establishing a new benchmark for the field.**

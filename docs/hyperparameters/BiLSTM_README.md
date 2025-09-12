@@ -235,9 +235,9 @@ print(f"Spearman correlation: {spearman:.4f}")  # Expected: ~0.843
 ## Related Documentation
 
 - **[Raw JSON Specs](../hyperparameters/BiLSTM_hyperparameters.json)** - Complete technical specifications
-- **[Training Procedures](../../training_procedures/)** - Detailed training protocols
-- **[Model Architectures](../../MODEL_ARCHITECTURES.md)** - Technical architecture details
-- **[Performance Analysis](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Detailed training protocols
+- **[Model Architectures](../MODEL_ARCHITECTURES.md)** - Technical architecture details
+- **[Performance Analysis](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 **BiLSTM provides the strongest baseline performance with 0.843 Spearman correlation, offering comprehensive bidirectional sequence analysis for CRISPR applications.**

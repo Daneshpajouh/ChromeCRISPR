@@ -186,9 +186,9 @@ for idx in top_features:
 ## Related Documentation
 
 - **[Raw JSON Specs](../hyperparameters/RF_hyperparameters.json)** - Complete technical specifications
-- **[Training Procedures](../../training_procedures/)** - Detailed training protocols
-- **[Model Architectures](../../MODEL_ARCHITECTURES.md)** - Technical architecture details
-- **[Performance Analysis](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Detailed training protocols
+- **[Model Architectures](../MODEL_ARCHITECTURES.md)** - Technical architecture details
+- **[Performance Analysis](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 **Random Forest provides a robust traditional ML baseline with 0.789 Spearman correlation, offering interpretability and computational efficiency as a comparison point for deep learning approaches.**

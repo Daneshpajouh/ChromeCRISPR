@@ -140,9 +140,9 @@ with torch.no_grad():
 ## Related Documentation
 
 - **[Raw JSON Specs](../hyperparameters/LSTM_hyperparameters.json)** - Complete technical specifications
-- **[Training Procedures](../../training_procedures/)** - Detailed training protocols
-- **[Model Architectures](../../MODEL_ARCHITECTURES.md)** - Technical architecture details
-- **[Performance Analysis](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Detailed training protocols
+- **[Model Architectures](../MODEL_ARCHITECTURES.md)** - Technical architecture details
+- **[Performance Analysis](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 **LSTM provides robust long-term memory modeling with 0.837 Spearman correlation, performing comparably to GRU with enhanced memory capacity.**

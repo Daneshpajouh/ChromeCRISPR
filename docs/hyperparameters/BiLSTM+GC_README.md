@@ -262,9 +262,9 @@ print(f"Spearman correlation: {spearman:.4f}")  # Expected: ~0.855
 ## Related Documentation
 
 - **[Raw JSON Specs](../hyperparameters/BiLSTM+GC_hyperparameters.json)** - Complete technical specifications
-- **[Training Procedures](../../training_procedures/)** - Detailed training protocols
-- **[Model Architectures](../../MODEL_ARCHITECTURES.md)** - Technical architecture details
-- **[Performance Analysis](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Detailed training protocols
+- **[Model Architectures](../MODEL_ARCHITECTURES.md)** - Technical architecture details
+- **[Performance Analysis](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 **BiLSTM+GC combines bidirectional sequence processing with biological GC content integration, achieving 0.855 Spearman correlation with significant improvement over the base model.**

@@ -136,9 +136,9 @@ with torch.no_grad():
 ## Related Documentation
 
 - **[Raw JSON Specs](../hyperparameters/CNN+GC_hyperparameters.json)** - Complete technical specifications
-- **[Training Procedures](../../training_procedures/)** - Detailed training protocols
-- **[Model Architectures](../../MODEL_ARCHITECTURES.md)** - Technical architecture details
-- **[Performance Analysis](../../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
+- **[Training Procedures](../training_procedures/)** - Detailed training protocols
+- **[Model Architectures](../MODEL_ARCHITECTURES.md)** - Technical architecture details
+- **[Performance Analysis](../COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis
 
 ---
 **CNN+GC integrates biological features with convolutional motif detection, achieving 0.781 Spearman correlation with limited improvement over base CNN.**
