@@ -111,12 +111,32 @@ All models were trained using Bayesian optimization with Optuna framework, 5-fol
 Each model is available in two formats for your convenience:
 
 ### Readable README Format (Recommended for Users)
-User-friendly documentation with clear explanations, tables, and examples:
+User-friendly documentation with clear explanations, tables, and examples for all 20 models:
 
+#### Top Performing Models
 - **[CNN_GRU+GC_README.md](CNN_GRU+GC_README.md)** - Best performing model (0.876)
 - **[deepCNN+GC_README.md](deepCNN+GC_README.md)** - Most efficient high performer (0.873)
 - **[CNN_BiLSTM+GC_README.md](CNN_BiLSTM+GC_README.md)** - Best bidirectional context (0.870)
 - **[CNN_LSTM+GC_README.md](CNN_LSTM+GC_README.md)** - Balanced hybrid performance (0.867)
+
+#### All Models (Complete Collection)
+- **[CNN_README.md](CNN_README.md)** - Base CNN architecture
+- **[GRU_README.md](GRU_README.md)** - Base GRU architecture
+- **[LSTM_README.md](LSTM_README.md)** - Base LSTM architecture
+- **[BiLSTM_README.md](BiLSTM_README.md)** - Base BiLSTM architecture
+- **[CNN+GC_README.md](CNN+GC_README.md)** - CNN with GC content
+- **[GRU+GC_README.md](GRU+GC_README.md)** - GRU with GC content
+- **[LSTM+GC_README.md](LSTM+GC_README.md)** - LSTM with GC content
+- **[BiLSTM+GC_README.md](BiLSTM+GC_README.md)** - BiLSTM with GC content
+- **[deepCNN_README.md](deepCNN_README.md)** - Deep CNN architecture
+- **[deepGRU_README.md](deepGRU_README.md)** - Deep GRU architecture
+- **[deepLSTM_README.md](deepLSTM_README.md)** - Deep LSTM architecture
+- **[deepBiLSTM_README.md](deepBiLSTM_README.md)** - Deep BiLSTM architecture
+- **[deepCNN+GC_README.md](deepCNN+GC_README.md)** - Deep CNN with GC content
+- **[deepGRU+GC_README.md](deepGRU+GC_README.md)** - Deep GRU with GC content
+- **[deepLSTM+GC_README.md](deepLSTM+GC_README.md)** - Deep LSTM with GC content
+- **[deepBiLSTM+GC_README.md](deepBiLSTM+GC_README.md)** - Deep BiLSTM with GC content
+- **[RF_README.md](RF_README.md)** - Random Forest baseline
 
 ### Raw JSON Format (For Developers/Programmatic Access)
 Complete technical specifications in machine-readable JSON format:
@@ -151,30 +171,32 @@ docs/hyperparameters/
 
 ## Complete Model Performance Summary
 
-| Model | Architecture | Spearman | MSE | Parameters | Training Time | Hardware |
-|-------|--------------|----------|-----|------------|---------------|----------|
-| **CNN_GRU+GC** | CNN-GRU Hybrid | **0.876** | **0.0093** | 6.12M | 4.2h | V100 |
-| deepCNN+GC | Deep CNN + GC | 0.873 | 0.0093 | 665K | 6.8h | V100 |
-| CNN_BiLSTM+GC | CNN-BiLSTM Hybrid | 0.870 | 0.0096 | 20.41M | 5.2h | V100 |
-| CNN_LSTM+GC | CNN-LSTM Hybrid | 0.867 | 0.0115 | 7.995M | 4.8h | V100 |
-| deepBiLSTM+GC | Deep BiLSTM + GC | 0.867 | 0.0098 | 5.99M | 11.8h | V100 |
-| deepGRU+GC | Deep GRU + GC | 0.867 | 0.0098 | 1.82M | 8.9h | V100 |
-| deepGRU | Deep GRU | 0.868 | 0.0099 | 1.81M | 8.4h | V100 |
-| deepCNN | Deep CNN | 0.869 | 0.0098 | 665K | 6.2h | V100 |
-| deepLSTM | Deep LSTM | 0.862 | 0.0103 | 2.34M | 9.1h | V100 |
-| deepBiLSTM | Deep BiLSTM | 0.862 | 0.0104 | 5.99M | 11.2h | V100 |
-| deepLSTM+GC | Deep LSTM + GC | 0.860 | 0.0104 | 2.34M | 9.6h | V100 |
-| LSTM+GC | LSTM + GC | 0.856 | 0.0112 | 1.17M | 3.9h | V100 |
-| BiLSTM+GC | BiLSTM + GC | 0.855 | 0.0110 | 2.82M | 4.7h | V100 |
-| BiLSTM | BiLSTM | 0.843 | 0.0120 | 2.82M | 4.5h | V100 |
-| GRU+GC | GRU + GC | 0.840 | 0.0122 | 907K | 3.3h | V100 |
-| GRU | GRU | 0.837 | 0.0121 | 907K | 3.2h | V100 |
-| LSTM | LSTM | 0.837 | 0.0122 | 1.17M | 3.8h | V100 |
-| CNN | CNN | 0.793 | 0.0161 | 332K | 2.5h | V100 |
-| CNN+GC | CNN + GC | 0.781 | 0.0170 | 332K | 2.6h | V100 |
-| RF | Random Forest | 0.789 | 0.0161 | N/A | N/A | CPU |
+| Model | Architecture | Spearman | MSE | Parameters | Training Time | Hardware | Documentation |
+|-------|--------------|----------|-----|------------|---------------|----------|---------------|
+| **[CNN_GRU+GC](CNN_GRU+GC_README.md)** | CNN-GRU Hybrid | **0.876** | **0.0093** | 6.12M | 4.2h | V100 | 📋 |
+| **[deepCNN+GC](deepCNN+GC_README.md)** | Deep CNN + GC | 0.873 | 0.0093 | 665K | 6.8h | V100 | 📋 |
+| **[CNN_BiLSTM+GC](CNN_BiLSTM+GC_README.md)** | CNN-BiLSTM Hybrid | 0.870 | 0.0096 | 20.41M | 5.2h | V100 | 📋 |
+| **[CNN_LSTM+GC](CNN_LSTM+GC_README.md)** | CNN-LSTM Hybrid | 0.867 | 0.0115 | 7.995M | 4.8h | V100 | 📋 |
+| **[deepBiLSTM+GC](deepBiLSTM+GC_README.md)** | Deep BiLSTM + GC | 0.867 | 0.0098 | 5.99M | 11.8h | V100 | 📋 |
+| **[deepGRU+GC](deepGRU+GC_README.md)** | Deep GRU + GC | 0.867 | 0.0098 | 1.82M | 8.9h | V100 | 📋 |
+| **[deepGRU](deepGRU_README.md)** | Deep GRU | 0.868 | 0.0099 | 1.81M | 8.4h | V100 | 📋 |
+| **[deepCNN](deepCNN_README.md)** | Deep CNN | 0.869 | 0.0098 | 665K | 6.2h | V100 | 📋 |
+| **[deepLSTM](deepLSTM_README.md)** | Deep LSTM | 0.862 | 0.0103 | 2.34M | 9.1h | V100 | 📋 |
+| **[deepBiLSTM](deepBiLSTM_README.md)** | Deep BiLSTM | 0.862 | 0.0104 | 5.99M | 11.2h | V100 | 📋 |
+| **[deepLSTM+GC](deepLSTM+GC_README.md)** | Deep LSTM + GC | 0.860 | 0.0104 | 2.34M | 9.6h | V100 | 📋 |
+| **[LSTM+GC](LSTM+GC_README.md)** | LSTM + GC | 0.856 | 0.0112 | 1.17M | 3.9h | V100 | 📋 |
+| **[BiLSTM+GC](BiLSTM+GC_README.md)** | BiLSTM + GC | 0.855 | 0.0110 | 2.82M | 4.7h | V100 | 📋 |
+| **[BiLSTM](BiLSTM_README.md)** | BiLSTM | 0.843 | 0.0120 | 2.82M | 4.5h | V100 | 📋 |
+| **[GRU+GC](GRU+GC_README.md)** | GRU + GC | 0.840 | 0.0122 | 907K | 3.3h | V100 | 📋 |
+| **[GRU](GRU_README.md)** | GRU | 0.837 | 0.0121 | 907K | 3.2h | V100 | 📋 |
+| **[LSTM](LSTM_README.md)** | LSTM | 0.837 | 0.0122 | 1.17M | 3.8h | V100 | 📋 |
+| **[CNN](CNN_README.md)** | CNN | 0.793 | 0.0161 | 332K | 2.5h | V100 | 📋 |
+| **[CNN+GC](CNN+GC_README.md)** | CNN + GC | 0.781 | 0.0170 | 332K | 2.6h | V100 | 📋 |
+| **[RF](RF_README.md)** | Random Forest | 0.789 | 0.0161 | N/A | N/A | CPU | 📋 |
+| **DeepHF** | Previous SOTA | 0.867 | 0.0094 | - | - | - | 🔗 [Paper](https://doi.org/10.1038/s41467-019-12281-8) |
+| **AttCRISPR** | Previous SOTA | 0.872 | - | - | - | - | 🔗 [Paper](https://doi.org/10.1093/bioinformatics/btab127) |
 
-**Note**: All 20 models are included in the complete collection
+**📋 Click model names to access complete documentation with architecture details, hyperparameters, and usage examples**
 
 ## Key Findings
 
