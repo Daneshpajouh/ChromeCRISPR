@@ -243,13 +243,27 @@ For comprehensive details about all model architectures, see [docs/MODEL_ARCHITE
 
 ### Key Architecture Features
 
-1. **Input Processing**: One-hot encoding of 21-mer sequences (84 features)
-2. **Sequence Embedding**: 84 → 128 dimensions
-3. **CNN Branch**: 3 conv layers with 128 filters each
-4. **RNN Branch**: 3 recurrent layers (GRU/LSTM/BiLSTM) with 128 units each
-5. **Fusion**: Concatenation of CNN and RNN outputs (256 features)
-6. **GC Integration**: Addition of GC content feature (257 total features)
-7. **Final Layers**: 3 dense layers (128, 64, 32 units) + output layer
+**Note**: Architecture details vary by model based on hyperparameter optimization. The following describes the optimal architecture found for the best-performing **CNN_GRU+GC** model:
+
+1. **Input Processing**: One-hot encoding of 21-mer sequences (84 features) + GC content (1 feature) = 85 total features
+2. **Sequence Embedding**: 85 → 128 dimensions
+3. **CNN Branch**: 3 convolutional layers with 64 filters each (optimized for motif detection)
+4. **GRU Branch**: 3 GRU layers with 384 hidden units each (optimized for sequence context)
+5. **Fusion**: Concatenation of CNN (64) + GRU (384) + GC (1) outputs = 449 features
+6. **GC Integration**: Biological GC content feature integrated into fusion layer
+7. **Final Layers**: 3 dense layers (128→64→32 units) + output layer
+
+**Architecture Optimization**:
+- **CNN filters**: Optimized from 32-128 range, settled on 64
+- **GRU hidden units**: Optimized from 128-512 range, settled on 384
+- **Layer counts**: Varied from 1-4 layers, optimized to 3 layers each
+- **Dense units**: Optimized progression: 128→64→32
+
+**Model-Specific Variations**:
+- **Base models**: Simpler architectures (1-2 layers)
+- **Deep models**: 4-layer architectures for hierarchical feature learning
+- **GC models**: Include biological feature integration
+- **Hybrid models**: Optimized fusion of CNN and RNN components
 
 ## Training Specifications
 
