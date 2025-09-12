@@ -92,7 +92,7 @@ Dense Layers:
 
 ### Training Configuration
 - **Framework**: PyTorch 1.12.0
-- **Optimizer**: Adam (β1=0.9, β2=0.999)
+- **Optimizer**: Adam (β1=0.9, β2=0.999, weight_decay=2.67e-05)
 - **Loss Function**: Mean Squared Error (MSE)
 - **Early Stopping**: Patience=10 epochs
 - **Model Checkpointing**: Save best model

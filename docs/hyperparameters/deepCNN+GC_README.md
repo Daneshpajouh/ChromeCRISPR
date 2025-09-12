@@ -25,7 +25,10 @@
 
 ### Deep Convolutional Architecture
 ```
-Input (85) → Embedding (128) → 4 Conv Layers → Global Max Pooling → Dense Layers → Output
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)Input (85) → Embedding (128) → 4 Conv Layers → Global Max Pooling → Dense Layers → Output
 
 Convolutional Layers:
 ├── Conv1D Layer 1: 128 filters, kernel=5, ReLU, BatchNorm, Dropout(0.15)
@@ -33,10 +36,16 @@ Convolutional Layers:
 ├── Conv1D Layer 3: 128 filters, kernel=5, ReLU, BatchNorm, Dropout(0.15)
 └── Conv1D Layer 4: 128 filters, kernel=5, ReLU, BatchNorm, Dropout(0.15)
 ```
-
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)
 ### Dense Layers
 ```
-Global Max Pooling (128 features) → Dense Layers
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)Global Max Pooling (128 features) → Dense Layers
 
 Dense Layers:
 ├── Dense Layer 1: 256 units, ReLU, Dropout(0.2)
@@ -45,7 +54,10 @@ Dense Layers:
 ├── Dense Layer 4: 32 units, ReLU, Dropout(0.2)
 └── Output Layer: 1 unit, Linear activation
 ```
-
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)
 ##  Optimal Hyperparameters
 
 ### Training Configuration
@@ -71,21 +83,33 @@ Dense Layers:
 
 ### Benchmark Comparison
 ```
-deepCNN+GC (0.873) ━━ 🥈 Second Best Overall
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)deepCNN+GC (0.873) ━━ 🥈 Second Best Overall
 CNN_GRU+GC (0.876) ━━  Best (-0.003 difference)
 CNN_BiLSTM+GC (0.870) ━━ Third (-0.003 difference)
 DeepHF (0.867) ━━ Previous SOTA (+0.006 improvement)
 ```
-
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)
 ### Efficiency Analysis
 ```
-Performance per Parameter (higher is better):
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)Performance per Parameter (higher is better):
 deepCNN+GC: 0.873 / 665K = 1.31 × 10^-6  BEST
 CNN_GRU+GC: 0.876 / 6.12M = 0.14 × 10^-6
 deepCNN: 0.869 / 665K = 1.31 × 10^-6  (without GC)
 CNN+GC: 0.781 / 332K = 2.35 × 10^-6  (shallow CNN)
 ```
-
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)
 ### Cross-Validation Results
 | Fold | Spearman | MSE | Notes |
 |------|----------|-----|-------|
@@ -113,7 +137,7 @@ CNN+GC: 0.781 / 332K = 2.35 × 10^-6  (shallow CNN)
 
 ### Optimization Strategy
 - **Framework**: PyTorch with CUDA acceleration
-- **Optimizer**: Adam (β1=0.9, β2=0.999)
+- **Optimizer**: Adam (β1=0.9, β2=0.999, weight_decay=2.98e-05)
 - **Loss Function**: Mean Squared Error
 - **Gradient Clipping**: Applied to prevent instability
 - **Mixed Precision**: Not used (stability prioritized)
@@ -136,7 +160,10 @@ CNN+GC: 0.781 / 332K = 2.35 × 10^-6  (shallow CNN)
 
 ### Deep CNN Family Performance
 ```
-deepCNN+GC (0.873) ━━  Best deep CNN
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)deepCNN+GC (0.873) ━━  Best deep CNN
 deepCNN (0.869) ━━ Strong baseline
 CNN+GC (0.781) ━━ Shallow version
 CNN (0.793) ━━ Shallow baseline
@@ -144,7 +171,10 @@ CNN (0.793) ━━ Shallow baseline
 Improvement with depth: +0.092 (CNN → deepCNN+GC)
 Improvement with GC: +0.004 (deepCNN → deepCNN+GC)
 ```
-
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)
 ### Architecture Advantages
 - **Hierarchical Features**: 4 conv layers capture multi-scale patterns
 - **Parameter Efficiency**: High performance with 665K parameters
@@ -155,7 +185,10 @@ Improvement with GC: +0.004 (deepCNN → deepCNN+GC)
 
 ### Load and Use Model
 ```python
-import torch
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)import torch
 from src.models import DeepCNNGC
 
 # Load the efficient high-performer
@@ -172,10 +205,16 @@ with torch.no_grad():
     prediction = model(features)
     print(f"CRISPR activity: {prediction.item():.4f}")
 ```
-
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)
 ### Training Configuration
 ```python
-# Optimal hyperparameters for deepCNN+GC
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)# Optimal hyperparameters for deepCNN+GC
 config = {
     'learning_rate': 0.000065,
     'batch_size': 64,
@@ -191,7 +230,10 @@ config = {
 trainer = Trainer(config)
 model = trainer.train('deep_cnn_gc', X_train, y_train)
 ```
-
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)
 ##  Model Specifications
 
 ### Architecture Summary

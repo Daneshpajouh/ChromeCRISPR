@@ -44,7 +44,7 @@ Dense Layers:
 ## Optimal Hyperparameters
 
 ### Training Configuration
-| Parameter | Optimal Value | Search Range | Tuning Method |
+- **Optimizer Selection**: Fixed as Adam (not part of hyperparameter search)| Parameter | Optimal Value | Search Range | Tuning Method |
 |-----------|---------------|--------------|----------------|
 | **Learning Rate** | 0.001 | 1e-5 to 1e-2 | Bayesian Optimization |
 | **Batch Size** | 64 | 32-128 | Grid Search |
@@ -86,8 +86,8 @@ Dense Layers:
 - **Platform**: Digital Research Alliance of Canada
 
 ### Training Configuration
-- **Framework**: PyTorch 1.12.0
-- **Optimizer**: Adam (β1=0.9, β2=0.999)
+- **Optimizer Selection**: Fixed as Adam (not part of hyperparameter search)- **Framework**: PyTorch 1.12.0
+- **Optimizer**: Adam (β1=0.9, β2=0.999, weight_decay=1e-5)
 - **Loss Function**: Mean Squared Error (MSE)
 - **Early Stopping**: Patience=10 epochs
 - **Model Checkpointing**: Save best model

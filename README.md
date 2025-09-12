@@ -276,8 +276,8 @@ If you use ChromeCRISPR in your research, please cite our preprint:
 }
 ```
 
-**Preprint DOI**: [https://doi.org/10.1101/2025.04.16.649183](https://doi.org/10.1101/2025.04.16.649183)  
-**Full Text**: [https://www.biorxiv.org/content/10.1101/2025.04.16.649183v1](https://www.biorxiv.org/content/10.1101/2025.04.16.649183v1)  
+**Preprint DOI**: [https://doi.org/10.1101/2025.04.16.649183](https://doi.org/10.1101/2025.04.16.649183)
+**Full Text**: [https://www.biorxiv.org/content/10.1101/2025.04.16.649183v1](https://www.biorxiv.org/content/10.1101/2025.04.16.649183v1)
 
 *Note: This article is a preprint and has not been certified by peer review.*
 

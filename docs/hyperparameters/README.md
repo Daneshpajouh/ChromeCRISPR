@@ -54,9 +54,10 @@ All models were trained using Bayesian optimization with Optuna framework, 5-fol
 - **Best value**: 0.142-0.2 (model-dependent)
 
 ### Optimizer
-- **Type**: Adam (consistent across all models)
-- **Weight decay**: 1e-5 to 1.882e-05
-- **Beta values**: Standard (0.9, 0.999)
+- **Type**: Adam (fixed choice for all models, not part of hyperparameter search)
+- **Weight decay**: Model-specific optimized values (1e-5 to 3.12e-05 range)
+- **Beta values**: Fixed as β1=0.9, β2=0.999 for all models
+- **Search Space**: Optimizer type was not optimized (only Adam was used)
 
 ## Best Performing Model: CNN_GRU+GC
 

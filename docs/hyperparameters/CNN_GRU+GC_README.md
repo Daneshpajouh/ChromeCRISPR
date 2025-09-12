@@ -113,8 +113,9 @@ AttCRISPR (0.872) ━━ Previous SOTA (-0.004)
 
 ### Training Configuration
 - **Framework**: PyTorch 1.12.0
-- **Optimizer**: Adam (β1=0.9, β2=0.999)
+- **Optimizer**: Adam (β1=0.9, β2=0.999, weight_decay=1.882e-05)
 - **Loss Function**: Mean Squared Error (MSE)
+- **Optimizer Selection**: Fixed as Adam (not part of hyperparameter search)
 - **Learning Rate Schedule**: Constant (no decay)
 - **Early Stopping**: Patience=10 epochs
 - **Model Checkpointing**: Save best model
@@ -150,7 +151,8 @@ AttCRISPR (0.872) ━━ Previous SOTA (-0.004)
 - **Objective**: Maximize Spearman correlation
 - **Validation**: 5-fold cross-validation
 
-### Search Spaces
+### Hyperparameter Search Spaces
+**Optimized Parameters:**
 ```python
 learning_rate = trial.suggest_loguniform('learning_rate', 1e-5, 1e-2)
 batch_size = trial.suggest_categorical('batch_size', [32, 64, 128])
@@ -159,6 +161,11 @@ cnn_filters = trial.suggest_categorical('cnn_filters', [32, 64, 128])
 kernel_size = trial.suggest_categorical('kernel_size', [3, 5, 7])
 gru_hidden = trial.suggest_categorical('gru_hidden', [256, 384, 512])
 ```
+
+**Fixed Parameters (Not Optimized):**
+- **Optimizer**: Adam (fixed choice, not part of search)
+- **Loss Function**: MSE (fixed choice, not part of search)
+- **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=1.882e-05 (optimized values, not search space)
 
 ### Optimization Results
 - **Best Trial Score**: 0.8765 (trial 62)
