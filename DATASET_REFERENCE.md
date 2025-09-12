@@ -22,7 +22,7 @@ The DeepHF dataset contains approximately **60,000 sgRNA-target pairs** with exp
 We processed the DeepHF dataset following the same methodology as described in the original paper:
 
 1. **Data Preprocessing:** Applied the same sequence encoding and feature extraction methods
-2. **Train/Test Split:** Used the same 80/20 split ratio as the original study
+2. **Train/Test Split:** Used the same 85/15 split ratio as the original study (85% training/validation, 15% testing)
 3. **Feature Engineering:** Implemented identical feature extraction pipeline
 4. **Data Augmentation:** Applied the same augmentation techniques
 
