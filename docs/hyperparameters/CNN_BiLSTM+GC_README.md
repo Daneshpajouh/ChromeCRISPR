@@ -1,6 +1,6 @@
 # CNN_BiLSTM+GC Model: Comprehensive Sequence Understanding
 
-**Performance**: 0.870 Spearman correlation | **Rank**: #3 of 19 models | **Context**: Best bidirectional understanding
+**Performance**: 0.870 Spearman correlation | **Rank**: #3 of 20 models | **Context**: Best bidirectional understanding
 
 ## 📊 Model Overview
 

@@ -3,7 +3,7 @@
 ## Overview
 
 This directory contains **ONLY the exact 20 models explicitly mentioned in the ChromeCRISPR manuscript (2024.md)**.
-Total models: 19/20
+Total models: 20/20
 
 ## Best Performing Model: CNN-GRU+GC (ChromeCRISPR)
 
@@ -105,7 +105,7 @@ from src.models.hybrid_models import create_cnn_gru_model
 
 # Load the best performing model
 model = create_cnn_gru_model(input_size=21)
-model.load_state_dict(torch.load('exact_20_manuscript_models/chromecrispr_hybrid_models/CNN_GRU+GC.pth'))
+model.load_state_dict(torch.load('../models/chromecrispr_hybrid_models/CNN_GRU+GC.pth'))
 
 # Make predictions
 # ... (see README.md for complete usage examples)

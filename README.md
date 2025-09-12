@@ -6,7 +6,7 @@
 
 | Section | Description |
 |---------|-------------|
-| **[Model Architectures](#model-architectures)** | Complete collection of 19 models |
+| **[Model Architectures](#model-architectures)** | Complete collection of 20 models |
 | **[Performance Summary](#performance-summary)** | Benchmark results and comparisons |
 | **[Documentation](#documentation)** | Hyperparameters and training procedures |
 | **[Installation](#installation)** | Setup and requirements |
@@ -159,7 +159,7 @@ evaluator.plot_results(results)
 
 | Document | Description |
 |----------|-------------|
-| **[Hyperparameter Documentation](docs/hyperparameters/)** | Complete hyperparameter specifications for all 19 models |
+| **[Hyperparameter Documentation](docs/hyperparameters/)** | Complete hyperparameter specifications for all 20 models |
 | **[Training Procedures](docs/training_procedures/)** | Detailed training protocols and methodologies |
 | **[Model Architectures](docs/MODEL_ARCHITECTURES.md)** | Comprehensive architecture descriptions |
 | **[Performance Analysis](docs/COMPREHENSIVE_MODEL_DOCUMENTATION.md)** | Detailed performance analysis and comparisons |
@@ -167,7 +167,7 @@ evaluator.plot_results(results)
 ### Key Documentation Files
 
 #### Hyperparameter Documentation (`docs/hyperparameters/`)
-- **19 JSON files** with complete hyperparameter specifications
+- **20 JSON files** with complete hyperparameter specifications
 - **Bayesian optimization results** and search spaces
 - **Performance metrics** for each hyperparameter configuration
 - **Training details** including hardware and timing
@@ -199,14 +199,14 @@ evaluator.plot_results(results)
 
 ```
 ChromeCRISPR/
-├── models/                          # All 19 trained models
+├── models/                          # All 20 trained models
 │   ├── base_models/                 # 4 base models
 │   ├── base_models_with_gc/         # 4 base models + GC content
 │   ├── deep_models/                 # 4 deep models
 │   ├── deep_models_with_gc/         # 4 deep models + GC content
 │   └── chromecrispr_hybrid_models/  # 3 hybrid models
 ├── docs/                            # Comprehensive documentation
-│   ├── hyperparameters/             # 19 hyperparameter JSON files
+│   ├── hyperparameters/             # 20 hyperparameter JSON files
 │   ├── training_procedures/         # Training protocols
 │   ├── MODEL_ARCHITECTURES.md       # Architecture details
 │   └── COMPREHENSIVE_MODEL_DOCUMENTATION.md

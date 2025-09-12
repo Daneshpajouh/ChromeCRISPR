@@ -1,6 +1,6 @@
 # CNN_LSTM+GC Model: Balanced Hybrid Performance
 
-**Performance**: 0.867 Spearman correlation | **Rank**: #4 of 19 models | **Balance**: Good performance with moderate complexity
+**Performance**: 0.867 Spearman correlation | **Rank**: #4 of 20 models | **Balance**: Good performance with moderate complexity
 
 ## 📊 Model Overview
 

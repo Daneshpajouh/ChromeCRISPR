@@ -1,6 +1,6 @@
 # deepCNN+GC Model: Most Efficient High Performer
 
-**Performance**: 0.873 Spearman correlation | **Rank**: #2 of 19 models | **Efficiency**: Best performance per parameter
+**Performance**: 0.873 Spearman correlation | **Rank**: #2 of 20 models | **Efficiency**: Best performance per parameter
 
 ## 📊 Model Overview
 

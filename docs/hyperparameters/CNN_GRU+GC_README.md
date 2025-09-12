@@ -1,6 +1,6 @@
 # CNN_GRU+GC Model: Best Performing ChromeCRISPR Hybrid ⭐
 
-**Performance**: 0.876 Spearman correlation | **Rank**: #1 of 19 models
+**Performance**: 0.876 Spearman correlation | **Rank**: #1 of 20 models
 
 ## 📊 Model Overview
 

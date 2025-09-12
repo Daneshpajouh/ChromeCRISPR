@@ -150,7 +150,7 @@ results = evaluator.compare_models(models, test_data)
 
 ## Documentation Links
 
-- **[Complete Hyperparameter Documentation](../docs/hyperparameters/)** - All 19 models with full specifications
+- **[Complete Hyperparameter Documentation](../docs/hyperparameters/)** - All 20 models with full specifications
 - **[Training Procedures](../docs/training_procedures/)** - Detailed training protocols
 - **[Model Architectures](../docs/MODEL_ARCHITECTURES.md)** - Technical architecture details
 - **[Performance Analysis](../docs/COMPREHENSIVE_MODEL_DOCUMENTATION.md)** - Comparative analysis

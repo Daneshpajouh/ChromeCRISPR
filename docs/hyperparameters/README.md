@@ -8,7 +8,7 @@ All models were trained using Bayesian optimization with Optuna framework, 5-fol
 
 ## Model Categories
 
-### Base Models (4 models)
+### Base Models (5 models)
 - **CNN**: Convolutional Neural Network
 - **GRU**: Gated Recurrent Unit
 - **LSTM**: Long Short-Term Memory
@@ -106,19 +106,19 @@ All models were trained using Bayesian optimization with Optuna framework, 5-fol
 - **Integration method**: Concatenated with final features
 - **Impact**: Consistent improvement across all models
 
-## 📚 Documentation Formats
+## Documentation Formats
 
 Each model is available in two formats for your convenience:
 
-### 📄 Readable README Format (Recommended for Users)
+### Readable README Format (Recommended for Users)
 User-friendly documentation with clear explanations, tables, and examples:
 
-- **[CNN_GRU+GC_README.md](CNN_GRU+GC_README.md)** ⭐ - Best performing model (0.876)
-- **[deepCNN+GC_README.md](deepCNN+GC_README.md)** ⭐ - Most efficient high performer (0.873)
-- **[CNN_BiLSTM+GC_README.md](CNN_BiLSTM+GC_README.md)** ⭐ - Best bidirectional context (0.870)
+- **[CNN_GRU+GC_README.md](CNN_GRU+GC_README.md)** - Best performing model (0.876)
+- **[deepCNN+GC_README.md](deepCNN+GC_README.md)** - Most efficient high performer (0.873)
+- **[CNN_BiLSTM+GC_README.md](CNN_BiLSTM+GC_README.md)** - Best bidirectional context (0.870)
 - **[CNN_LSTM+GC_README.md](CNN_LSTM+GC_README.md)** - Balanced hybrid performance (0.867)
 
-### 🔧 Raw JSON Format (For Developers/Programmatic Access)
+### Raw JSON Format (For Developers/Programmatic Access)
 Complete technical specifications in machine-readable JSON format:
 
 ```
@@ -143,9 +143,9 @@ docs/hyperparameters/
 ├── CNN_GRU+GC_hyperparameters.json
 ├── CNN_LSTM+GC_hyperparameters.json
 ├── CNN_BiLSTM+GC_hyperparameters.json
-├── CNN_GRU+GC_README.md ⭐
-├── deepCNN+GC_README.md ⭐
-├── CNN_BiLSTM+GC_README.md ⭐
+├── CNN_GRU+GC_README.md
+├── deepCNN+GC_README.md
+├── CNN_BiLSTM+GC_README.md
 └── CNN_LSTM+GC_README.md
 ```
 

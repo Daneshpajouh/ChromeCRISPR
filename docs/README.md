@@ -143,19 +143,19 @@ from src.evaluation import ModelEvaluator
 
 # Compare any set of models
 models = [
-    '../exact_20_manuscript_models/chromecrispr_hybrid_models/CNN_GRU+GC.pth',
-    '../exact_20_manuscript_models/deep_models_with_gc/deepCNN+GC.pth'
+    '../models/chromecrispr_hybrid_models/CNN_GRU+GC.pth',
+    '../models/deep_models_with_gc/deepCNN+GC.pth'
 ]
 
 evaluator = ModelEvaluator()
 results = evaluator.compare_models(test_data, models)
 ```
 
-## 📚 Documentation Structure
+## Documentation Structure
 
 ```
 docs/
-├── hyperparameters/           # 19 JSON files + performance table
+├── hyperparameters/           # 20 JSON files + performance table
 │   ├── CNN_GRU+GC_hyperparameters.json
 │   ├── deepCNN+GC_hyperparameters.json
 │   ├── [all other model hyperparameters...]
@@ -167,7 +167,7 @@ docs/
 └── README.md                  # This navigation file
 ```
 
-## 🔍 Finding Specific Information
+## Finding Specific Information
 
 ### For Researchers
 - **Performance Rankings**: `hyperparameters/README.md`
@@ -181,7 +181,7 @@ docs/
 - **Integration**: Review architecture specifications
 - **Optimization**: Compare hyperparameter configurations
 
-## 🚀 Advanced Usage
+## Advanced Usage
 
 ### Custom Model Training
 ```python
@@ -210,20 +210,20 @@ models = [
 ensemble_predictions = ensemble_predict(models, test_data)
 ```
 
-## 📞 Support & Resources
+## Support & Resources
 
-- **Model Files**: Located in `../exact_20_manuscript_models/`
+- **Model Files**: Located in `../models/`
 - **Source Code**: Available in `../src/` directory
 - **Examples**: See usage examples in each model directory README
 - **Issues**: Report bugs or request features via GitHub Issues
 
-## 🎖️ Key Achievements
+## Key Achievements
 
 1. **New Benchmark**: CNN_GRU+GC achieves 0.876 Spearman (surpasses DeepHF 0.867, AttCRISPR 0.872)
-2. **Complete Documentation**: All 19 models fully specified with hyperparameters
+2. **Complete Documentation**: All 20 models fully specified with hyperparameters
 3. **Hybrid Innovation**: Novel CNN-RNN fusion architectures
 4. **Biological Integration**: GC content enhances domain-specific performance
 5. **Publication Ready**: Comprehensive technical documentation
 
 ---
-**🎯 Navigation**: Use this file as your central hub for accessing all ChromeCRISPR documentation, models, and technical specifications.
+**Navigation**: Use this file as your central hub for accessing all ChromeCRISPR documentation, models, and technical specifications.
