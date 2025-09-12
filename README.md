@@ -56,8 +56,8 @@ Our best model, **CNN_GRU+GC**, achieves:
 | **[CNN](docs/hyperparameters/CNN_README.md)** | CNN | 0.793 | 0.0161 | 332K | 2.5h | V100 | 📋 |
 | **[CNN+GC](docs/hyperparameters/CNN+GC_README.md)** | CNN + GC | 0.781 | 0.0170 | 332K | 2.6h | V100 | 📋 |
 | **[RF](docs/hyperparameters/RF_README.md)** | Random Forest | 0.789 | 0.0161 | N/A | N/A | CPU | 📋 |
-| **DeepHF** | Previous SOTA | 0.867 | 0.0094 | - | - | - | 🔗 [Paper](https://doi.org/10.1038/s41467-019-12281-8) |
-| **AttCRISPR** | Previous SOTA | 0.872 | - | - | - | - | 🔗 [Paper](https://doi.org/10.1093/bioinformatics/btab127) |
+| **[DeepHF](https://doi.org/10.1038/s41467-019-12281-8)** | Previous SOTA | 0.867 | 0.0094 | - | - | - | 🔗 |
+| **[AttCRISPR](https://doi.org/10.1093/bioinformatics/btab127)** | Previous SOTA | 0.872 | - | - | - | - | 🔗 |
 
 **📋 Click model names to access complete documentation with architecture details, hyperparameters, and usage examples**
 
@@ -262,14 +262,35 @@ For comprehensive details about all model architectures, see [docs/MODEL_ARCHITE
 
 ## Citation
 
-If you use ChromeCRISPR in your research, please cite our paper:
+If you use ChromeCRISPR in your research, please cite our preprint:
+
+### Preprint (bioRxiv)
+```bibtex
+@article{daneshpajouh2025chromecrispr,
+  title={ChromeCRISPR: A High Efficacy Hybrid Machine Learning Model for CRISPR/Cas On-Target Predictions},
+  author={Daneshpajouh, Amirhossein and Fowler, Megan and Wiese, Kay C.},
+  journal={bioRxiv},
+  year={2025},
+  doi={10.1101/2025.04.16.649183},
+  url={https://www.biorxiv.org/content/10.1101/2025.04.16.649183v1}
+}
+```
+
+**Preprint DOI**: [https://doi.org/10.1101/2025.04.16.649183](https://doi.org/10.1101/2025.04.16.649183)  
+**Full Text**: [https://www.biorxiv.org/content/10.1101/2025.04.16.649183v1](https://www.biorxiv.org/content/10.1101/2025.04.16.649183v1)  
+
+*Note: This article is a preprint and has not been certified by peer review.*
+
+### Journal Submission
+Our manuscript has been submitted to **BioMed Central** for peer review.
 
 ```bibtex
 @article{daneshpajouh2024chromecrispr,
   title={ChromeCRISPR: A High Efficacy Hybrid Machine Learning Model for CRISPR/Cas On-Target Predictions},
   author={Daneshpajouh, Amirhossein and Fowler, Megan and Wiese, Kay C.},
   journal={BioMed Central},
-  year={2024}
+  year={2024},
+  note={Submitted for publication}
 }
 ```
 
@@ -296,8 +317,13 @@ For questions or support, please contact:
 
 ## Related Publications
 
-- [DeepHF: Optimized CRISPR Guide RNA Design via Deep Learning](https://doi.org/10.1038/s41467-019-12281-8)
-- [AttCRISPR: Attention-based deep learning for CRISPR/Cas9 guide RNA design](https://doi.org/10.1093/bioinformatics/btab127)
+### Previous State-of-the-Art Models
+- **[DeepHF](https://doi.org/10.1038/s41467-019-12281-8)**: Optimized CRISPR Guide RNA Design via Deep Learning (Nature Communications, 2019)
+- **[AttCRISPR](https://doi.org/10.1093/bioinformatics/btab127)**: Attention-based deep learning for CRISPR/Cas9 guide RNA design (Bioinformatics, 2021)
+
+### ChromeCRISPR Publications
+- **[Preprint (bioRxiv)](https://www.biorxiv.org/content/10.1101/2025.04.16.649183v1)**: Daneshpajouh et al. (2025) - Current preprint
+- **Journal Submission**: Daneshpajouh et al. (2024) - Submitted to BioMed Central
 
 ---
 
