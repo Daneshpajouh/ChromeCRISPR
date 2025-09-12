@@ -34,8 +34,8 @@ Our best model, **CNN_GRU+GC**, achieves:
 
 ### Complete Model Performance Summary
 
-| Model | Architecture | Spearman | MSE | Parameters | Training Time | Hardware | Documentation |
-|-------|--------------|----------|-----|------------|---------------|----------|---------------|
+| Model | Architecture | Spearman | MSE | Parameters | Total Training Time (incl. HPT) | Hardware | Documentation |
+|-------|--------------|----------|-----|------------|---------------------------------|----------|---------------|
 | **[CNN_GRU+GC](docs/hyperparameters/CNN_GRU+GC_README.md)** | CNN-GRU Hybrid | **0.876** | **0.0093** | 6.12M | 4.2h | V100 | [**📋**](docs/hyperparameters/CNN_GRU+GC_README.md) |
 | **[deepCNN+GC](docs/hyperparameters/deepCNN+GC_README.md)** | Deep CNN + GC | 0.873 | 0.0093 | 665K | 6.8h | V100 | [**📋**](docs/hyperparameters/deepCNN+GC_README.md) |
 | **[CNN_BiLSTM+GC](docs/hyperparameters/CNN_BiLSTM+GC_README.md)** | CNN-BiLSTM Hybrid | 0.870 | 0.0096 | 20.41M | 5.2h | V100 | [**📋**](docs/hyperparameters/CNN_BiLSTM+GC_README.md) |
@@ -60,6 +60,12 @@ Our best model, **CNN_GRU+GC**, achieves:
 | **[AttCRISPR](https://doi.org/10.1093/bioinformatics/btab127)** | Previous SOTA | 0.872 | - | - | - | - | [**🔗**](https://doi.org/10.1093/bioinformatics/btab127) |
 
 **📋 Click model names OR documentation icons to access complete documentation with architecture details, hyperparameters, and usage examples**
+
+**Training Time Clarification:**
+- **Individual Training Iteration**: ~20 seconds (single epoch training time)
+- **Total Training Time (incl. HPT)**: Includes hyperparameter tuning, cross-validation, and optimization (hours)
+- **Hyperparameter Optimization**: Bayesian search with nested 5-fold cross-validation
+- **Hardware Context**: All times measured on NVIDIA V100 Volta GPUs with 32GB HBM2 memory
 
 ### Key Performance Insights
 
@@ -270,7 +276,7 @@ For comprehensive details about all model architectures, see [docs/MODEL_ARCHITE
 - **Hyperparameter Tuning**: Nested 5-fold cross-validation with Bayesian search
 - **Data Split**: 85% training/validation, 15% testing
 - **Hardware**: NVIDIA V100 Volta GPUs with 32GB HBM2 memory
-- **Training Time**: ~20 seconds per iteration
+- **Individual Training Iteration**: ~20 seconds per epoch
 - **Optimization**: Adam optimizer with MSE loss function
 
 
