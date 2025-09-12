@@ -276,7 +276,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For questions or support, please contact:
 - Amirhossein Daneshpajouh: amir_dp@sfu.ca
-- Megan Fowler: megan_fowler_2@sfu.ca
+- Megan Fowler: mfa69@sfu.ca
 - Kay C. Wiese: wiese@sfu.ca
 
 ## Related Publications
