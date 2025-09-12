@@ -211,7 +211,7 @@ This document provides proper citations for all software packages and libraries 
 ### DeepHF Dataset
 ```
 @article{deephf2021,
-  title={DeepHF: a deep learning framework for predicting CRISPR/Cas9 on-target activity},
+  title={DeepHF: a deep learning framework for predicting CRISPR/Cas9 off-target activity},
   author={Chuai, Guoqing and Ma, Hong and Yan, Junwei and Chen, Meng and Hong, Na and Xue, Dong and Zhou, Chunyang and Hu, Bing and Chen, Yu and Zhang, Qian and others},
   journal={Nucleic Acids Research},
   volume={49},

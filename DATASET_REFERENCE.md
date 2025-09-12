@@ -24,7 +24,7 @@ We processed the DeepHF dataset following the same methodology as described in t
 1. **Data Preprocessing:** Applied the same sequence encoding and feature extraction methods
 2. **Train/Test Split:** Used the same 85/15 split ratio as the original study (85% training/validation, 15% testing)
 3. **Feature Engineering:** Implemented identical feature extraction pipeline
-4. **Data Augmentation:** Applied the same augmentation techniques
+4. **Data Processing:** No data augmentation techniques were applied
 
 ### Local Processing
 For training purposes, we processed the DeepHF dataset locally using our custom preprocessing pipeline. The processed data is stored in pickle format for efficient loading during training.
