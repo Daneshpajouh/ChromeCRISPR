@@ -127,7 +127,7 @@ CNN_LSTM+GC (0.867) ━━ Similar to BiLSTM hybrid
 
 ### Optimization Strategy
 - **Framework**: PyTorch with CUDA optimization
-- **Optimizer**: Adam with custom weight decay
+- **Optimizer**: Adam (β1=0.9, β2=0.999, weight_decay=1.98e-05)
 - **Loss Function**: Mean Squared Error
 - **Gradient Management**: Careful memory optimization
 - **Early Stopping**: Effective convergence monitoring

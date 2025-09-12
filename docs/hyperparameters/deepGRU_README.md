@@ -83,7 +83,8 @@ Dense Layers:
 ## 🖥️ Hardware & Training Details
 
 ### Training Hardware
-- **GPU**: NVIDIA V100
+- **Optimizer**: Adam (β1=0.9, β2=0.999, weight_decay=2.67e-05)
+- **Loss Function**: Mean Squared Error- **GPU**: NVIDIA V100
 - **Memory Usage**: 22GB
 - **Platform**: Digital Research Alliance of Canada
 

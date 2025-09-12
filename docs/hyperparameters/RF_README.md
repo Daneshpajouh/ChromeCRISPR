@@ -87,6 +87,8 @@ Ensemble Details:
 - **Bootstrap**: True
 - **OOB Score**: False
 - **n_jobs**: None (single-threaded)
+- **Training Method**: Ensemble bagging (no gradient optimization)
+- **Loss Function**: Mean Squared Error
 
 ## Feature Importance Analysis
 

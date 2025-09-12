@@ -120,6 +120,8 @@ Key Insight: GRU gates are more effective than LSTM gates in hybrid architecture
 - **Early Stopping**: Effective convergence monitoring
 - **Learning Stability**: Consistent loss reduction
 - **Generalization**: Good validation performance
+- **Optimizer**: Adam (β1=0.9, β2=0.999, weight_decay=2.15e-05)
+- **Loss Function**: Mean Squared Error
 
 ##  Biological Integration
 

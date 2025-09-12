@@ -53,6 +53,13 @@ Dense Layers:
 | **Dropout Rate** | 0.2 | 0.1-0.5 | Bayesian Optimization |
 | **Epochs** | 68 | Up to 200 | Early Stopping |
 
+### Hardware & Training Details
+- **GPU**: NVIDIA V100
+- **Memory Usage**: 30GB
+- **Platform**: Digital Research Alliance of Canada
+- **Optimizer**: Adam (β1=0.9, β2=0.999, weight_decay=2.45e-05)
+- **Loss Function**: Mean Squared Error
+
 ## Usage Examples
 
 ### Load Pre-trained Model
