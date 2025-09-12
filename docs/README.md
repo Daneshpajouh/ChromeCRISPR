@@ -100,8 +100,8 @@ deepCNN+GC    (0.873) ━━ Second Best
 CNN_BiLSTM+GC (0.870) ━━ Third Best
 
 Previous State-of-the-Art:
-DeepHF         (0.867) ━━ Surpassed
-AttCRISPR      (0.872) ━━ Surpassed
+DeepHF         (0.867) ━━ Surpassed (+0.009 Spearman)
+AttCRISPR      (0.872) ━━ Surpassed (+0.004 Spearman)
 ```
 
 ### Key Performance Insights
@@ -219,7 +219,7 @@ ensemble_predictions = ensemble_predict(models, test_data)
 
 ## Key Achievements
 
-1. **New Benchmark**: CNN_GRU+GC achieves 0.876 Spearman (surpasses DeepHF 0.867, AttCRISPR 0.872)
+1. **New Benchmark**: CNN_GRU+GC achieves 0.876 Spearman (+0.009 over DeepHF, +0.004 over AttCRISPR)
 2. **Complete Documentation**: All 20 models fully specified with hyperparameters
 3. **Hybrid Innovation**: Novel CNN-RNN fusion architectures
 4. **Biological Integration**: GC content enhances domain-specific performance

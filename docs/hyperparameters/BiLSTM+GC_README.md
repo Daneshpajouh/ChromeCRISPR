@@ -81,7 +81,7 @@ Dense Layers:
 - **Spearman Correlation**: 0.855 (95% CI: 0.852-0.858)
 - **Mean Squared Error**: 0.0110
 - **Test Set Size**: 8,341 samples
-- **Improvement over BiLSTM**: +0.012 (1.4% increase)
+- **Improvement over BiLSTM**: +0.012 Spearman (1.4%), -0.0010 MSE
 
 ## 🖥️ Hardware & Training Details
 

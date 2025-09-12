@@ -77,8 +77,8 @@ All models were trained using Bayesian optimization with Optuna framework, 5-fol
 ### Performance
 - **Spearman Correlation**: 0.8760
 - **MSE**: 0.0093
-- **Improvement over DeepHF**: +0.009
-- **Improvement over AttCRISPR**: +0.004
+- **Improvement over DeepHF**: +0.009 Spearman (9.0%), -0.0001 MSE
+- **Improvement over AttCRISPR**: +0.004 Spearman (0.4%), N/A MSE
 
 ## Training Configuration
 

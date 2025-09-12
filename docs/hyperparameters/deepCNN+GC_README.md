@@ -89,7 +89,7 @@ Dense Layers:
 - **Optimizer Parameters**: β1=0.9, β2=0.999, weight_decay=2.98e-05 (optimized values, not search space)deepCNN+GC (0.873) ━━ 🥈 Second Best Overall
 CNN_GRU+GC (0.876) ━━  Best (-0.003 difference)
 CNN_BiLSTM+GC (0.870) ━━ Third (-0.003 difference)
-DeepHF (0.867) ━━ Previous SOTA (+0.006 improvement)
+DeepHF (0.867) ━━ Previous SOTA (+0.006 Spearman, -0.0001 MSE)
 ```
 **Fixed Parameters (Not Optimized):**
 - **Optimizer**: Adam (fixed choice, not part of search)

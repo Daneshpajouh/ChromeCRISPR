@@ -83,7 +83,7 @@ CNN_LSTM+GC (0.867) ━━ Fourth Best Overall
 CNN_GRU+GC (0.876) ━━  Best (+0.009 difference)
 deepCNN+GC (0.873) ━━ Second (+0.006 difference)
 CNN_BiLSTM+GC (0.870) ━━ Third (+0.003 difference)
-DeepHF (0.867) ━━ Tied with previous SOTA
+DeepHF (0.867) ━━ Tied Spearman, -0.0021 MSE vs previous SOTA
 ```
 
 ### Hybrid Architecture Comparison

@@ -1,4 +1,4 @@
-# CNN_GRU+GC Model: Best Performing ChromeCRISPR Hybrid 
+# CNN_GRU+GC Model: Best Performing ChromeCRISPR Hybrid
 
 **Performance**: 0.876 Spearman correlation | **Rank**: #1 of 20 models
 
@@ -10,8 +10,8 @@
 | **Architecture Type** | Hybrid CNN-GRU with GC Content Integration |
 | **Spearman Correlation** | 0.876 |
 | **Mean Squared Error** | 0.0093 |
-| **Improvement over DeepHF** | +0.009 (9.0%) |
-| **Improvement over AttCRISPR** | +0.004 (0.4%) |
+| **Improvement over DeepHF** | +0.009 Spearman (9.0%), -0.0001 MSE |
+| **Improvement over AttCRISPR** | +0.004 Spearman (0.4%), N/A MSE |
 | **Total Parameters** | 6,119,938 |
 | **Training Time** | 4.2 hours |
 
