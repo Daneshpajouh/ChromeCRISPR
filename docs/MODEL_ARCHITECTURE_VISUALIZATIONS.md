@@ -2,11 +2,11 @@
 
 This document describes the model architecture visualizations available in the ChromeCRISPR repository and the tools used to generate them.
 
-## 📊 Available Visualizations
+## Available Visualizations
 
-### Generated Diagrams
+### Architecture Diagrams
 
-The following model architecture diagrams have been generated and are available in `docs/figures/model_architectures/`:
+The following model architecture diagrams are available in `docs/figures/model_architectures/`:
 
 1. **CNN_manual.png** - Convolutional Neural Network architecture
 2. **GRU_manual.png** - Gated Recurrent Unit architecture
@@ -33,7 +33,7 @@ Each model has been visualized using the following approaches:
   - Automatic computation graph generation
   - Shows data flow and operations
   - Detailed parameter information
-- **Status**: ⚠️ **Partially working** (requires model adjustments)
+- **Status**: Partially working (requires model adjustments)
 
 #### 3. HiddenLayer Architecture Diagrams
 - **Tool**: hiddenlayer library
@@ -41,23 +41,23 @@ Each model has been visualized using the following approaches:
   - Clean architecture diagrams
   - Layer-by-layer visualization
   - Professional styling
-- **Status**: ⚠️ **Not installed** (can be installed with `pip install hiddenlayer`)
+- **Status**: Not installed (can be installed with `pip install hiddenlayer`)
 
-## 🛠️ Visualization Tools
+## Visualization Tools
 
 ### Installed Tools
 
-1. **Matplotlib** 
+1. **Matplotlib**
    - Used for manual architecture diagrams
    - Provides full control over visualization
    - Professional quality output
 
-2. **TorchViz** 
+2. **TorchViz**
    - Installed: `pip install torchviz`
    - Generates computation graphs
    - Shows detailed data flow
 
-3. **HiddenLayer** ⚠️
+3. **HiddenLayer** (Optional)
    - Not currently installed
    - Install with: `pip install hiddenlayer`
    - Creates clean architecture diagrams
@@ -74,7 +74,7 @@ Each model has been visualized using the following approaches:
    - Supports multiple formats
    - Interactive exploration
 
-## 🎨 Diagram Features
+## Diagram Features
 
 ### Color Coding
 - **Input/Output**: Light blue/red
@@ -97,7 +97,7 @@ Each model has been visualized using the following approaches:
 - Input: 21 nucleotides
 - Output: Efficiency score (0-1)
 
-## 📋 Model Architectures Visualized
+##  Model Architectures Visualized
 
 ### Base Models
 
@@ -125,10 +125,10 @@ Each model has been visualized using the following approaches:
 
 #### 5. CNN-GRU (Convolutional + GRU)
 - **Architecture**: Embedding → Conv1d → ReLU → MaxPool → GRU → Linear → ReLU → Dropout → Linear
-- **Performance**: 0.876 Spearman correlation ⭐ **BEST**
+- **Performance**: 0.876 Spearman correlation (Best)
 - **Use Case**: Local + global sequence features
 
-## 🔧 Usage Instructions
+## Usage Instructions
 
 ### Generating Visualizations
 
@@ -161,7 +161,7 @@ open docs/figures/model_architectures/
 # For interactive exploration: netron
 ```
 
-## 📈 Visualization Quality
+##  Visualization Quality
 
 ### Manual Diagrams
 - **Resolution**: 300 DPI
@@ -179,7 +179,7 @@ open docs/figures/model_architectures/
 - **Style**: Clean, professional
 - **Use Case**: Presentations, papers
 
-## 🎯 Applications
+## Applications
 
 ### Research Papers
 - Use manual diagrams for clear architecture presentation
@@ -216,14 +216,14 @@ open docs/figures/model_architectures/
 3. **D3.js** - Interactive web visualizations
 4. **Keras Visualization** - Alternative approach
 
-## 📞 Support
+## Support
 
 For questions about model architecture visualizations:
 
 - **Primary Contact**: Amir Daneshpajouh (amir_dp@sfu.ca)
 - **All Authors**: {amir_dp, mfa69, wiese}@sfu.ca
 
-## 📄 Citation
+## Citation
 
 When using these visualizations in your work, please cite:
 
@@ -238,4 +238,4 @@ When using these visualizations in your work, please cite:
 
 ---
 
-**Note**: All visualizations are generated from the actual model implementations in the ChromeCRISPR repository, ensuring accuracy and consistency with the published research.
+**Note**: All visualizations are created from the model implementations in the ChromeCRISPR repository, ensuring accuracy and consistency with the research.

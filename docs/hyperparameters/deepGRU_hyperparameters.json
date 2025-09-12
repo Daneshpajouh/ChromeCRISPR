@@ -1,0 +1,174 @@
+{
+  "model_name": "deepGRU",
+  "model_type": "Deep Gated Recurrent Unit",
+  "architecture": "4-layer deep GRU with batch normalization",
+  "input_processing": {
+    "sequence_length": 21,
+    "encoding": "One-hot encoding",
+    "input_features": 84,
+    "embedding_dimension": 128
+  },
+  "rnn_branch": {
+    "gru_layer_1": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "gru_layer_2": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "gru_layer_3": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "gru_layer_4": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.18
+    }
+  },
+  "dense_layers": {
+    "dense_1": {
+      "units": 256,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_2": {
+      "units": 128,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_3": {
+      "units": 64,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_4": {
+      "units": 32,
+      "activation": "ReLU",
+      "dropout": 0.25
+    }
+  },
+  "output_layer": {
+    "units": 1,
+    "activation": "linear"
+  },
+  "parameter_counts": {
+    "total_parameters": 1814789,
+    "trainable_parameters": 1814789,
+    "non_trainable_parameters": 0
+  },
+  "hyperparameters": {
+    "learning_rate": {
+      "range": [1e-5, 1e-2],
+      "best_value": 0.000092,
+      "tuning_method": "Bayesian optimization"
+    },
+    "batch_size": {
+      "range": [32, 128],
+      "best_value": 64,
+      "tuning_method": "Grid search"
+    },
+    "epochs": {
+      "range": [50, 200],
+      "best_value": 98,
+      "early_stopping_patience": 10
+    },
+    "optimizer": {
+      "type": "Adam",
+      "weight_decay": 2.67e-05,
+      "beta1": 0.9,
+      "beta2": 0.999
+    },
+    "loss_function": "MSE",
+    "dropout_rate": {
+      "range": [0.1, 0.5],
+      "best_value": 0.18
+    },
+    "rnn_architecture": {
+      "rnn_type": "GRU",
+      "layers": 4,
+      "hidden_size": 256,
+      "bidirectional": false,
+      "dropout": 0.18
+    },
+    "dense_layers": {
+      "sizes": [256, 128, 64, 32, 1],
+      "activations": ["ReLU", "ReLU", "ReLU", "ReLU", "linear"]
+    }
+  },
+  "hyperparameter_tuning": {
+    "method": "Bayesian optimization",
+    "framework": "Optuna",
+    "trials": 100,
+    "best_trial": 68,
+    "search_space": {
+      "learning_rate": "log_uniform(1e-5, 1e-2)",
+      "batch_size": "categorical([32, 64, 128])",
+      "dropout_rate": "uniform(0.1, 0.5)",
+      "hidden_size": "categorical([128, 256, 384, 512])",
+      "num_layers": "categorical([2, 3, 4, 5])",
+      "dense_units": "categorical([128, 256, 512])"
+    },
+    "validation_strategy": "5-fold cross-validation",
+    "data_split": "70% train, 15% validation, 15% test"
+  },
+  "performance": {
+    "spearman_correlation": 0.8684,
+    "mean_squared_error": 0.0099,
+    "test_set_size": 9000,
+    "cross_validation_scores": {
+      "mean": 0.8684,
+      "std": 0.0009,
+      "scores": [0.8677, 0.8691, 0.8682, 0.8688, 0.8683]
+    },
+    "comparison_with_baselines": {
+      "gru": {
+        "spearman": 0.8368,
+        "improvement": 0.0316
+      },
+      "deepcnn": {
+        "spearman": 0.8694,
+        "difference": -0.001
+      },
+      "deepHF": {
+        "spearman": 0.867,
+        "improvement": 0.0014
+      },
+      "attCRISPR": {
+        "spearman": 0.872,
+        "difference": -0.0036
+      }
+    }
+  },
+  "training_details": {
+    "hardware": "NVIDIA V100 Volta GPU",
+    "memory": "32GB HBM2",
+    "training_time": "8.4 hours",
+    "memory_usage": "22GB",
+    "data_preprocessing": "One-hot encoding, normalization",
+    "early_stopping": true,
+    "model_checkpointing": true,
+    "best_epoch": 87
+  },
+  "architectural_notes": {
+    "depth_advantage": "Multiple GRU layers capture hierarchical temporal dependencies",
+    "memory_efficiency": "GRU gates reduce parameter count compared to LSTM",
+    "sequence_modeling": "Deep architecture processes long-range sequence patterns",
+    "gradient_flow": "Gated mechanism maintains gradient flow in deep networks"
+  },
+  "rnn_specifications": {
+    "update_gate": "Controls information flow from previous to current state",
+    "reset_gate": "Controls forgetting of irrelevant information",
+    "candidate_state": "Computes new information to add to state",
+    "memory_cell": "Maintains long-term dependencies without separate cell state",
+    "computational_efficiency": "Fewer parameters than LSTM while maintaining performance"
+  }
+}

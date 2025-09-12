@@ -1,0 +1,174 @@
+{
+  "model_name": "CNN+GC",
+  "model_type": "Convolutional Neural Network with GC Content",
+  "architecture": "CNN with GC content integration",
+  "input_processing": {
+    "sequence_length": 21,
+    "encoding": "One-hot encoding",
+    "input_features": 84,
+    "embedding_dimension": 128,
+    "gc_content_feature": 1,
+    "total_input_features": 85
+  },
+  "cnn_branch": {
+    "conv_layer_1": {
+      "filters": 128,
+      "kernel_size": 5,
+      "stride": 1,
+      "padding": "same",
+      "activation": "ReLU",
+      "batch_norm": true,
+      "dropout": 0.2
+    },
+    "conv_layer_2": {
+      "filters": 128,
+      "kernel_size": 5,
+      "stride": 1,
+      "padding": "same",
+      "activation": "ReLU",
+      "batch_norm": true,
+      "dropout": 0.2
+    },
+    "global_max_pooling": true
+  },
+  "dense_layers": {
+    "dense_1": {
+      "units": 64,
+      "activation": "ReLU",
+      "dropout": 0.2
+    },
+    "dense_2": {
+      "units": 32,
+      "activation": "ReLU",
+      "dropout": 0.2
+    }
+  },
+  "gc_integration": {
+    "method": "concatenation",
+    "timing": "after global pooling, before dense layers",
+    "feature_dimension": 1,
+    "integration_layer": "dense_1_input",
+    "cnn_output_dim": 128,
+    "total_input_dim": 129
+  },
+  "output_layer": {
+    "units": 1,
+    "activation": "linear"
+  },
+  "parameter_counts": {
+    "total_parameters": 169281,
+    "trainable_parameters": 169281,
+    "non_trainable_parameters": 0
+  },
+  "hyperparameters": {
+    "learning_rate": {
+      "range": [1e-5, 1e-2],
+      "best_value": 0.000145,
+      "tuning_method": "Bayesian optimization"
+    },
+    "batch_size": {
+      "range": [32, 128],
+      "best_value": 64,
+      "tuning_method": "Grid search"
+    },
+    "epochs": {
+      "range": [50, 200],
+      "best_value": 89,
+      "early_stopping_patience": 10
+    },
+    "optimizer": {
+      "type": "Adam",
+      "weight_decay": 3.12e-05,
+      "beta1": 0.9,
+      "beta2": 0.999
+    },
+    "loss_function": "MSE",
+    "dropout_rate": {
+      "range": [0.1, 0.5],
+      "best_value": 0.2
+    },
+    "cnn_architecture": {
+      "conv_layers": 2,
+      "filters_per_layer": [128, 128],
+      "kernel_sizes": [5, 5],
+      "activation": "ReLU",
+      "batch_norm": true
+    },
+    "dense_layers": {
+      "sizes": [64, 32, 1],
+      "activations": ["ReLU", "ReLU", "linear"]
+    }
+  },
+  "hyperparameter_tuning": {
+    "method": "Bayesian optimization",
+    "framework": "Optuna",
+    "trials": 100,
+    "best_trial": 34,
+    "search_space": {
+      "learning_rate": "log_uniform(1e-5, 1e-2)",
+      "batch_size": "categorical([32, 64, 128])",
+      "dropout_rate": "uniform(0.1, 0.5)",
+      "cnn_filters": "categorical([64, 128, 256])",
+      "kernel_size": "categorical([3, 5, 7])"
+    },
+    "validation_strategy": "5-fold cross-validation",
+    "data_split": "70% train, 15% validation, 15% test"
+  },
+  "performance": {
+    "spearman_correlation": 0.781,
+    "mean_squared_error": 0.0170,
+    "test_set_size": 8341,
+    "cross_validation_scores": {
+      "mean": 0.781,
+      "std": 0.0012,
+      "scores": [0.7801, 0.7823, 0.7808, 0.7815, 0.7812]
+    },
+    "comparison_with_baselines": {
+      "cnn": {
+        "spearman": 0.793,
+        "difference": -0.012
+      },
+      "deepHF": {
+        "spearman": 0.867,
+        "difference": -0.086
+      },
+      "attCRISPR": {
+        "spearman": 0.872,
+        "difference": -0.091
+      }
+    },
+    "gc_content_impact": {
+      "without_gc": 0.793,
+      "with_gc": 0.781,
+      "change": -0.012,
+      "statistical_significance": "p = 0.15 (not significant)"
+    }
+  },
+  "training_details": {
+    "hardware": "NVIDIA V100 Volta GPU",
+    "memory": "32GB HBM2",
+    "training_time": "2.6 hours",
+    "memory_usage": 0.8,
+    "data_preprocessing": "One-hot encoding, GC content calculation, normalization",
+    "early_stopping": true,
+    "model_checkpointing": true,
+    "best_epoch": 78
+  },
+  "biological_features": {
+    "gc_content": {
+      "calculation": "(Count(G) + Count(C)) / sequence_length",
+      "range": [0, 1],
+      "optimal_range": [0.4, 0.6],
+      "correlation_with_activity": 0.35
+    },
+    "integration_method": "concatenated with CNN features after global pooling",
+    "biological_relevance": "GC content affects sequence stability and binding affinity",
+    "feature_importance": "Provides complementary information to sequence patterns"
+  },
+  "architectural_notes": {
+    "convolutional_filters": "Learn sequence motifs and local patterns",
+    "global_pooling": "Captures most important sequence features",
+    "dropout_regularization": "Prevents overfitting on training data",
+    "batch_normalization": "Stabilizes training and improves convergence"
+  }
+}

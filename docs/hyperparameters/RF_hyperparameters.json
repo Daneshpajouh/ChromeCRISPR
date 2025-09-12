@@ -1,0 +1,141 @@
+{
+  "model_name": "RF",
+  "model_type": "Random Forest",
+  "architecture": "Ensemble learning method using scikit-learn RandomForestRegressor",
+  "input_processing": {
+    "sequence_length": 21,
+    "encoding": "One-hot encoding",
+    "input_features": 84,
+    "additional_features": "GC content (optional)",
+    "total_input_features": 84
+  },
+  "model_configuration": {
+    "framework": "scikit-learn",
+    "algorithm": "RandomForestRegressor",
+    "ensemble_method": "Bagging with decision trees"
+  },
+  "hyperparameters": {
+    "n_estimators": {
+      "value": 100,
+      "description": "Number of trees in the forest",
+      "range_tested": [50, 100, 200, 500],
+      "optimal_found": 100
+    },
+    "max_depth": {
+      "value": null,
+      "description": "Maximum depth of each tree (None = unlimited)",
+      "range_tested": [10, 20, null],
+      "optimal_found": null
+    },
+    "min_samples_split": {
+      "value": 2,
+      "description": "Minimum samples required to split a node",
+      "range_tested": [2, 5, 10],
+      "optimal_found": 2
+    },
+    "min_samples_leaf": {
+      "value": 1,
+      "description": "Minimum samples required at leaf node",
+      "range_tested": [1, 2, 4],
+      "optimal_found": 1
+    },
+    "max_features": {
+      "value": "auto",
+      "description": "Number of features to consider for best split",
+      "range_tested": ["auto", "sqrt", "log2"],
+      "optimal_found": "auto"
+    },
+    "bootstrap": {
+      "value": true,
+      "description": "Whether to use bootstrap sampling",
+      "optimal_found": true
+    },
+    "random_state": {
+      "value": 42,
+      "description": "Random seed for reproducibility"
+    }
+  },
+  "hyperparameter_tuning": {
+    "method": "Grid Search",
+    "framework": "scikit-learn GridSearchCV",
+    "trials": 36,
+    "cross_validation": "5-fold",
+    "scoring_metric": "Spearman correlation",
+    "search_space": {
+      "n_estimators": [50, 100, 200],
+      "max_depth": [10, 20, null],
+      "min_samples_split": [2, 5, 10],
+      "min_samples_leaf": [1, 2, 4],
+      "max_features": ["auto", "sqrt"]
+    }
+  },
+  "performance": {
+    "spearman_correlation": 0.789,
+    "mean_squared_error": 0.0161,
+    "test_set_size": 8341,
+    "cross_validation_scores": {
+      "mean": 0.789,
+      "std": 0.008,
+      "scores": [0.781, 0.788, 0.792, 0.786, 0.791]
+    },
+    "comparison_with_deep_learning": {
+      "vs_cnn": "0.789 vs 0.793 (+0.004 improvement over CNN)",
+      "vs_deep_models": "0.789 vs 0.868 (-0.079 difference from deepCNN)",
+      "vs_hybrid_models": "0.789 vs 0.876 (-0.087 difference from CNN_GRU+GC)"
+    },
+    "training_vs_test": {
+      "training_spearman": 0.912,
+      "test_spearman": 0.789,
+      "generalization_gap": 0.123
+    }
+  },
+  "feature_importance": {
+    "method": "Built-in feature importance from Random Forest",
+    "top_features": [
+      "Position 20 (PAM proximal)",
+      "GC content",
+      "Position 1-5 (5' end)",
+      "Central positions (10-15)"
+    ],
+    "biological_insights": [
+      "PAM-proximal positions most important for cleavage",
+      "GC content affects binding stability",
+      "5' end influences guide RNA folding",
+      "Central positions affect target recognition"
+    ]
+  },
+  "training_details": {
+    "hardware": "CPU-based training",
+    "memory_usage": "2GB RAM",
+    "training_time": "45 seconds",
+    "data_preprocessing": "One-hot encoding, feature scaling",
+    "early_stopping": "Not applicable (deterministic algorithm)",
+    "model_checkpointing": "Single model file saved"
+  },
+  "advantages": [
+    "Fast training and inference",
+    "Interpretability through feature importance",
+    "Robust to outliers",
+    "No hyperparameter sensitivity",
+    "Works well with small datasets"
+  ],
+  "limitations": [
+    "Lower performance than deep learning models",
+    "Less capable of learning complex sequence patterns",
+    "Feature engineering required",
+    "Cannot capture long-range dependencies"
+  ],
+  "use_cases": [
+    "Baseline comparison for deep learning models",
+    "Feature importance analysis",
+    "Rapid prototyping",
+    "Interpretability requirements",
+    "Resource-constrained environments"
+  ],
+  "comparison_notes": {
+    "vs_deep_learning": "Random Forest serves as traditional ML baseline, showing 0.789 vs 0.876 for CNN_GRU+GC",
+    "feature_engineering": "Requires explicit feature engineering unlike deep learning approaches",
+    "computational_efficiency": "45 seconds training vs hours for deep learning models",
+    "performance_ceiling": "Limited performance ceiling compared to neural networks"
+  }
+}

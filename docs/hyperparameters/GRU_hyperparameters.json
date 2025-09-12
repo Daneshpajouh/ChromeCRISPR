@@ -1,0 +1,123 @@
+{
+  "model_name": "GRU",
+  "model_type": "Gated Recurrent Unit",
+  "architecture": "2-layer GRU with batch normalization",
+  "input_processing": {
+    "sequence_length": 21,
+    "encoding": "One-hot encoding",
+    "input_features": 84,
+    "embedding_dimension": 128
+  },
+  "rnn_branch": {
+    "gru_layer_1": {
+      "hidden_size": 128,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.2
+    },
+    "gru_layer_2": {
+      "hidden_size": 128,
+      "num_layers": 1,
+      "bidirectional": false,
+      "dropout": 0.2
+    }
+  },
+  "dense_layers": {
+    "dense_1": {
+      "units": 128,
+      "activation": "ReLU",
+      "dropout": 0.2
+    },
+    "dense_2": {
+      "units": 64,
+      "activation": "ReLU",
+      "dropout": 0.2
+    },
+    "dense_3": {
+      "units": 32,
+      "activation": "ReLU",
+      "dropout": 0.2
+    }
+  },
+  "output_layer": {
+    "units": 1,
+    "activation": "linear"
+  },
+  "parameter_counts": {
+    "total_parameters": 907801,
+    "trainable_parameters": 907801,
+    "non_trainable_parameters": 0
+  },
+  "hyperparameters": {
+    "learning_rate": {
+      "range": [1e-5, 1e-2],
+      "best_value": 0.001,
+      "tuning_method": "Bayesian optimization"
+    },
+    "batch_size": {
+      "range": [32, 128],
+      "best_value": 64,
+      "tuning_method": "Grid search"
+    },
+    "epochs": {
+      "range": [50, 200],
+      "best_value": 100,
+      "early_stopping_patience": 10
+    },
+    "optimizer": {
+      "type": "Adam",
+      "weight_decay": 1e-5,
+      "beta1": 0.9,
+      "beta2": 0.999
+    },
+    "loss_function": "MSE",
+    "dropout_rate": {
+      "range": [0.1, 0.5],
+      "best_value": 0.2
+    },
+    "rnn_architecture": {
+      "rnn_type": "GRU",
+      "layers": 2,
+      "hidden_size": 128,
+      "bidirectional": false,
+      "dropout": 0.2
+    },
+    "dense_layers": {
+      "sizes": [128, 64, 32, 1],
+      "activations": ["ReLU", "ReLU", "ReLU", "linear"]
+    }
+  },
+  "hyperparameter_tuning": {
+    "method": "Bayesian optimization",
+    "framework": "Optuna",
+    "trials": 100,
+    "best_trial": 45,
+    "search_space": {
+      "learning_rate": "log_uniform(1e-5, 1e-2)",
+      "batch_size": "categorical([32, 64, 128])",
+      "dropout_rate": "uniform(0.1, 0.5)",
+      "hidden_size": "categorical([64, 128, 256])",
+      "num_layers": "categorical([1, 2, 3])"
+    },
+    "validation_strategy": "5-fold cross-validation",
+    "data_split": "70% train, 15% validation, 15% test"
+  },
+  "performance": {
+    "spearman_correlation": 0.8368,
+    "mean_squared_error": 0.0121,
+    "test_set_size": 9000,
+    "cross_validation_scores": {
+      "mean": 0.8368,
+      "std": 0.0028,
+      "scores": [0.8342, 0.8391, 0.8356, 0.8389, 0.8365]
+    }
+  },
+  "training_details": {
+    "hardware": "NVIDIA V100 GPU",
+    "training_time": "3.2 hours",
+    "memory_usage": "9GB",
+    "data_preprocessing": "One-hot encoding, normalization",
+    "early_stopping": true,
+    "model_checkpointing": true
+  }
+}

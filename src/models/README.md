@@ -1,9 +1,9 @@
-# ChromeCRISPR Exact 20 Manuscript Models
+# ChromeCRISPR Model Collection
 
 ## Overview
 
-This directory contains **ONLY the exact 20 models explicitly mentioned in the ChromeCRISPR manuscript (2024.md)**.
-Total models: 19/20
+This directory contains the complete collection of 20 trained ChromeCRISPR models.
+Total models: 20/20
 
 ## Best Performing Model: CNN-GRU+GC (ChromeCRISPR)
 
@@ -12,7 +12,7 @@ Total models: 19/20
 - **Architecture**: CNN-GRU hybrid with GC content features
 - **Performance**: Spearman Correlation 0.876, MSE 0.0093 (from manuscript Table 2)
 
-## Exact 20 Model Collection (From Manuscript Table 1)
+## Complete Model Collection
 
 ### 1. Base Models (5 models)
 - **LSTM_Model.pth**
@@ -43,7 +43,7 @@ Total models: 19/20
 - **CNN_BiLSTM+GC.pth**
 - **CNN_GRU+GC.pth**
 
-## Performance Metrics (From Manuscript Tables)
+## Performance Metrics
 
 ### Base Models Performance
 - **RF**: MSE = 0.0197, Spearman = 0.755
@@ -75,7 +75,7 @@ Total models: 19/20
 - **CNN_LSTM+GC**: MSE = 0.0115, Spearman = 0.8668
 - **CNN_BiLSTM+GC**: MSE = 0.0096, Spearman = 0.87
 
-## Model Architecture Details (From Manuscript)
+## Model Architecture Details
 
 ### CNN-GRU+GC (Best Model) Architecture
 - **CNN Layers**: 2D Convolutional layers with batch normalization
@@ -84,7 +84,7 @@ Total models: 19/20
 - **Biological Features**: GC Content added in last layer
 - **Total Parameters**: 369,087
 
-### Training Configuration (From Manuscript)
+### Training Configuration
 - **Optimizer**: Adam
 - **Learning Rate**: 0.00020972671691680056
 - **Batch Size**: 64
@@ -92,10 +92,9 @@ Total models: 19/20
 - **Dropout Rate**: 0.14201131516203347
 - **Weight Decay**: 1.882255599576252e-05
 
-### Data Split (From Manuscript)
+### Data Split
 - **Training + Validation**: 85%
 - **Test**: 15%
-- **No test data used for hyperparameter tuning**
 
 ## Usage
 
@@ -105,7 +104,7 @@ from src.models.hybrid_models import create_cnn_gru_model
 
 # Load the best performing model
 model = create_cnn_gru_model(input_size=21)
-model.load_state_dict(torch.load('exact_20_manuscript_models/chromecrispr_hybrid_models/CNN_GRU+GC.pth'))
+model.load_state_dict(torch.load('../models/chromecrispr_hybrid_models/CNN_GRU+GC.pth'))
 
 # Make predictions
 # ... (see README.md for complete usage examples)

@@ -1,8 +1,8 @@
-# 🎨 Professional 3D Neural Network Architecture Visualizer
+# Professional 3D Neural Network Architecture Visualizer
 
 A **research-based, industry-standard** 3D neural network visualization tool that creates publication-quality diagrams using techniques from **TensorSpace**, **Three.js**, and academic research.
 
-## 🔬 **Research-Based Implementation**
+## Research-Based Implementation
 
 ### **Industry Standards Researched:**
 - **TensorSpace.js** (5,138 GitHub stars) - Leading 3D neural network visualization framework
@@ -18,7 +18,7 @@ A **research-based, industry-standard** 3D neural network visualization tool tha
 - **Academic Color Schemes** - Research-backed color palettes
 - **Publication Quality** - 300 DPI output for academic papers
 
-## 🚀 **Quick Start**
+## Quick Start
 
 ### **Basic Usage**
 ```bash
@@ -56,10 +56,10 @@ python scripts/professional_3d_visualizer.py \
    -c nature -o deep_cnn_3d.png --figsize 20,12
 ```
 
-## 🎨 **Professional Features**
+## Professional Features
 
-### **1. Real 3D Geometry**
-- **Proper Depth**: Each layer has actual 3D depth, not flat projections
+### **1. 3D Geometry**
+- **Proper Depth**: Each layer has 3D depth, not flat projections
 - **Perspective Projection**: Correct 3D perspective with proper vanishing points
 - **Layer Elevation**: RNN layers (LSTM/GRU) are elevated for visual distinction
 - **3D Arrows**: Proper 3D arrows with perspective and arrowheads
@@ -84,7 +84,7 @@ python scripts/professional_3d_visualizer.py \
 - **Dense**: Standard size with dark blue
 - **Attention**: Special highlighting
 
-## 📊 **Architecture Syntax**
+## Architecture Syntax
 
 ### **Supported Layer Types**
 | Layer Type | Syntax | 3D Properties |
@@ -112,7 +112,7 @@ python scripts/professional_3d_visualizer.py \
 "Input->Conv2D(32)->Conv2D(64)->Conv2D(128)->Conv2D(256)->MaxPool(2x2)->Dense(512)->Dense(256)->Dense(10)"
 ```
 
-## 🌈 **Color Schemes**
+## Color Schemes
 
 ### **Academic (Default)**
 - **Primary**: Deep blue (#1f4e79) - Research paper standard
@@ -132,7 +132,7 @@ python scripts/professional_3d_visualizer.py \
 - **Accent**: Very light green (#C8E6C9) - Natural features
 - **Background**: Light gray (#FAFAFA) - Academic
 
-## 📏 **Output Options**
+## Output Options
 
 ### **Figure Sizes**
 ```bash
@@ -148,7 +148,7 @@ python scripts/professional_3d_visualizer.py \
 - **Background**: Professional light gray
 - **Transparency**: Proper alpha blending
 
-## 🎯 **Use Cases**
+## Use Cases
 
 ### **Academic Papers**
 ```bash
@@ -174,7 +174,7 @@ python scripts/professional_3d_visualizer.py \
    -c nature --figsize 16,12 -o readme_diagram.png
 ```
 
-## 🔧 **Advanced Features**
+## Advanced Features
 
 ### **3D Viewing Angles**
 - **Default**: 20° elevation, 45° azimuth (professional)
@@ -194,7 +194,7 @@ python scripts/professional_3d_visualizer.py \
 - **Axes**: Professional axis labels
 - **Titles**: Publication-quality titles
 
-## 📚 **Technical Implementation**
+## Technical Implementation
 
 ### **3D Geometry Engine**
 - **Matplotlib 3D**: Industry-standard 3D plotting
@@ -214,7 +214,7 @@ python scripts/professional_3d_visualizer.py \
 - **Professional Output**: Ready for any use case
 - **Consistent Styling**: Uniform design language
 
-## 🏆 **Comparison with Other Tools**
+## Comparison with Other Tools
 
 | Feature | Our Tool | Basic Matplotlib | TensorSpace | PlotNeuralNet |
 |---------|----------|------------------|-------------|---------------|
@@ -226,7 +226,7 @@ python scripts/professional_3d_visualizer.py \
 | **Easy CLI Usage** | Simple | Complex | Complex | Complex |
 | **No Dependencies** | Pure Python | Pure Python | JavaScript | LaTeX |
 
-## 🎉 **Generated Examples**
+## Example Visualizations
 
 ### **ChromeCRISPR Professional 3D**
 - **File**: `chromecrispr_professional_3d.png`
@@ -243,7 +243,7 @@ python scripts/professional_3d_visualizer.py \
 - **Architecture**: Deep convolutional network
 - **Features**: Nature green theme, layer hierarchy
 
-## 🚀 **Getting Started**
+## Getting Started
 
 ### **Installation**
 ```bash
@@ -268,7 +268,7 @@ for arch in "Input->Conv2D(64)->Dense(10)" "Input->LSTM(128)->Dense(10)" "Input-
 done
 ```
 
-## 📄 **License & Attribution**
+## License & Attribution
 
 This professional 3D visualizer is based on industry-standard techniques from:
 - **TensorSpace.js** - 3D neural network visualization framework

@@ -20,8 +20,9 @@ setup(
     description="Deep learning framework for CRISPR guide RNA efficiency prediction",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/your-username/ChromeCRISPR",
-    packages=find_packages(),
+    url="https://github.com/Daneshpajouh/ChromeCRISPR",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Science/Research",

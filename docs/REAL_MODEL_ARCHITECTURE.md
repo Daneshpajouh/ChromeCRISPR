@@ -88,7 +88,6 @@
 ### Data Split (From Manuscript)
 - **Training + Validation**: 85%
 - **Test**: 15%
-- **No test data used for hyperparameter tuning**
 
 ### Input/Output
 - **Input**: 21-mer sgRNA sequences (one-hot encoded)

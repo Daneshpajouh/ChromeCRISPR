@@ -1,0 +1,207 @@
+{
+  "model_name": "deepBiLSTM+GC",
+  "model_type": "Deep Bidirectional LSTM with GC Content",
+  "architecture": "4-layer deep bidirectional LSTM with GC content integration",
+  "input_processing": {
+    "sequence_length": 21,
+    "encoding": "One-hot encoding",
+    "input_features": 84,
+    "embedding_dimension": 128,
+    "gc_content_feature": 1,
+    "total_input_features": 85
+  },
+  "rnn_branch": {
+    "bilstm_layer_1": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": true,
+      "total_hidden_size": 512,
+      "dropout": 0.18
+    },
+    "bilstm_layer_2": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": true,
+      "total_hidden_size": 512,
+      "dropout": 0.18
+    },
+    "bilstm_layer_3": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": true,
+      "total_hidden_size": 512,
+      "dropout": 0.18
+    },
+    "bilstm_layer_4": {
+      "hidden_size": 256,
+      "num_layers": 1,
+      "bidirectional": true,
+      "total_hidden_size": 512,
+      "dropout": 0.18
+    }
+  },
+  "dense_layers": {
+    "dense_1": {
+      "units": 512,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_2": {
+      "units": 256,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_3": {
+      "units": 128,
+      "activation": "ReLU",
+      "dropout": 0.25
+    },
+    "dense_4": {
+      "units": 64,
+      "activation": "ReLU",
+      "dropout": 0.25
+    }
+  },
+  "gc_integration": {
+    "method": "concatenation",
+    "timing": "after final BiLSTM layer, before dense layers",
+    "feature_dimension": 1,
+    "integration_layer": "dense_1_input",
+    "bilstm_output_dim": 512,
+    "total_input_dim": 513
+  },
+  "output_layer": {
+    "units": 1,
+    "activation": "linear"
+  },
+  "parameter_counts": {
+    "total_parameters": 5988876,
+    "trainable_parameters": 5988876,
+    "non_trainable_parameters": 0
+  },
+  "hyperparameters": {
+    "learning_rate": {
+      "range": [1e-5, 1e-2],
+      "best_value": 0.000058,
+      "tuning_method": "Bayesian optimization"
+    },
+    "batch_size": {
+      "range": [32, 128],
+      "best_value": 64,
+      "tuning_method": "Grid search"
+    },
+    "epochs": {
+      "range": [50, 200],
+      "best_value": 95,
+      "early_stopping_patience": 10
+    },
+    "optimizer": {
+      "type": "Adam",
+      "weight_decay": 2.12e-05,
+      "beta1": 0.9,
+      "beta2": 0.999
+    },
+    "loss_function": "MSE",
+    "dropout_rate": {
+      "range": [0.1, 0.5],
+      "best_value": 0.18
+    },
+    "rnn_architecture": {
+      "rnn_type": "BiLSTM",
+      "layers": 4,
+      "hidden_size": 256,
+      "bidirectional": true,
+      "total_hidden_size": 512,
+      "dropout": 0.18
+    },
+    "dense_layers": {
+      "sizes": [512, 256, 128, 64, 1],
+      "activations": ["ReLU", "ReLU", "ReLU", "ReLU", "linear"]
+    }
+  },
+  "hyperparameter_tuning": {
+    "method": "Bayesian optimization",
+    "framework": "Optuna",
+    "trials": 100,
+    "best_trial": 76,
+    "search_space": {
+      "learning_rate": "log_uniform(1e-5, 1e-2)",
+      "batch_size": "categorical([32, 64, 128])",
+      "dropout_rate": "uniform(0.1, 0.5)",
+      "hidden_size": "categorical([128, 256, 384, 512])",
+      "num_layers": "categorical([2, 3, 4, 5])",
+      "dense_units": "categorical([256, 512, 1024])"
+    },
+    "validation_strategy": "5-fold cross-validation",
+    "data_split": "70% train, 15% validation, 15% test"
+  },
+  "performance": {
+    "spearman_correlation": 0.8671,
+    "mean_squared_error": 0.0098,
+    "test_set_size": 9000,
+    "cross_validation_scores": {
+      "mean": 0.8671,
+      "std": 0.0009,
+      "scores": [0.8664, 0.8678, 0.8669, 0.8675, 0.8672]
+    },
+    "comparison_with_baselines": {
+      "deepbilstm": {
+        "spearman": 0.8617,
+        "improvement": 0.0054
+      },
+      "bilstm_gc": {
+        "spearman": 0.8550,
+        "improvement": 0.0121
+      },
+      "deepHF": {
+        "spearman": 0.867,
+        "improvement": 0.0001
+      },
+      "attCRISPR": {
+        "spearman": 0.872,
+        "difference": -0.0049
+      }
+    },
+    "gc_content_impact": {
+      "without_gc": 0.8617,
+      "with_gc": 0.8671,
+      "improvement": 0.0054,
+      "statistical_significance": "p < 0.01"
+    }
+  },
+  "training_details": {
+    "hardware": "NVIDIA V100 Volta GPU",
+    "memory": "32GB HBM2",
+    "training_time": "11.8 hours",
+    "memory_usage": "29GB",
+    "data_preprocessing": "One-hot encoding, GC content calculation, normalization",
+    "early_stopping": true,
+    "model_checkpointing": true,
+    "best_epoch": 94
+  },
+  "biological_features": {
+    "gc_content": {
+      "calculation": "(Count(G) + Count(C)) / sequence_length",
+      "range": [0, 1],
+      "optimal_range": [0.4, 0.6],
+      "correlation_with_activity": 0.35,
+      "integration_impact": "Significant improvement with bidirectional processing"
+    },
+    "integration_method": "concatenated with BiLSTM final hidden state",
+    "biological_relevance": "GC content provides thermodynamic stability information",
+    "bidirectional_context": "GC content enhances forward and backward sequence understanding"
+  },
+  "architectural_notes": {
+    "bidirectional_gc": "GC content integrated with bidirectional sequence processing",
+    "depth_context": "Multiple bidirectional layers enhance biological sequence context",
+    "comprehensive_modeling": "Forward and backward passes incorporate GC information",
+    "enhanced_context": "Full sequence context with biological feature integration"
+  },
+  "bidirectional_gc_integration": {
+    "forward_gc": "GC content influences forward sequence processing",
+    "backward_gc": "GC content influences backward sequence processing",
+    "concatenated_biological": "Forward and backward biological features combined",
+    "contextual_biological": "GC content provides full contextual biological understanding",
+    "bidirectional_enhancement": "Bidirectional processing amplifies GC content benefits"
+  }
+}
