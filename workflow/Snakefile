@@ -1,0 +1,43 @@
+configfile: "workflow/config/chromecrispr.yaml"
+
+REPORTS_DIR = config["reports_dir"]
+REGISTRY_JSON = f"{REPORTS_DIR}/model_registry.json"
+REGISTRY_MD = f"{REPORTS_DIR}/model_registry.md"
+INTEGRITY_JSON = f"{REPORTS_DIR}/repo_integrity.json"
+INTEGRITY_MD = f"{REPORTS_DIR}/repo_integrity.md"
+AUDIT_JSON = f"{REPORTS_DIR}/public_examples_audit.json"
+AUDIT_MD = f"{REPORTS_DIR}/public_examples_audit.md"
+SUMMARY_MD = f"{REPORTS_DIR}/public_repo_summary.md"
+
+include: "rules/reporting.smk"
+include: "rules/integrity.smk"
+include: "rules/audit.smk"
+
+rule all:
+    input:
+        REGISTRY_JSON,
+        REGISTRY_MD,
+        INTEGRITY_JSON,
+        INTEGRITY_MD,
+        AUDIT_JSON,
+        AUDIT_MD,
+        SUMMARY_MD
+
+rule inventory:
+    input:
+        REGISTRY_JSON,
+        REGISTRY_MD
+
+rule integrity:
+    input:
+        INTEGRITY_JSON,
+        INTEGRITY_MD
+
+rule audit:
+    input:
+        AUDIT_JSON,
+        AUDIT_MD
+
+rule report:
+    input:
+        SUMMARY_MD

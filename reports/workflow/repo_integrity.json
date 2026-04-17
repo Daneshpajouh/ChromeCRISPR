@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-04-17T01:27:38Z",
+  "integrity_passed": true,
+  "issue_count": 0,
+  "issues": [],
+  "summary": {
+    "canonical_model_count": 20,
+    "expected_model_count": 20,
+    "category_counts": {
+      "base_models": 5,
+      "base_models_with_gc": 4,
+      "deep_models": 4,
+      "deep_models_with_gc": 4,
+      "chromecrispr_hybrid_models": 3
+    }
+  }
+}

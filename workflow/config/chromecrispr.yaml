@@ -1,0 +1,6 @@
+reports_dir: reports/workflow
+docs_to_audit:
+  - README.md
+  - docs/README.md
+  - models/README.md
+  - src/README.md

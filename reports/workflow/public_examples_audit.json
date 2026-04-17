@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-04-17T01:27:38Z",
+  "docs_audited": [
+    "README.md",
+    "docs/README.md",
+    "models/README.md",
+    "src/README.md"
+  ],
+  "audit_passed": true,
+  "issue_count": 0,
+  "issues": []
+}

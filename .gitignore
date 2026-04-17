@@ -44,6 +44,10 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.workflow-venv/
+.snakemake/
+.nextflow/
+work/
 
 # IDE
 .vscode/
@@ -90,10 +94,21 @@ models/
 !models/**/*.json
 !models/**/*.py
 !models/**/*.md
+!src/models/
+!src/models/**/*.py
+!src/models/**/*.md
 
 # Documentation files
 !docs/**/*.json
 !docs/**/*.md
+!reports/
+!reports/**/*.json
+!reports/**/*.md
+!workflow/**/*.yaml
+!workflow/**/*.md
+!workflow/**/*.txt
+!workflow/**/*.smk
+!workflow/Snakefile
 
 # Backup files
 *.bak
