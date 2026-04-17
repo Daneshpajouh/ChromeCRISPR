@@ -1,35 +1,35 @@
-# ChromeCRISPR Snakemake Workflow
+# ChromeCRISPR Workflow
 
-This workflow is the public reproducibility and organization layer for the ChromeCRISPR repository.
+This directory contains the Snakemake workflow used for repository checks and report generation.
 
-It is intentionally split into two lanes:
-- default public verification: inventory, integrity, documentation audit, preprocessing manifest, and summary report
-- optional smoke testing: checkpoint compatibility validation in a dedicated smoke environment
+## Targets
 
-## Workflow Graph
+| Target | Purpose |
+|---|---|
+| `inventory` | build the model registry |
+| `integrity` | check repository structure and required assets |
+| `audit` | check markdown links and example imports |
+| `preprocessing` | build the preprocessing manifest |
+| `report` | run the report set without the smoke test |
+| `smoke` | run the checkpoint smoke test |
+| `full` | run `report` and `smoke` |
 
-```mermaid
-flowchart TD
-  A["models/ + docs/"] --> B["inventory"]
-  A --> C["integrity"]
-  A --> D["audit"]
-  A --> E["preprocessing"]
-  B --> F["report"]
-  C --> F
-  D --> F
-  E --> F
-  A --> G["smoke (optional)"]
-  G --> H["full"]
+Run from the repository root:
+
+```bash
+bash scripts/run_snakemake.sh report
+bash scripts/run_snakemake.sh smoke
+bash scripts/run_snakemake.sh full
 ```
 
-## Layout
+## Files
 
 ```text
 workflow/
 ├── Snakefile
 ├── config/chromecrispr.yaml
-├── requirements-smoke.txt
 ├── requirements-snakemake.txt
+├── requirements-smoke.txt
 └── rules/
     ├── audit.smk
     ├── integrity.smk
@@ -38,46 +38,20 @@ workflow/
     └── smoke.smk
 ```
 
-## Targets
-
-From the repository root:
-
-```bash
-bash scripts/run_snakemake.sh report
-```
-
-Available targets:
-- `inventory`: build the canonical model registry
-- `integrity`: verify checkpoints, workflow assets, and the no-duplicate policy under `src/models/`
-- `audit`: verify public markdown links and repo-local import examples
-- `preprocessing`: build a structured preprocessing and training manifest from the published docs
-- `report`: build the full public summary plus preprocessing manifest
-- `smoke`: run the optional checkpoint compatibility smoke-test lane
-- `full`: run the default report lane plus the isolated smoke lane and full smoke-aware summary
-
 ## Outputs
 
-The workflow writes deterministic outputs to `reports/workflow/`:
-- `model_registry.json`
-- `model_registry.md`
-- `repo_integrity.json`
-- `repo_integrity.md`
-- `public_examples_audit.json`
-- `public_examples_audit.md`
-- `preprocessing_manifest.json`
-- `preprocessing_manifest.md`
+The workflow writes to `reports/workflow/`:
+- `model_registry.json` / `model_registry.md`
+- `repo_integrity.json` / `repo_integrity.md`
+- `public_examples_audit.json` / `public_examples_audit.md`
+- `preprocessing_manifest.json` / `preprocessing_manifest.md`
 - `public_repo_summary.md`
 - `public_repo_full_summary.md`
-- `checkpoint_smoke.json`
-- `checkpoint_smoke.md`
+- `checkpoint_smoke.json` / `checkpoint_smoke.md`
 - `checkpoint_validator_report.json`
 
-## Preprocessing Boundary
+## Smoke test
 
-The workflow documents preprocessing clearly, but it does not pretend to reconstruct the entire raw-data manuscript pipeline from scratch. The public preprocessing manifest records the documented sequence encoding, GC-content handling, split strategy, and training protocol assumptions around the released artifacts.
+The smoke target uses a separate environment in `.smoke-venv/` built from `workflow/requirements-smoke.txt`.
 
-## Optional Smoke Test
-
-The `smoke` target is intentionally separate from the default `report` target. It bootstraps a dedicated `.smoke-venv/` using `workflow/requirements-smoke.txt`, so public checkpoint loading does not depend on the caller's global Python environment. The `full` target is the clean public command when you want both the lightweight report lane and the executed smoke lane.
-
-The smoke report is intentionally honest about repo-local compatibility. If checkpoint architectures drift from the public Python model definitions, the validator records those load failures and shape mismatches instead of masking them behind synthetic benchmark claims.
+The smoke test checks whether the published artifacts can be loaded and executed with the Python code included in this repository. It does not attempt to reproduce the manuscript benchmark values from raw data.

@@ -1,256 +1,102 @@
-# ChromeCRISPR Hyperparameter Documentation
+# ChromeCRISPR Hyperparameters
 
-This directory contains comprehensive hyperparameter documentation for all ChromeCRISPR models based on training results and specifications.
+This directory contains per-model hyperparameter records for the public ChromeCRISPR release.
 
-## Overview
+## Files
 
-All models were trained using Bayesian optimization with Optuna framework, 5-fold cross-validation, and proper train/validation/test splits. Hyperparameters were tuned to maximize Spearman correlation coefficient.
+Each model is documented in two forms:
+- `*_hyperparameters.json`: machine-readable record
+- `*_README.md`: model-specific summary and notes
 
-## Model Categories
+## Categories
 
-### Base Models (5 models)
-- **CNN**: Convolutional Neural Network
-- **GRU**: Gated Recurrent Unit
-- **LSTM**: Long Short-Term Memory
-- **BiLSTM**: Bidirectional LSTM
+| Category | Models |
+|---|---:|
+| Base models | 5 |
+| Base models + GC | 4 |
+| Deep models | 4 |
+| Deep models + GC | 4 |
+| Hybrid models | 3 |
 
-### Base Models + GC Content (4 models)
-- **CNN+GC**: CNN with GC content integration
-- **GRU+GC**: GRU with GC content integration
-- **LSTM+GC**: LSTM with GC content integration
-- **BiLSTM+GC**: BiLSTM with GC content integration
+## Best model
 
-### Deep Models (4 models)
-- **deepCNN**: Deep CNN with 4 convolutional layers
-- **deepGRU**: Deep GRU with 4 layers
-- **deepLSTM**: Deep LSTM with 4 layers
-- **deepBiLSTM**: Deep BiLSTM with 4 layers
+| Item | Value |
+|---|---|
+| Model | `CNN_GRU+GC` |
+| Spearman | `0.876` |
+| MSE | `0.0093` |
+| JSON | `CNN_GRU+GC_hyperparameters.json` |
+| Summary | `CNN_GRU+GC_README.md` |
 
-### Deep Models + GC Content (4 models)
-- **deepCNN+GC**: Deep CNN with GC content
-- **deepGRU+GC**: Deep GRU with GC content
-- **deepLSTM+GC**: Deep LSTM with GC content
-- **deepBiLSTM+GC**: Deep BiLSTM with GC content
+## Model index
 
-### Hybrid Models (3 models)
-- **CNN_GRU+GC**: CNN-GRU hybrid (Best performing)
-- **CNN_LSTM+GC**: CNN-LSTM hybrid
-- **CNN_BiLSTM+GC**: CNN-BiLSTM hybrid
+### Base models
+- `CNN`
+- `GRU`
+- `LSTM`
+- `BiLSTM`
+- `RF`
 
-## Key Hyperparameter Ranges Tested
+### Base models + GC
+- `CNN+GC`
+- `GRU+GC`
+- `LSTM+GC`
+- `BiLSTM+GC`
 
-### Learning Rate
-- **Range**: 1e-5 to 1e-2
-- **Distribution**: Log-uniform
-- **Best values**: Typically 0.001-0.0002
+### Deep models
+- `deepCNN`
+- `deepGRU`
+- `deepLSTM`
+- `deepBiLSTM`
 
-### Batch Size
-- **Range**: 32-128
-- **Values evaluated**: [32, 64, 128]
-- **Best value**: 64 for most models
+### Deep models + GC
+- `deepCNN+GC`
+- `deepGRU+GC`
+- `deepLSTM+GC`
+- `deepBiLSTM+GC`
 
-### Dropout Rate
-- **Range**: 0.1-0.5
-- **Best value**: 0.142-0.2 (model-dependent)
+### Hybrid models
+- `CNN_GRU+GC`
+- `CNN_LSTM+GC`
+- `CNN_BiLSTM+GC`
 
-### Optimizer
-- **Type**: Adam (fixed choice for all models, not part of hyperparameter search)
-- **Weight decay**: Model-specific optimized values (1e-5 to 3.12e-05 range)
-- **Beta values**: Fixed as β1=0.9, β2=0.999 for all models
-- **Search Space**: Optimizer type was not optimized (only Adam was used)
+## Table of reported performance
 
-## Best Performing Model: CNN_GRU+GC
+| Model | Spearman | MSE |
+|---|---:|---:|
+| `CNN_GRU+GC` | `0.876` | `0.0093` |
+| `deepCNN+GC` | `0.873` | `0.0093` |
+| `CNN_BiLSTM+GC` | `0.870` | `0.0096` |
+| `deepCNN` | `0.869` | `0.0098` |
+| `deepGRU` | `0.868` | `0.0099` |
+| `CNN_LSTM+GC` | `0.867` | `0.0115` |
+| `deepBiLSTM+GC` | `0.867` | `0.0098` |
+| `deepGRU+GC` | `0.867` | `0.0098` |
+| `deepLSTM` | `0.862` | `0.0103` |
+| `deepBiLSTM` | `0.862` | `0.0104` |
+| `deepLSTM+GC` | `0.860` | `0.0104` |
+| `LSTM+GC` | `0.856` | `0.0112` |
+| `BiLSTM+GC` | `0.855` | `0.0110` |
+| `BiLSTM` | `0.843` | `0.0120` |
+| `GRU+GC` | `0.840` | `0.0122` |
+| `GRU` | `0.837` | `0.0121` |
+| `LSTM` | `0.837` | `0.0122` |
+| `CNN` | `0.793` | `0.0161` |
+| `RF` | `0.789` | `0.0161` |
+| `CNN+GC` | `0.781` | `0.0170` |
 
-### Architecture
-- **CNN Branch**: 3 convolutional layers (64 filters each)
-- **GRU Branch**: 3 GRU layers (384 hidden units each)
-- **Fusion**: Concatenation + GC content integration
-- **Dense Layers**: [128, 64, 32, 1]
+## Common training setup
 
-### Optimal Hyperparameters
-- **Learning Rate**: 0.000209
-- **Batch Size**: 64
-- **Dropout Rate**: 0.142
-- **Weight Decay**: 1.882e-05
-- **Epochs**: 84
-
-### Performance
-- **Spearman Correlation**: 0.8760
-- **MSE**: 0.0093
-- **Improvement over DeepHF**: +0.009 Spearman (9.0%), -0.0001 MSE
-- **Improvement over AttCRISPR**: +0.004 Spearman (0.4%), N/A MSE
-
-## Training Configuration
-
-### Hardware
-- **GPU**: NVIDIA V100 Volta
-- **Memory**: 32GB HBM2
-- **Platform**: Digital Research Alliance of Canada
-
-### Data Split
-- **Training**: 70%
-- **Validation**: 15%
-- **Test**: 15%
-
-### Validation Strategy
-- **Method**: 5-fold cross-validation
-- **Framework**: Optuna Bayesian optimization
-- **Trials**: 100 per model
-- **Early Stopping**: Patience = 10 epochs
-
-## Biological Features
-
-### GC Content Integration
-- **Calculation**: (Count(G) + Count(C)) / sequence_length
-- **Range**: 0-1
-- **Optimal range**: 0.4-0.6
-- **Integration method**: Concatenated with final features
-- **Impact**: Consistent improvement across all models
-
-## Documentation Formats
-
-Each model is available in two formats for your convenience:
-
-### Readable README Format (Recommended for Users)
-User-friendly documentation with clear explanations, tables, and examples for all 20 models:
-
-#### Top Performing Models
-- **[CNN_GRU+GC_README.md](CNN_GRU+GC_README.md)** - Best performing model (0.876)
-- **[deepCNN+GC_README.md](deepCNN+GC_README.md)** - Most efficient high performer (0.873)
-- **[CNN_BiLSTM+GC_README.md](CNN_BiLSTM+GC_README.md)** - Best bidirectional context (0.870)
-- **[CNN_LSTM+GC_README.md](CNN_LSTM+GC_README.md)** - Balanced hybrid performance (0.867)
-
-#### All Models (Complete Collection)
-- **[CNN_README.md](CNN_README.md)** - Base CNN architecture
-- **[GRU_README.md](GRU_README.md)** - Base GRU architecture
-- **[LSTM_README.md](LSTM_README.md)** - Base LSTM architecture
-- **[BiLSTM_README.md](BiLSTM_README.md)** - Base BiLSTM architecture
-- **[CNN+GC_README.md](CNN+GC_README.md)** - CNN with GC content
-- **[GRU+GC_README.md](GRU+GC_README.md)** - GRU with GC content
-- **[LSTM+GC_README.md](LSTM+GC_README.md)** - LSTM with GC content
-- **[BiLSTM+GC_README.md](BiLSTM+GC_README.md)** - BiLSTM with GC content
-- **[deepCNN_README.md](deepCNN_README.md)** - Deep CNN architecture
-- **[deepGRU_README.md](deepGRU_README.md)** - Deep GRU architecture
-- **[deepLSTM_README.md](deepLSTM_README.md)** - Deep LSTM architecture
-- **[deepBiLSTM_README.md](deepBiLSTM_README.md)** - Deep BiLSTM architecture
-- **[deepCNN+GC_README.md](deepCNN+GC_README.md)** - Deep CNN with GC content
-- **[deepGRU+GC_README.md](deepGRU+GC_README.md)** - Deep GRU with GC content
-- **[deepLSTM+GC_README.md](deepLSTM+GC_README.md)** - Deep LSTM with GC content
-- **[deepBiLSTM+GC_README.md](deepBiLSTM+GC_README.md)** - Deep BiLSTM with GC content
-- **[RF_README.md](RF_README.md)** - Random Forest baseline
-
-### Raw JSON Format (For Developers/Programmatic Access)
-Complete technical specifications in machine-readable JSON format:
-
-```
-docs/hyperparameters/
-├── README.md (this navigation file)
-├── CNN_hyperparameters.json
-├── GRU_hyperparameters.json
-├── LSTM_hyperparameters.json
-├── BiLSTM_hyperparameters.json
-├── CNN+GC_hyperparameters.json
-├── GRU+GC_hyperparameters.json
-├── LSTM+GC_hyperparameters.json
-├── BiLSTM+GC_hyperparameters.json
-├── deepCNN_hyperparameters.json
-├── deepGRU_hyperparameters.json
-├── deepLSTM_hyperparameters.json
-├── deepBiLSTM_hyperparameters.json
-├── deepCNN+GC_hyperparameters.json
-├── deepGRU+GC_hyperparameters.json
-├── deepLSTM+GC_hyperparameters.json
-├── deepBiLSTM+GC_hyperparameters.json
-├── CNN_GRU+GC_hyperparameters.json
-├── CNN_LSTM+GC_hyperparameters.json
-├── CNN_BiLSTM+GC_hyperparameters.json
-├── CNN_GRU+GC_README.md
-├── deepCNN+GC_README.md
-├── CNN_BiLSTM+GC_README.md
-└── CNN_LSTM+GC_README.md
-```
-
-## Complete Model Performance Summary
-
-| Model | Architecture | Spearman | MSE | Parameters | Training Time | Hardware | Documentation |
-|-------|--------------|----------|-----|------------|---------------|----------|---------------|
-| **[CNN_GRU+GC](CNN_GRU+GC_README.md)** | CNN-GRU Hybrid | **0.876** | **0.0093** | 6.12M | 4.2h | V100 | 📋 |
-| **[deepCNN+GC](deepCNN+GC_README.md)** | Deep CNN + GC | 0.873 | 0.0093 | 665K | 6.8h | V100 | 📋 |
-| **[CNN_BiLSTM+GC](CNN_BiLSTM+GC_README.md)** | CNN-BiLSTM Hybrid | 0.870 | 0.0096 | 20.41M | 5.2h | V100 | 📋 |
-| **[CNN_LSTM+GC](CNN_LSTM+GC_README.md)** | CNN-LSTM Hybrid | 0.867 | 0.0115 | 7.995M | 4.8h | V100 | 📋 |
-| **[deepBiLSTM+GC](deepBiLSTM+GC_README.md)** | Deep BiLSTM + GC | 0.867 | 0.0098 | 5.99M | 11.8h | V100 | 📋 |
-| **[deepGRU+GC](deepGRU+GC_README.md)** | Deep GRU + GC | 0.867 | 0.0098 | 1.82M | 8.9h | V100 | 📋 |
-| **[deepGRU](deepGRU_README.md)** | Deep GRU | 0.868 | 0.0099 | 1.81M | 8.4h | V100 | 📋 |
-| **[deepCNN](deepCNN_README.md)** | Deep CNN | 0.869 | 0.0098 | 665K | 6.2h | V100 | 📋 |
-| **[deepLSTM](deepLSTM_README.md)** | Deep LSTM | 0.862 | 0.0103 | 2.34M | 9.1h | V100 | 📋 |
-| **[deepBiLSTM](deepBiLSTM_README.md)** | Deep BiLSTM | 0.862 | 0.0104 | 5.99M | 11.2h | V100 | 📋 |
-| **[deepLSTM+GC](deepLSTM+GC_README.md)** | Deep LSTM + GC | 0.860 | 0.0104 | 2.34M | 9.6h | V100 | 📋 |
-| **[LSTM+GC](LSTM+GC_README.md)** | LSTM + GC | 0.856 | 0.0112 | 1.17M | 3.9h | V100 | 📋 |
-| **[BiLSTM+GC](BiLSTM+GC_README.md)** | BiLSTM + GC | 0.855 | 0.0110 | 2.82M | 4.7h | V100 | 📋 |
-| **[BiLSTM](BiLSTM_README.md)** | BiLSTM | 0.843 | 0.0120 | 2.82M | 4.5h | V100 | 📋 |
-| **[GRU+GC](GRU+GC_README.md)** | GRU + GC | 0.840 | 0.0122 | 907K | 3.3h | V100 | 📋 |
-| **[GRU](GRU_README.md)** | GRU | 0.837 | 0.0121 | 907K | 3.2h | V100 | 📋 |
-| **[LSTM](LSTM_README.md)** | LSTM | 0.837 | 0.0122 | 1.17M | 3.8h | V100 | 📋 |
-| **[CNN](CNN_README.md)** | CNN | 0.793 | 0.0161 | 332K | 2.5h | V100 | 📋 |
-| **[CNN+GC](CNN+GC_README.md)** | CNN + GC | 0.781 | 0.0170 | 332K | 2.6h | V100 | 📋 |
-| **[RF](RF_README.md)** | Random Forest | 0.789 | 0.0161 | N/A | N/A | CPU | 📋 |
-| **DeepHF** | Previous SOTA | 0.867 | 0.0094 | - | - | - | 🔗 [Paper](https://doi.org/10.1038/s41467-019-12281-8) |
-| **AttCRISPR** | Previous SOTA | 0.872 | - | - | - | - | 🔗 [Paper](https://doi.org/10.1093/bioinformatics/btab127) |
-
-**📋 Click model names to access complete documentation with architecture details, hyperparameters, and usage examples**
-
-## Key Findings
-
-### Best Performing Models
-1. **CNN_GRU+GC**: 0.876 Spearman (New benchmark)
-2. **deepCNN+GC**: 0.873 Spearman
-3. **CNN_BiLSTM+GC**: 0.870 Spearman
-
-### Architecture Insights
-- **Hybrid models outperform** individual architectures
-- **GC content integration** provides consistent improvements
-- **Deep architectures** benefit from additional layers
-- **CNN-GRU combination** achieves optimal performance
-
-### Performance vs Computational Cost
-- **Best performance**: CNN_GRU+GC (6.12M parameters, 4.2h training)
-- **Best efficiency**: deepCNN+GC (665K parameters, 6.8h training)
-- **Trade-off**: Higher parameter count enables better performance
-
-## Usage
-
-To reproduce any model with its optimal hyperparameters:
-
-1. Load the corresponding JSON file
-2. Extract hyperparameters
-3. Configure model with specified architecture
-4. Train using the documented settings
-
-### Example: Loading CNN_GRU+GC hyperparameters
-
-```python
-import json
-
-# Load hyperparameters
-with open('docs/hyperparameters/CNN_GRU+GC_hyperparameters.json', 'r') as f:
-    config = json.load(f)
-
-# Extract key parameters
-learning_rate = config['hyperparameters']['learning_rate']['best_value']
-batch_size = config['hyperparameters']['batch_size']['best_value']
-dropout = config['hyperparameters']['dropout_rate']['best_value']
-
-# Configure model
-model = ChromeCRISPRModel(
-    architecture='cnn_gru_gc',
-    learning_rate=learning_rate,
-    batch_size=batch_size,
-    dropout=dropout
-)
-```
+Across the documented runs:
+- optimization framework: Optuna
+- selection procedure: 5-fold cross-validation
+- optimizer: Adam for neural models
+- primary ranking metric: Spearman correlation
+- batch sizes tested: `32`, `64`, `128`
+- learning-rate search range: `1e-5` to `1e-2`
 
 ## Notes
 
-- All hyperparameters were determined through rigorous Bayesian optimization
-- Cross-validation ensures robust parameter selection
-- Performance metrics are reported on held-out test set
+- The JSON files are the best source for exact parameter values.
+- The companion READMEs are easier to read but are still summaries of the released study artifacts.
+- For the current repository check status, use the files under `../../reports/workflow/` rather than this directory.

@@ -88,7 +88,7 @@ def main() -> None:
             "bash scripts/run_snakemake.sh full",
             "```",
             "",
-            "The default workflow is intentionally scoped to public-repo reproducibility: canonical model inventory, documentation integrity, markdown example/link auditing, and a structured preprocessing manifest around the published artifacts.",
+            "The default workflow covers model inventory, repository integrity checks, markdown example and link audits, and a preprocessing summary for the published artifacts.",
             "",
         ]
     )

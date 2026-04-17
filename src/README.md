@@ -1,48 +1,47 @@
 # ChromeCRISPR Source Tree
 
-This directory contains the repo-local Python code used to describe, instantiate, and inspect the ChromeCRISPR models.
+This directory contains the Python code included with the public release.
 
 ## Layout
 
 ```text
 src/
-├── evaluation/   # Metrics and compatibility-oriented validation helpers
-├── models/       # Model class definitions and public factory exports
-└── training/     # Training utilities retained from the study codebase
+├── evaluation/   # metrics and checkpoint validation helpers
+├── models/       # model classes and factory functions
+└── training/     # retained training utilities
 ```
 
-## Canonical Boundary
+## Boundary
 
-- `models/` at the repository root is the canonical checkpoint/artifact location.
-- `src/models/` is code only.
-- The workflow integrity checks treat checkpoint files under `src/models/` as a structural error.
+- published artifacts live in `../models/`
+- code lives in `src/`
+- checkpoint files under `src/models/` are treated as an integrity error by the workflow
 
-## Public Surface
+## Main entry points
 
-The most stable repo-local entry point is `src.models`.
+Typical imports are in `src.models` and `src.evaluation`.
 
 ```python
-from src.models import create_cnn_gru_model, create_model
-
-model = create_cnn_gru_model()
-other = create_model("lstm")
+from src.models import create_model
+from src.evaluation import ChromeCRISPRMetrics
 ```
 
-Available exported factories:
-- `create_cnn_model`
-- `create_deep_cnn_model`
-- `create_gru_model`
-- `create_lstm_model`
-- `create_bilstm_model`
-- `create_cnn_gru_model`
-- `create_cnn_lstm_model`
-- `create_cnn_bilstm_model`
-- `create_model`
+Available factory names include:
+- `cnn`
+- `cnn_gc`
+- `deep_cnn`
+- `deep_cnn_gc`
+- `gru`
+- `gru_gc`
+- `lstm`
+- `lstm_gc`
+- `bilstm`
+- `bilstm_gc`
+- `cnn_gru_gc`
+- `cnn_lstm_gc`
+- `cnn_bilstm_gc`
 
-## Evaluation Utilities
+## Notes
 
-`src.evaluation` currently exposes metric helpers and a compatibility-oriented validation script. The validation script is a smoke-test style utility around the published checkpoints; it is not a full reproduction of the manuscript evaluation pipeline.
-
-## Training Utilities
-
-`src.training` retains the study’s training helper scaffolding. These utilities assume repo-local/preprocessed inputs and are better treated as research code than as a polished public SDK.
+- `src.evaluation` contains metrics and the checkpoint smoke validator.
+- `src.training` contains retained study code and is closer to research code than a packaged training API.

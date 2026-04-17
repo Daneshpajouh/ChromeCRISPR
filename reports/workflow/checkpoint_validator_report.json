@@ -1,5 +1,5 @@
 {
-  "validation_timestamp": "2026-04-16T23:38:54.785109",
+  "validation_timestamp": "2026-04-17T01:42:46.988503",
   "validation_type": "checkpoint_compatibility_smoke_test",
   "pass_criterion": "artifact loads and executes on synthetic inputs using repo-local code",
   "heuristic_metric_note": "Synthetic metric deltas versus published benchmark values are recorded only as a side signal and are not the main smoke-pass criterion.",

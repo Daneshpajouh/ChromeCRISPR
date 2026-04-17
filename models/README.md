@@ -1,8 +1,8 @@
-# ChromeCRISPR Canonical Checkpoints
+# ChromeCRISPR Checkpoints
 
-This directory is the canonical location of the published ChromeCRISPR model artifacts.
+This directory contains the published model artifacts.
 
-## Inventory
+## Categories
 
 | Category | Count |
 |---|---:|
@@ -12,37 +12,44 @@ This directory is the canonical location of the published ChromeCRISPR model art
 | Deep models + GC | 4 |
 | ChromeCRISPR hybrid models | 3 |
 
-## Best Model
+## Best model
 
-- Model: `CNN_GRU+GC`
-- Checkpoint: `chromecrispr_hybrid_models/CNN_GRU+GC.pth`
-- Published performance: `0.876` Spearman, `0.0093` MSE
-- Hyperparameters: `../docs/hyperparameters/CNN_GRU+GC_hyperparameters.json`
+| Item | Value |
+|---|---|
+| Model | `CNN_GRU+GC` |
+| Checkpoint | `chromecrispr_hybrid_models/CNN_GRU+GC.pth` |
+| Spearman | `0.876` |
+| MSE | `0.0093` |
+| Hyperparameters | `../docs/hyperparameters/CNN_GRU+GC_hyperparameters.json` |
 
-## Directory Guide
+## Directory list
 
 - `base_models/`: RF, CNN, GRU, LSTM, BiLSTM
-- `base_models_with_gc/`: GC-content variants of the base neural models
-- `deep_models/`: deeper CNN/GRU/LSTM/BiLSTM checkpoints
-- `deep_models_with_gc/`: deep variants with GC-content integration
-- `chromecrispr_hybrid_models/`: the ChromeCRISPR hybrid architectures
+- `base_models_with_gc/`: GC variants of the neural base models
+- `deep_models/`: deep CNN/GRU/LSTM/BiLSTM
+- `deep_models_with_gc/`: deep GC variants
+- `chromecrispr_hybrid_models/`: hybrid CNN-RNN models
 
-## Repo-Local Loading Example
+## Loading example
 
 ```python
 import torch
-from src.models import create_cnn_gru_model
+from src.models import create_model
 
-model = create_cnn_gru_model()
-state_dict = torch.load("models/chromecrispr_hybrid_models/CNN_GRU+GC.pth", map_location="cpu")
+model = create_model("cnn_gru_gc")
+state_dict = torch.load(
+    "models/chromecrispr_hybrid_models/CNN_GRU+GC.pth",
+    map_location="cpu",
+)
 model.load_state_dict(state_dict, strict=False)
 model.eval()
 ```
 
-## Workflow Integration
+## Checks
 
-The Snakemake workflow treats this directory as the canonical artifact root when building the public model registry and integrity reports:
+The workflow treats `models/` as the canonical artifact root. To rebuild the registry and integrity reports:
 
 ```bash
 bash scripts/run_snakemake.sh inventory
+bash scripts/run_snakemake.sh integrity
 ```

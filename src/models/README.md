@@ -1,39 +1,42 @@
-# ChromeCRISPR Model Source Code
+# ChromeCRISPR Model Code
 
-This directory now contains the repo-local model code only.
+This directory contains the model definitions used by the public Python interface.
 
-## Canonical Boundary
+## Boundary
 
-- `models/` is the canonical root for the published checkpoint artifacts.
-- `src/models/` is the canonical root for the Python model definitions and factory exports.
+- `../../models/` contains the published checkpoint artifacts
+- `src/models/` contains the corresponding Python model code
 
-This separation is intentional and enforced by the workflow integrity checks so the public repo does not ship duplicated checkpoint trees under both locations.
+## Files
 
-## Available Source Files
+| File | Contents |
+|---|---|
+| `cnn_model.py` | CNN and deep CNN variants |
+| `rnn_models.py` | GRU, LSTM, and BiLSTM variants |
+| `hybrid_models.py` | hybrid CNN-GRU/LSTM/BiLSTM variants |
+| `__init__.py` | exported factory functions |
 
-- `cnn_model.py`: CNN and deep CNN model definitions
-- `rnn_models.py`: GRU, LSTM, and BiLSTM model definitions
-- `hybrid_models.py`: ChromeCRISPR hybrid CNN-RNN definitions
-- `__init__.py`: public factory exports for repo-local examples
-
-## Public Factory Surface
+## Factory examples
 
 ```python
-from src.models import create_model, create_cnn_gru_model
+from src.models import create_model
 
-best_model = create_cnn_gru_model()
-base_model = create_model("gru")
+cnn = create_model("cnn")
+gru_gc = create_model("gru_gc")
+hybrid = create_model("cnn_gru_gc")
 ```
 
-## Checkpoints
-
-Published checkpoints should be loaded from `models/`, for example:
+## Loading a published artifact
 
 ```python
 import torch
-from src.models import create_cnn_gru_model
+from src.models import create_model
 
-model = create_cnn_gru_model()
-state_dict = torch.load("models/chromecrispr_hybrid_models/CNN_GRU+GC.pth", map_location="cpu")
+model = create_model("cnn_gru_gc")
+state_dict = torch.load(
+    "models/chromecrispr_hybrid_models/CNN_GRU+GC.pth",
+    map_location="cpu",
+)
 model.load_state_dict(state_dict, strict=False)
+model.eval()
 ```

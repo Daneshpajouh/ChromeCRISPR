@@ -2,86 +2,37 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17058362.svg)](https://doi.org/10.5281/zenodo.17058362)
 
-ChromeCRISPR is a public artifact repository for the ChromeCRISPR study on CRISPR/Cas9 on-target activity prediction. It packages the published model checkpoints, hyperparameter records, architecture documentation, preprocessing notes, and a Snakemake workflow that verifies the public artifact set.
+This repository contains the public ChromeCRISPR release for CRISPR/Cas9 on-target activity prediction. It includes the published checkpoints, model documentation, hyperparameter records, preprocessing notes, and a Snakemake workflow for repository checks.
 
-## What This Repository Supports
+## Included
 
-- access to the published ChromeCRISPR checkpoints
-- clear documentation of preprocessing and training assumptions
-- a real Snakemake workflow for public verification and organization
-- repo-local Python examples for model construction and checkpoint loading
-- an optional checkpoint compatibility smoke-test lane with its own isolated environment
+- published model artifacts in `models/`
+- model and training documentation in `docs/`
+- Python model definitions and helpers in `src/`
+- workflow rules and wrappers in `workflow/` and `scripts/`
+- generated reports in `reports/workflow/`
 
-## Repository Boundary
+## Current checks
 
-This repository does not currently provide a full raw-data retraining pipeline for the original manuscript experiments. The public workflow focuses on released artifacts, preprocessing clarity, and documentation consistency.
+Latest workflow outputs report:
+- `20` published artifacts tracked
+- integrity checks passed
+- documentation/example audit passed
+- checkpoint smoke test passed for `20 / 20` artifacts
 
-The `full` workflow also makes the current compatibility boundary explicit: it runs a checkpoint smoke lane against the repo-local model code and records any remaining architecture mismatches in `reports/workflow/checkpoint_validator_report.json`.
+See:
+- `reports/workflow/public_repo_summary.md`
+- `reports/workflow/public_repo_full_summary.md`
+- `reports/workflow/checkpoint_smoke.md`
+- `reports/workflow/checkpoint_validator_report.json`
 
-## Canonical Layout
+## Scope
 
-```mermaid
-flowchart LR
-  A["docs/"] --> D["workflow report"]
-  B["models/"] --> D
-  C["src/"] --> D
-  B --> E["published checkpoints"]
-  C --> F["repo-local model code"]
-```
+This repository is for inspection, loading, and verification of the released artifacts. It does not provide a full raw-data retraining pipeline for the original study.
 
-- `models/`: canonical published checkpoints
-- `src/models/`: Python model definitions only
-- `docs/`: manuscript-facing documentation, hyperparameters, and training notes
-- `workflow/`: Snakemake orchestration for verification/reporting
-- `reports/workflow/`: generated workflow outputs
+## Quick start
 
-## Best Published Model
-
-- `CNN_GRU+GC`
-- Spearman correlation: `0.876`
-- Mean squared error: `0.0093`
-- Checkpoint: `models/chromecrispr_hybrid_models/CNN_GRU+GC.pth`
-- Hyperparameters: `docs/hyperparameters/CNN_GRU+GC_hyperparameters.json`
-
-## Preprocessing and Training Summary
-
-The public workflow now generates a preprocessing manifest from the documented study setup.
-
-Documented preprocessing path:
-1. validate 21-mer sgRNA sequences
-2. one-hot encode sequences to 84 sequence features
-3. project to learned embeddings inside the neural models
-4. compute GC content for GC-aware variants
-5. optionally normalize numerical features
-6. apply the documented 70/15/15 split with 5-fold cross-validation during model selection
-
-To rebuild the structured preprocessing report:
-
-```bash
-bash scripts/run_snakemake.sh preprocessing
-```
-
-Generated artifact:
-- `reports/workflow/preprocessing_manifest.md`
-
-## Snakemake Workflow
-
-```bash
-bash scripts/run_snakemake.sh report
-```
-
-Useful targets:
-- `inventory`: build the canonical model registry
-- `integrity`: verify the public artifact set and code/artifact boundaries
-- `audit`: check public markdown links and import examples
-- `preprocessing`: build the structured preprocessing manifest
-- `report`: build the full public summary and preprocessing report
-- `smoke`: run the optional checkpoint compatibility smoke-test lane
-- `full`: run the public summary plus the isolated smoke lane and full smoke summary
-
-Workflow docs: [workflow/README.md](workflow/README.md)
-
-## Installation
+### Install
 
 ```bash
 git clone https://github.com/Daneshpajouh/ChromeCRISPR.git
@@ -89,31 +40,21 @@ cd ChromeCRISPR
 pip install -r requirements.txt
 ```
 
-For workflow usage, prefer the bootstrap wrapper:
+### Run checks
 
-```bash
-bash scripts/run_snakemake.sh report
-bash scripts/run_snakemake.sh full
-```
+| Command | Purpose |
+|---|---|
+| `bash scripts/run_snakemake.sh report` | inventory, integrity, docs audit, preprocessing report |
+| `bash scripts/run_snakemake.sh smoke` | checkpoint smoke test |
+| `bash scripts/run_snakemake.sh full` | report + smoke |
 
-## Python Usage
-
-### Create a model instance
-
-```python
-from src.models import create_cnn_gru_model, create_model
-
-best_model = create_cnn_gru_model()
-base_gru = create_model("gru")
-```
-
-### Load a published checkpoint
+### Load a checkpoint
 
 ```python
 import torch
-from src.models import create_cnn_gru_model
+from src.models import create_model
 
-model = create_cnn_gru_model()
+model = create_model("cnn_gru_gc")
 state_dict = torch.load(
     "models/chromecrispr_hybrid_models/CNN_GRU+GC.pth",
     map_location="cpu",
@@ -122,24 +63,69 @@ model.load_state_dict(state_dict, strict=False)
 model.eval()
 ```
 
-For a repo-wide compatibility check across all published artifacts, use `bash scripts/run_snakemake.sh full` and review `reports/workflow/checkpoint_smoke.md`.
+## Layout
 
-### Repo-local evaluation utilities
+| Path | Contents |
+|---|---|
+| `models/` | published checkpoints |
+| `docs/` | architecture notes, hyperparameters, training notes |
+| `src/` | Python model code and helpers |
+| `workflow/` | Snakemake rules and workflow docs |
+| `reports/workflow/` | generated report files |
+
+## Best published model
+
+| Item | Value |
+|---|---|
+| Model | `CNN_GRU+GC` |
+| Category | `ChromeCRISPR hybrid models` |
+| Spearman | `0.876` |
+| MSE | `0.0093` |
+| Checkpoint | `models/chromecrispr_hybrid_models/CNN_GRU+GC.pth` |
+| Hyperparameters | `docs/hyperparameters/CNN_GRU+GC_hyperparameters.json` |
+
+## Preprocessing summary
+
+The documented preprocessing path is:
+1. validate 21-mer sgRNA sequences
+2. encode sequences into the 84-feature representation
+3. project them through learned embeddings in the model
+4. compute GC content for GC-aware variants
+5. normalize numerical features where used
+6. apply the documented split and 5-fold model-selection procedure
+
+To regenerate the preprocessing report:
+
+```bash
+bash scripts/run_snakemake.sh preprocessing
+```
+
+Main output:
+- `reports/workflow/preprocessing_manifest.md`
+
+## Python entry points
+
+Typical imports:
 
 ```python
+from src.models import create_model
 from src.evaluation import ChromeCRISPRMetrics
-
-metrics = ChromeCRISPRMetrics()
 ```
+
+Examples:
+- `create_model("cnn")`
+- `create_model("gru_gc")`
+- `create_model("cnn_gru_gc")`
 
 ## Documentation
 
-- [docs/README.md](docs/README.md): documentation index
-- [models/README.md](models/README.md): canonical checkpoint inventory
-- [docs/training_procedures/README.md](docs/training_procedures/README.md): training and preprocessing notes
-- [docs/hyperparameters/README.md](docs/hyperparameters/README.md): per-model hyperparameter records
-- [workflow/README.md](workflow/README.md): workflow targets and outputs
+- [docs/README.md](docs/README.md)
+- [models/README.md](models/README.md)
+- [src/README.md](src/README.md)
+- [docs/training_procedures/README.md](docs/training_procedures/README.md)
+- [docs/hyperparameters/README.md](docs/hyperparameters/README.md)
+- [workflow/README.md](workflow/README.md)
 
 ## Citation
 
-If you use ChromeCRISPR in research, please cite the associated study and Zenodo record referenced in this repository.
+If you use ChromeCRISPR in research, cite the associated study and the Zenodo record referenced in this repository.
