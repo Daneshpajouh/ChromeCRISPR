@@ -1,9 +1,15 @@
 # ChromeCRISPR Checkpoint Smoke Test
 
-- Status: `skipped_missing_dependencies`
-- Executed: `false`
+- Status: `executed`
+- Executed: `true`
 - Scope: `full_20_model_compatibility_smoke`
 
-- Missing dependencies: `numpy, torch, scipy`
+- Total artifacts checked: `20`
+- Smoke-passed artifacts: `3`
+- Smoke-failed artifacts: `17`
+- Heuristic benchmark-shape matches: `0`
+- Load warnings: `2`
 
-The optional smoke test was not executed because the current local Python environment does not include the ML dependencies needed by the compatibility validator. Install the project requirements and rerun the `smoke` target if you want this report to execute locally.
+The smoke lane verifies that published artifacts load and execute with repo-local code. Synthetic metric deltas versus manuscript values are retained only as heuristic compatibility context.
+
+- Validator output: `reports/workflow/checkpoint_validator_report.json`

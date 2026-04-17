@@ -30,3 +30,24 @@ rule build_public_repo_summary:
             "--audit {input.audit} --preprocessing {input.preprocessing} "
             "--md-out {output.md}"
         )
+
+
+rule build_public_repo_full_summary:
+    input:
+        registry=REGISTRY_JSON,
+        integrity=INTEGRITY_JSON,
+        audit=AUDIT_JSON,
+        preprocessing=PREPROCESSING_JSON,
+        smoke=SMOKE_JSON,
+        script="scripts/build_public_repo_summary.py",
+        helper="scripts/chromecrispr_repo.py",
+    output:
+        md=FULL_SUMMARY_MD,
+    shell:
+        (
+            "python3 scripts/build_public_repo_summary.py "
+            "--registry {input.registry} --integrity {input.integrity} "
+            "--audit {input.audit} --preprocessing {input.preprocessing} "
+            "--smoke {input.smoke} "
+            "--md-out {output.md}"
+        )

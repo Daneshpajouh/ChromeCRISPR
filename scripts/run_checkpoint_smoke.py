@@ -30,7 +30,13 @@ def render_markdown(report: dict) -> str:
     ]
     if report.get("missing_dependencies"):
         lines.append(f"- Missing dependencies: `{', '.join(report['missing_dependencies'])}`")
-        lines.append("")
+    if report.get("total_models") is not None:
+        lines.append(f"- Total artifacts checked: `{report['total_models']}`")
+        lines.append(f"- Smoke-passed artifacts: `{report['smoke_passed_models']}`")
+        lines.append(f"- Smoke-failed artifacts: `{report['smoke_failed_models']}`")
+        lines.append(f"- Heuristic benchmark-shape matches: `{report['heuristic_spec_matches']}`")
+        lines.append(f"- Load warnings: `{report['models_with_load_warnings']}`")
+    lines.append("")
     if report.get("note"):
         lines.append(report["note"])
         lines.append("")
@@ -51,18 +57,11 @@ def main() -> None:
         sys.path.insert(0, str(repo_root))
 
     missing = []
-    try:
-        import numpy  # noqa: F401
-    except Exception:
-        missing.append("numpy")
-    try:
-        import torch  # noqa: F401
-    except Exception:
-        missing.append("torch")
-    try:
-        import scipy  # noqa: F401
-    except Exception:
-        missing.append("scipy")
+    for dependency in ("numpy", "torch", "scipy", "sklearn", "joblib"):
+        try:
+            __import__(dependency)
+        except Exception:
+            missing.append(dependency)
 
     if missing:
         report = {
@@ -70,8 +69,13 @@ def main() -> None:
             "executed": False,
             "scope": "full_20_model_compatibility_smoke",
             "missing_dependencies": missing,
-            "note": "The optional smoke test was not executed because the current local Python environment does not include the ML dependencies needed by the compatibility validator. Install the project requirements and rerun the `smoke` target if you want this report to execute locally.",
+            "note": "The optional smoke test was not executed because the dedicated smoke environment was not available. Run the workflow `smoke` or `full` target to let the repo bootstrap its own isolated smoke environment automatically.",
             "report_path": None,
+            "total_models": None,
+            "smoke_passed_models": None,
+            "smoke_failed_models": None,
+            "heuristic_spec_matches": None,
+            "models_with_load_warnings": None,
         }
         write_json(Path(args.json_out), report)
         write_text(Path(args.md_out), render_markdown(report))
@@ -82,14 +86,20 @@ def main() -> None:
     validator = ChromeCRISPRValidator(models_base_path="models")
     validator.validate_all_models()
     validator.save_validation_report(args.validator_report)
+    validator_report = json.loads(Path(args.validator_report).read_text(encoding="utf-8"))
 
     report = {
         "status": "executed",
         "executed": True,
         "scope": "full_20_model_compatibility_smoke",
         "missing_dependencies": [],
-        "note": "This is a compatibility-oriented smoke test using synthetic inputs. It is not a reproduction of the manuscript benchmark dataset.",
+        "note": "The smoke lane verifies that published artifacts load and execute with repo-local code. Synthetic metric deltas versus manuscript values are retained only as heuristic compatibility context.",
         "report_path": args.validator_report,
+        "total_models": validator_report["total_models"],
+        "smoke_passed_models": validator_report["smoke_passed_models"],
+        "smoke_failed_models": validator_report["smoke_failed_models"],
+        "heuristic_spec_matches": validator_report["heuristic_spec_matches"],
+        "models_with_load_warnings": validator_report["models_with_load_warnings"],
     }
     write_json(Path(args.json_out), report)
     write_text(Path(args.md_out), render_markdown(report))

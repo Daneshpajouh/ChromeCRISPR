@@ -15,6 +15,7 @@ def main() -> None:
     parser.add_argument("--integrity", required=True)
     parser.add_argument("--audit", required=True)
     parser.add_argument("--preprocessing", required=True)
+    parser.add_argument("--smoke")
     parser.add_argument("--md-out", required=True)
     args = parser.parse_args()
 
@@ -22,10 +23,12 @@ def main() -> None:
     integrity = read_json(Path(args.integrity))
     audit = read_json(Path(args.audit))
     preprocessing = read_json(Path(args.preprocessing))
+    smoke = read_json(Path(args.smoke)) if args.smoke else None
     top_models = registry["models"][:5]
+    title = "# ChromeCRISPR Public Repo Full Summary" if smoke else "# ChromeCRISPR Public Repo Summary"
 
     lines = [
-        "# ChromeCRISPR Public Repo Summary",
+        title,
         "",
         f"Generated from registry timestamp: `{registry['generated_at']}`",
         "",
@@ -47,6 +50,24 @@ def main() -> None:
         lines.append(
             f"| {model['model_name']} | {model['category_label']} | {model['spearman_correlation']:.3f} | {model['mean_squared_error']:.4f} |"
         )
+    if smoke:
+        lines.extend(
+            [
+                "",
+                "## Smoke Lane",
+                "",
+                f"- Smoke status: `{smoke['status']}`",
+                f"- Artifacts checked: `{smoke['total_models']}`",
+                f"- Smoke-passed artifacts: `{smoke['smoke_passed_models']}`",
+                f"- Smoke-failed artifacts: `{smoke['smoke_failed_models']}`",
+                f"- Heuristic benchmark-shape matches: `{smoke['heuristic_spec_matches']}`",
+                f"- Load warnings: `{smoke['models_with_load_warnings']}`",
+            ]
+        )
+        if smoke["smoke_failed_models"]:
+            lines.append(
+                "- Compatibility note: some published checkpoints still have architecture mismatches against the current repo-local model definitions; see `reports/workflow/checkpoint_validator_report.json` for exact failures."
+            )
     lines.extend(
         [
             "",
@@ -64,6 +85,7 @@ def main() -> None:
             "```bash",
             "bash scripts/run_snakemake.sh report",
             "bash scripts/run_snakemake.sh smoke",
+            "bash scripts/run_snakemake.sh full",
             "```",
             "",
             "The default workflow is intentionally scoped to public-repo reproducibility: canonical model inventory, documentation integrity, markdown example/link auditing, and a structured preprocessing manifest around the published artifacts.",

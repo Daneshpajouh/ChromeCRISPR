@@ -4,7 +4,7 @@ This workflow is the public reproducibility and organization layer for the Chrom
 
 It is intentionally split into two lanes:
 - default public verification: inventory, integrity, documentation audit, preprocessing manifest, and summary report
-- optional smoke testing: checkpoint compatibility validation if the local Python environment has the required ML dependencies
+- optional smoke testing: checkpoint compatibility validation in a dedicated smoke environment
 
 ## Workflow Graph
 
@@ -19,6 +19,7 @@ flowchart TD
   D --> F
   E --> F
   A --> G["smoke (optional)"]
+  G --> H["full"]
 ```
 
 ## Layout
@@ -27,6 +28,7 @@ flowchart TD
 workflow/
 ├── Snakefile
 ├── config/chromecrispr.yaml
+├── requirements-smoke.txt
 ├── requirements-snakemake.txt
 └── rules/
     ├── audit.smk
@@ -51,6 +53,7 @@ Available targets:
 - `preprocessing`: build a structured preprocessing and training manifest from the published docs
 - `report`: build the full public summary plus preprocessing manifest
 - `smoke`: run the optional checkpoint compatibility smoke-test lane
+- `full`: run the default report lane plus the isolated smoke lane and full smoke-aware summary
 
 ## Outputs
 
@@ -64,8 +67,10 @@ The workflow writes deterministic outputs to `reports/workflow/`:
 - `preprocessing_manifest.json`
 - `preprocessing_manifest.md`
 - `public_repo_summary.md`
+- `public_repo_full_summary.md`
 - `checkpoint_smoke.json`
 - `checkpoint_smoke.md`
+- `checkpoint_validator_report.json`
 
 ## Preprocessing Boundary
 
@@ -73,4 +78,6 @@ The workflow documents preprocessing clearly, but it does not pretend to reconst
 
 ## Optional Smoke Test
 
-The `smoke` target is intentionally separate from the default `report` target. If `numpy`, `torch`, or `scipy` are missing from the current Python environment, the smoke target writes a clear skipped report instead of failing silently.
+The `smoke` target is intentionally separate from the default `report` target. It bootstraps a dedicated `.smoke-venv/` using `workflow/requirements-smoke.txt`, so public checkpoint loading does not depend on the caller's global Python environment. The `full` target is the clean public command when you want both the lightweight report lane and the executed smoke lane.
+
+The smoke report is intentionally honest about repo-local compatibility. If checkpoint architectures drift from the public Python model definitions, the validator records those load failures and shape mismatches instead of masking them behind synthetic benchmark claims.

@@ -10,11 +10,13 @@ ChromeCRISPR is a public artifact repository for the ChromeCRISPR study on CRISP
 - clear documentation of preprocessing and training assumptions
 - a real Snakemake workflow for public verification and organization
 - repo-local Python examples for model construction and checkpoint loading
-- an optional checkpoint compatibility smoke-test lane
+- an optional checkpoint compatibility smoke-test lane with its own isolated environment
 
 ## Repository Boundary
 
 This repository does not currently provide a full raw-data retraining pipeline for the original manuscript experiments. The public workflow focuses on released artifacts, preprocessing clarity, and documentation consistency.
+
+The `full` workflow also makes the current compatibility boundary explicit: it runs a checkpoint smoke lane against the repo-local model code and records any remaining architecture mismatches in `reports/workflow/checkpoint_validator_report.json`.
 
 ## Canonical Layout
 
@@ -75,6 +77,7 @@ Useful targets:
 - `preprocessing`: build the structured preprocessing manifest
 - `report`: build the full public summary and preprocessing report
 - `smoke`: run the optional checkpoint compatibility smoke-test lane
+- `full`: run the public summary plus the isolated smoke lane and full smoke summary
 
 Workflow docs: [workflow/README.md](workflow/README.md)
 
@@ -90,6 +93,7 @@ For workflow usage, prefer the bootstrap wrapper:
 
 ```bash
 bash scripts/run_snakemake.sh report
+bash scripts/run_snakemake.sh full
 ```
 
 ## Python Usage
@@ -117,6 +121,8 @@ state_dict = torch.load(
 model.load_state_dict(state_dict, strict=False)
 model.eval()
 ```
+
+For a repo-wide compatibility check across all published artifacts, use `bash scripts/run_snakemake.sh full` and review `reports/workflow/checkpoint_smoke.md`.
 
 ### Repo-local evaluation utilities
 

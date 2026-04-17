@@ -10,6 +10,7 @@ INTEGRITY_MD = f"{REPORTS_DIR}/repo_integrity.md"
 AUDIT_JSON = f"{REPORTS_DIR}/public_examples_audit.json"
 AUDIT_MD = f"{REPORTS_DIR}/public_examples_audit.md"
 SUMMARY_MD = f"{REPORTS_DIR}/public_repo_summary.md"
+FULL_SUMMARY_MD = f"{REPORTS_DIR}/public_repo_full_summary.md"
 
 CANONICAL_MODEL_INPUTS = sorted(str(path) for path in Path("models").glob("**/*") if path.is_file())
 HYPERPARAMETER_INPUTS = sorted(str(path) for path in Path("docs/hyperparameters").glob("*_hyperparameters.json"))
@@ -63,9 +64,17 @@ rule preprocessing:
 rule smoke:
     input:
         SMOKE_JSON,
-        SMOKE_MD
+        SMOKE_MD,
+        VALIDATOR_JSON
 
 rule report:
     input:
         SUMMARY_MD,
         PREPROCESSING_MD
+
+rule full:
+    input:
+        FULL_SUMMARY_MD,
+        PREPROCESSING_MD,
+        SMOKE_MD,
+        VALIDATOR_JSON

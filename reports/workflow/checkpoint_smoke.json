@@ -1,12 +1,13 @@
 {
-  "status": "skipped_missing_dependencies",
-  "executed": false,
+  "status": "executed",
+  "executed": true,
   "scope": "full_20_model_compatibility_smoke",
-  "missing_dependencies": [
-    "numpy",
-    "torch",
-    "scipy"
-  ],
-  "note": "The optional smoke test was not executed because the current local Python environment does not include the ML dependencies needed by the compatibility validator. Install the project requirements and rerun the `smoke` target if you want this report to execute locally.",
-  "report_path": null
+  "missing_dependencies": [],
+  "note": "The smoke lane verifies that published artifacts load and execute with repo-local code. Synthetic metric deltas versus manuscript values are retained only as heuristic compatibility context.",
+  "report_path": "reports/workflow/checkpoint_validator_report.json",
+  "total_models": 20,
+  "smoke_passed_models": 3,
+  "smoke_failed_models": 17,
+  "heuristic_spec_matches": 0,
+  "models_with_load_warnings": 2
 }
