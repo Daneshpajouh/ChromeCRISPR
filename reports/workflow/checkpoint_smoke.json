@@ -6,8 +6,8 @@
   "note": "The smoke lane verifies that published artifacts load and execute with repo-local code. Synthetic metric deltas versus manuscript values are retained only as heuristic compatibility context.",
   "report_path": "reports/workflow/checkpoint_validator_report.json",
   "total_models": 20,
-  "smoke_passed_models": 3,
-  "smoke_failed_models": 17,
+  "smoke_passed_models": 20,
+  "smoke_failed_models": 0,
   "heuristic_spec_matches": 0,
-  "models_with_load_warnings": 2
+  "models_with_load_warnings": 0
 }

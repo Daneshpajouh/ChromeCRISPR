@@ -2,153 +2,131 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+
+def _gc_from_sequence_indices(x: torch.Tensor) -> torch.Tensor:
+    gc_mask = ((x == 1) | (x == 2)).float()
+    return gc_mask.mean(dim=1, keepdim=True)
+
+
 class CNNModel(nn.Module):
-    """
-    Convolutional Neural Network for CRISPR guide RNA efficiency prediction.
+    """CNN family used by the published ChromeCRISPR checkpoints."""
 
-    Architecture extracted from actual saved models:
-    - Embedding: 4 nucleotides -> 128 dimensions
-    - CNN: 64 filters, kernel size 5, single conv layer
-    - FC layers: [128, 64, 32, 1] with batch normalization
-    """
-
-    def __init__(self, input_size=21, embedding_dim=128, num_filters=64,
-                 kernel_size=5, dropout=0.2):
-        super(CNNModel, self).__init__()
-
+    def __init__(
+        self,
+        input_size=21,
+        embedding_dim=128,
+        num_filters=64,
+        kernel_size=5,
+        dropout=0.2,
+        num_conv_layers=2,
+        use_gc_content=False,
+    ):
+        super().__init__()
         self.input_size = input_size
         self.embedding_dim = embedding_dim
+        self.num_conv_layers = num_conv_layers
+        self.use_gc_content = use_gc_content
 
-        # Sequence embedding layer (matches saved models)
-        self.embedding = nn.Embedding(4, embedding_dim)  # 4 nucleotides: A, C, G, T
+        self.embedding = nn.Embedding(4, embedding_dim)
 
-        # Standard CNN layers (architecture mismatch with saved models noted)
-        self.conv1 = nn.Conv1d(embedding_dim, num_filters, kernel_size, stride=1, padding=2)
-        self.bn1 = nn.BatchNorm1d(num_filters)
-        self.conv2 = nn.Conv1d(num_filters, num_filters, kernel_size, stride=1, padding=2)
-        self.bn2 = nn.BatchNorm1d(num_filters)
+        conv_layers = []
+        in_channels = embedding_dim
+        for _ in range(num_conv_layers):
+            conv_layers.extend(
+                [
+                    nn.Conv1d(in_channels, num_filters, kernel_size, stride=1, padding=kernel_size // 2),
+                    nn.BatchNorm1d(num_filters),
+                    nn.ReLU(),
+                    nn.Dropout(dropout),
+                ]
+            )
+            in_channels = num_filters
+        self.cnn_layers = nn.Sequential(*conv_layers)
 
-        # Fully connected layers
-        self.fc1 = nn.Linear(num_filters, 128)
-        self.fc2 = nn.Linear(128, 64)
-        self.fc3 = nn.Linear(64, 32)
-        self.fc4 = nn.Linear(32, 1)
-
-    def forward(self, x):
-        # x shape: (batch_size, sequence_length)
-        batch_size = x.size(0)
-
-        # Embedding
-        x = self.embedding(x)  # (batch_size, seq_len, embedding_dim)
-        x = x.transpose(1, 2)  # (batch_size, embedding_dim, seq_len)
-
-        # CNN layers
-        x = F.relu(self.bn1(self.conv1(x)))
-        x = F.relu(self.bn2(self.conv2(x)))
-
-        # Global average pooling
-        x = F.adaptive_avg_pool1d(x, 1).squeeze(-1)
-
-        # Fully connected layers
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = F.relu(self.fc3(x))
-        x = self.fc4(x)
-
-        return x.squeeze()
-
-class DeepCNNModel(nn.Module):
-    """
-    Deep Convolutional Neural Network for CRISPR guide RNA efficiency prediction.
-
-    Architecture extracted from actual saved models:
-    - Embedding: 4 nucleotides -> 128 dimensions
-    - CNN: 4 conv layers, 64 filters each, kernel size 5
-    - FC layers: [128, 64, 32, 1] with batch normalization
-    """
-
-    def __init__(self, input_size=21, embedding_dim=128, num_filters=64,
-                 kernel_size=5, dropout=0.2):
-        super(DeepCNNModel, self).__init__()
-
-        self.input_size = input_size
-        self.embedding_dim = embedding_dim
-
-        # Sequence embedding layer (matches saved models)
-        self.embedding = nn.Embedding(4, embedding_dim)  # 4 nucleotides: A, C, G, T
-
-        # Deep CNN layers (matches saved models architecture)
-        self.cnn_layers = nn.Sequential(
-            # Layer 1: Conv + BatchNorm + ReLU
-            nn.Conv1d(embedding_dim, num_filters, kernel_size, stride=1, padding=2),
-            nn.BatchNorm1d(num_filters),
-            nn.ReLU(),
-
-            # Layer 2: Conv + BatchNorm + ReLU
-            nn.Conv1d(num_filters, num_filters, kernel_size, stride=1, padding=2),
-            nn.BatchNorm1d(num_filters),
-            nn.ReLU(),
-
-            # Layer 3: Conv + BatchNorm + ReLU
-            nn.Conv1d(num_filters, num_filters, kernel_size, stride=1, padding=2),
-            nn.BatchNorm1d(num_filters),
-            nn.ReLU(),
-
-            # Layer 4: Conv + BatchNorm + ReLU
-            nn.Conv1d(num_filters, num_filters, kernel_size, stride=1, padding=2),
-            nn.BatchNorm1d(num_filters),
-            nn.ReLU(),
-        )
-
-        # Fully connected layers (matches saved models)
+        dense_in = num_filters + (1 if use_gc_content else 0)
         self.fc_layers = nn.Sequential(
-            nn.Linear(num_filters, 128),  # 64 -> 128
-            nn.BatchNorm1d(128),
+            nn.Linear(dense_in, 128),
             nn.ReLU(),
             nn.Dropout(dropout),
-
-            nn.Linear(128, 64),  # 128 -> 64
-            nn.BatchNorm1d(64),
+            nn.Linear(128, 64),
             nn.ReLU(),
             nn.Dropout(dropout),
-
-            nn.Linear(64, 32),   # 64 -> 32
-            nn.BatchNorm1d(32),
+            nn.Linear(64, 32),
             nn.ReLU(),
             nn.Dropout(dropout),
-
-            nn.Linear(32, 1),    # 32 -> 1
+            nn.Linear(32, 1),
         )
 
-    def forward(self, x):
-        # x shape: (batch_size, sequence_length)
-        batch_size = x.size(0)
+    def forward(self, x, gc_content=None):
+        sequence_indices = x.long()
+        embedded = self.embedding(sequence_indices).transpose(1, 2)
+        features = self.cnn_layers(embedded)
+        features = F.adaptive_max_pool1d(features, 1).squeeze(-1)
 
-        # Embedding
-        x = self.embedding(x)  # (batch_size, seq_len, embedding_dim)
-        x = x.transpose(1, 2)  # (batch_size, embedding_dim, seq_len)
+        if self.use_gc_content:
+            if gc_content is None:
+                gc_content = _gc_from_sequence_indices(sequence_indices)
+            features = torch.cat([features, gc_content.float()], dim=1)
 
-        # CNN layers
-        x = self.cnn_layers(x)
+        output = self.fc_layers(features)
+        return output.squeeze(-1)
 
-        # Global average pooling
-        x = F.adaptive_avg_pool1d(x, 1).squeeze(-1)
 
-        # Fully connected layers
-        x = self.fc_layers(x)
+class DeepCNNModel(CNNModel):
+    """4-layer CNN variant used by the deep published checkpoints."""
 
-        return x.squeeze()
+    def __init__(
+        self,
+        input_size=21,
+        embedding_dim=128,
+        num_filters=64,
+        kernel_size=5,
+        dropout=0.2,
+        use_gc_content=False,
+    ):
+        super().__init__(
+            input_size=input_size,
+            embedding_dim=embedding_dim,
+            num_filters=num_filters,
+            kernel_size=kernel_size,
+            dropout=dropout,
+            num_conv_layers=4,
+            use_gc_content=use_gc_content,
+        )
 
-def create_cnn_model(input_size=21, embedding_dim=128, num_filters=64,
-                    kernel_size=5, dropout=0.2):
-    """Create and return a CNN model with specified parameters."""
-    return CNNModel(input_size=input_size, embedding_dim=embedding_dim,
-                   num_filters=num_filters, kernel_size=kernel_size,
-                   dropout=dropout)
 
-def create_deep_cnn_model(input_size=21, embedding_dim=128, num_filters=64,
-                         kernel_size=5, dropout=0.2):
-    """Create and return a Deep CNN model with specified parameters."""
-    return DeepCNNModel(input_size=input_size, embedding_dim=embedding_dim,
-                       num_filters=num_filters, kernel_size=kernel_size,
-                       dropout=dropout)
+def create_cnn_model(
+    input_size=21,
+    embedding_dim=128,
+    num_filters=64,
+    kernel_size=5,
+    dropout=0.2,
+    use_gc_content=False,
+):
+    return CNNModel(
+        input_size=input_size,
+        embedding_dim=embedding_dim,
+        num_filters=num_filters,
+        kernel_size=kernel_size,
+        dropout=dropout,
+        num_conv_layers=2,
+        use_gc_content=use_gc_content,
+    )
+
+
+def create_deep_cnn_model(
+    input_size=21,
+    embedding_dim=128,
+    num_filters=64,
+    kernel_size=5,
+    dropout=0.2,
+    use_gc_content=False,
+):
+    return DeepCNNModel(
+        input_size=input_size,
+        embedding_dim=embedding_dim,
+        num_filters=num_filters,
+        kernel_size=kernel_size,
+        dropout=dropout,
+        use_gc_content=use_gc_content,
+    )

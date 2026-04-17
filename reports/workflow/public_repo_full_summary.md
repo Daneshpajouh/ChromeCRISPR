@@ -25,11 +25,10 @@ Generated from registry timestamp: `2026-04-17T01:37:30Z`
 
 - Smoke status: `executed`
 - Artifacts checked: `20`
-- Smoke-passed artifacts: `3`
-- Smoke-failed artifacts: `17`
+- Smoke-passed artifacts: `20`
+- Smoke-failed artifacts: `0`
 - Heuristic benchmark-shape matches: `0`
-- Load warnings: `2`
-- Compatibility note: some published checkpoints still have architecture mismatches against the current repo-local model definitions; see `reports/workflow/checkpoint_validator_report.json` for exact failures.
+- Load warnings: `0`
 
 ## Preprocessing Snapshot
 

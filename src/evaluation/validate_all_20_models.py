@@ -107,19 +107,21 @@ class ChromeCRISPRValidator:
     def _create_torch_model(self, model_path: Path) -> Optional[nn.Module]:
         name = str(model_path)
         if "CNN_GRU" in name:
-            return create_cnn_gru_model()
+            return create_cnn_gru_model(use_gc_content="+GC" in name)
         if "CNN_LSTM" in name:
-            return create_cnn_lstm_model()
+            return create_cnn_lstm_model(use_gc_content="+GC" in name)
         if "CNN_BiLSTM" in name:
-            return create_cnn_bilstm_model()
+            return create_cnn_bilstm_model(use_gc_content="+GC" in name)
         if "BiLSTM" in name and "CNN" not in name:
-            return create_bilstm_model(num_layers=2)
+            return create_bilstm_model(num_layers=4 if "deep" in name else 2, use_gc_content="+GC" in name)
         if "GRU" in name and "CNN" not in name:
-            return create_gru_model(num_layers=4 if "deep" in name else 2)
+            return create_gru_model(num_layers=4 if "deep" in name else 2, use_gc_content="+GC" in name)
         if "LSTM" in name and "CNN" not in name and "BiLSTM" not in name:
-            return create_lstm_model(num_layers=4 if "deep" in name else 2)
+            return create_lstm_model(num_layers=4 if "deep" in name else 2, use_gc_content="+GC" in name)
         if "CNN" in name and "GRU" not in name and "LSTM" not in name:
-            return create_deep_cnn_model() if "deep" in name else create_cnn_model()
+            if "deep" in name:
+                return create_deep_cnn_model(use_gc_content="+GC" in name)
+            return create_cnn_model(use_gc_content="+GC" in name)
         return None
 
     def _synthetic_targets(self, n_samples: int) -> np.ndarray:
