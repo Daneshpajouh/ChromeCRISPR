@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-04-17T01:37:30Z",
+  "source_documents": {
+    "training_procedures": "docs/training_procedures/README.md",
+    "best_model_hyperparameters": "docs/hyperparameters/CNN_GRU+GC_hyperparameters.json"
+  },
+  "dataset_scope": {
+    "dataset": "DeepHF public benchmark bundle",
+    "sequence_length": 21,
+    "target": "sgRNA on-target activity / indel frequency",
+    "notes": "The public repo documents the study setup but does not bundle the full raw training dataset."
+  },
+  "preprocessing_pipeline": [
+    {
+      "step": 1,
+      "name": "sequence_validation",
+      "description": "Validate 21-mer sgRNA sequences before encoding.",
+      "inputs": [
+        "DNA sequence"
+      ],
+      "outputs": [
+        "validated 21-mer sequence"
+      ]
+    },
+    {
+      "step": 2,
+      "name": "one_hot_encoding",
+      "description": "Encode 21-mer sequences as 84 input features (21 \u00d7 4 nucleotides).",
+      "inputs": [
+        "validated 21-mer sequence"
+      ],
+      "outputs": [
+        "84-dimensional sequence representation"
+      ]
+    },
+    {
+      "step": 3,
+      "name": "embedding_layer",
+      "description": "Project sequence representation into a learned 128-dimensional embedding inside the neural models.",
+      "inputs": [
+        "84-dimensional sequence representation"
+      ],
+      "outputs": [
+        "128-dimensional latent sequence embedding"
+      ]
+    },
+    {
+      "step": 4,
+      "name": "gc_content_calculation",
+      "description": "Compute GC content as (G + C) / sequence length for the GC-aware variants.",
+      "inputs": [
+        "validated 21-mer sequence"
+      ],
+      "outputs": [
+        "scalar GC content in [0, 1]"
+      ]
+    },
+    {
+      "step": 5,
+      "name": "feature_normalization",
+      "description": "Optional StandardScaler normalization for numerical features where used by the study pipeline.",
+      "inputs": [
+        "numerical features"
+      ],
+      "outputs": [
+        "normalized features"
+      ]
+    },
+    {
+      "step": 6,
+      "name": "split_and_validation",
+      "description": "Apply the documented 70/15/15 train/validation/test split with 5-fold cross-validation inside model selection.",
+      "inputs": [
+        "preprocessed feature matrix",
+        "activity labels"
+      ],
+      "outputs": [
+        "train, validation, and test partitions"
+      ]
+    }
+  ],
+  "training_protocol": {
+    "optimizer": "Adam",
+    "loss": "Mean Squared Error",
+    "optimization_framework": "Optuna Bayesian optimization",
+    "optimization_target": "maximize Spearman correlation",
+    "trials_per_model": 100,
+    "cross_validation": "5-fold",
+    "early_stopping_patience": 10,
+    "learning_rate_schedule": "ReduceLROnPlateau",
+    "reported_hardware": "NVIDIA V100 Volta, 32GB HBM2"
+  },
+  "best_model_snapshot": {
+    "model_name": "CNN_GRU+GC",
+    "model_type": "Hybrid CNN-GRU with GC Content",
+    "spearman_correlation": 0.876,
+    "mean_squared_error": 0.0093,
+    "learning_rate": 0.000209,
+    "batch_size": 64,
+    "dropout_rate": 0.142,
+    "epochs": 84
+  },
+  "public_repo_boundary": {
+    "canonical_checkpoint_root": "models/",
+    "workflow_focus": "artifact verification and documentation clarity",
+    "not_bundled": [
+      "raw training data",
+      "full production retraining pipeline"
+    ]
+  }
+}

@@ -2,22 +2,18 @@
 
 This directory is the documentation index for the public ChromeCRISPR release.
 
-## Scope
+## Documentation Roles
 
-The documentation set covers:
-- per-model hyperparameter records
-- architecture descriptions
-- training-procedure notes from the study
-- manuscript-facing performance summaries
+- `hyperparameters/`: per-model JSON records and human-readable summaries
+- `training_procedures/`: documented preprocessing and training assumptions from the study
+- `MODEL_ARCHITECTURES.md`: architecture-level overview
+- `COMPREHENSIVE_MODEL_DOCUMENTATION.md`: manuscript-facing comparative discussion
 
-It should be read together with the canonical checkpoint collection in `models/` and the public verification workflow in `workflow/`.
+## Canonical Repo Boundary
 
-## Primary Entry Points
-
-- [hyperparameters/](hyperparameters/): per-model JSON records and README summaries
-- [training_procedures/README.md](training_procedures/README.md): training and preprocessing notes
-- [MODEL_ARCHITECTURES.md](MODEL_ARCHITECTURES.md): architecture-level overview
-- [COMPREHENSIVE_MODEL_DOCUMENTATION.md](COMPREHENSIVE_MODEL_DOCUMENTATION.md): comparative study write-up
+- Canonical checkpoints live in `../models/`
+- Repo-local code lives in `../src/`
+- Workflow-generated verification and preprocessing reports live in `../reports/workflow/`
 
 ## Best Model Quick Reference
 
@@ -26,20 +22,21 @@ It should be read together with the canonical checkpoint collection in `models/`
 - Hyperparameters: `hyperparameters/CNN_GRU+GC_hyperparameters.json`
 - Published test performance: `0.876` Spearman, `0.0093` MSE
 
-## Public Verification Workflow
+## Preprocessing and Workflow Reports
 
-To rebuild the repo-level public reports:
+Rebuild the public docs-side reports with:
 
 ```bash
 bash scripts/run_snakemake.sh report
 ```
 
-Generated outputs are written to `../reports/workflow/` and include:
-- model registry
-- integrity report
-- markdown example/link audit
-- public summary report
+Key generated artifacts:
+- `../reports/workflow/model_registry.md`
+- `../reports/workflow/repo_integrity.md`
+- `../reports/workflow/public_examples_audit.md`
+- `../reports/workflow/preprocessing_manifest.md`
+- `../reports/workflow/public_repo_summary.md`
 
-## Notes on Usage Examples
+## Notes on Public Usage
 
-The public repo supports lightweight repo-local Python usage such as constructing model classes and loading released checkpoints. It does not currently expose a complete raw-data retraining API with a stable packaged interface.
+The public repo supports inspection, verification, and repo-local checkpoint loading. It does not currently claim to expose a fully packaged raw-data retraining API.

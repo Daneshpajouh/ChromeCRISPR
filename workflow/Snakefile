@@ -1,3 +1,5 @@
+from pathlib import Path
+
 configfile: "workflow/config/chromecrispr.yaml"
 
 REPORTS_DIR = config["reports_dir"]
@@ -9,6 +11,19 @@ AUDIT_JSON = f"{REPORTS_DIR}/public_examples_audit.json"
 AUDIT_MD = f"{REPORTS_DIR}/public_examples_audit.md"
 SUMMARY_MD = f"{REPORTS_DIR}/public_repo_summary.md"
 
+CANONICAL_MODEL_INPUTS = sorted(str(path) for path in Path("models").glob("**/*") if path.is_file())
+HYPERPARAMETER_INPUTS = sorted(str(path) for path in Path("docs/hyperparameters").glob("*_hyperparameters.json"))
+PUBLIC_DOC_INPUTS = config["docs_to_audit"]
+WORKFLOW_SOURCE_INPUTS = sorted(str(path) for path in Path("workflow").glob("**/*") if path.is_file())
+SOURCE_CODE_INPUTS = sorted(
+    str(path)
+    for path in Path("src").glob("**/*")
+    if path.is_file() and path.suffix in {".py", ".md"}
+)
+SCRIPT_INPUTS = sorted(str(path) for path in Path("scripts").glob("*.py")) + ["scripts/run_snakemake.sh"]
+
+include: "rules/preprocessing.smk"
+include: "rules/smoke.smk"
 include: "rules/reporting.smk"
 include: "rules/integrity.smk"
 include: "rules/audit.smk"
@@ -21,6 +36,8 @@ rule all:
         INTEGRITY_MD,
         AUDIT_JSON,
         AUDIT_MD,
+        PREPROCESSING_JSON,
+        PREPROCESSING_MD,
         SUMMARY_MD
 
 rule inventory:
@@ -38,6 +55,17 @@ rule audit:
         AUDIT_JSON,
         AUDIT_MD
 
+rule preprocessing:
+    input:
+        PREPROCESSING_JSON,
+        PREPROCESSING_MD
+
+rule smoke:
+    input:
+        SMOKE_JSON,
+        SMOKE_MD
+
 rule report:
     input:
-        SUMMARY_MD
+        SUMMARY_MD,
+        PREPROCESSING_MD

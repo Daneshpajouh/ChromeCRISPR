@@ -52,12 +52,24 @@ def build_report() -> dict:
         "workflow/README.md",
         "workflow/requirements-snakemake.txt",
         "scripts/run_snakemake.sh",
+        "scripts/build_preprocessing_manifest.py",
+        "scripts/run_checkpoint_smoke.py",
         "src/models/__init__.py",
         "src/evaluation/__init__.py",
         "src/training/__init__.py",
+        "src/models/README.md",
     ]:
         if not (root / required).exists():
             issues.append({"code": "missing_workflow_asset", "message": f"Missing workflow/package asset: {required}."})
+
+    duplicate_checkpoints = sorted((root / "src/models").glob("**/*.pth")) + sorted((root / "src/models").glob("**/*.joblib"))
+    if duplicate_checkpoints:
+        issues.append(
+            {
+                "code": "noncanonical_duplicate_checkpoints",
+                "message": f"Found {len(duplicate_checkpoints)} non-canonical checkpoint files under src/models/. Published artifacts must live only under models/.",
+            }
+        )
 
     return {
         "generated_at": registry["generated_at"],
@@ -68,6 +80,7 @@ def build_report() -> dict:
             "canonical_model_count": len(registry["models"]),
             "expected_model_count": registry["expected_model_count"],
             "category_counts": registry["category_counts"],
+            "duplicate_checkpoint_count_under_src_models": len(duplicate_checkpoints),
         },
     }
 
@@ -80,6 +93,7 @@ def render_markdown(report: dict) -> str:
         "",
         f"- Integrity passed: `{str(report['integrity_passed']).lower()}`",
         f"- Issue count: `{report['issue_count']}`",
+        f"- Duplicate checkpoints under `src/models/`: `{report['summary']['duplicate_checkpoint_count_under_src_models']}`",
         "",
     ]
     if report["issues"]:
@@ -87,7 +101,7 @@ def render_markdown(report: dict) -> str:
         for issue in report["issues"]:
             lines.append(f"- `{issue['code']}`: {issue['message']}")
     else:
-        lines.extend(["## Status", "", "- All canonical model, documentation, and workflow checks passed."])
+        lines.extend(["## Status", "", "- All canonical model, documentation, workflow, and code/artifact boundary checks passed."])
     lines.append("")
     return "\n".join(lines)
 

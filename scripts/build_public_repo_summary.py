@@ -14,12 +14,14 @@ def main() -> None:
     parser.add_argument("--registry", required=True)
     parser.add_argument("--integrity", required=True)
     parser.add_argument("--audit", required=True)
+    parser.add_argument("--preprocessing", required=True)
     parser.add_argument("--md-out", required=True)
     args = parser.parse_args()
 
     registry = read_json(Path(args.registry))
     integrity = read_json(Path(args.integrity))
     audit = read_json(Path(args.audit))
+    preprocessing = read_json(Path(args.preprocessing))
     top_models = registry["models"][:5]
 
     lines = [
@@ -32,6 +34,7 @@ def main() -> None:
         f"- Canonical models tracked: `{len(registry['models'])}`",
         f"- Repo integrity passed: `{str(integrity['integrity_passed']).lower()}`",
         f"- Public examples audit passed: `{str(audit['audit_passed']).lower()}`",
+        f"- Duplicate checkpoints under `src/models/`: `{integrity['summary']['duplicate_checkpoint_count_under_src_models']}`",
         f"- Orphan checkpoints: `{len(registry['orphan_checkpoints'])}`",
         f"- Orphan hyperparameter files: `{len(registry['orphan_hyperparameters'])}`",
         "",
@@ -47,13 +50,23 @@ def main() -> None:
     lines.extend(
         [
             "",
+            "## Preprocessing Snapshot",
+            "",
+            f"- Dataset scope: `{preprocessing['dataset_scope']['dataset']}`",
+            f"- Sequence length: `{preprocessing['dataset_scope']['sequence_length']}`",
+            f"- HPO framework: `{preprocessing['training_protocol']['optimization_framework']}`",
+            f"- Cross-validation: `{preprocessing['training_protocol']['cross_validation']}`",
+            f"- Best model batch size: `{preprocessing['best_model_snapshot']['batch_size']}`",
+            f"- Best model learning rate: `{preprocessing['best_model_snapshot']['learning_rate']}`",
+            "",
             "## Workflow",
             "",
             "```bash",
             "bash scripts/run_snakemake.sh report",
+            "bash scripts/run_snakemake.sh smoke",
             "```",
             "",
-            "The workflow is intentionally scoped to public-repo reproducibility: canonical model inventory, documentation integrity, and markdown example/link auditing around the published artifacts.",
+            "The default workflow is intentionally scoped to public-repo reproducibility: canonical model inventory, documentation integrity, markdown example/link auditing, and a structured preprocessing manifest around the published artifacts.",
             "",
         ]
     )

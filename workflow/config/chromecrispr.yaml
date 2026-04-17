@@ -4,3 +4,4 @@ docs_to_audit:
   - docs/README.md
   - models/README.md
   - src/README.md
+  - src/models/README.md

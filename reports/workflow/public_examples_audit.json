@@ -1,10 +1,11 @@
 {
-  "generated_at": "2026-04-17T01:27:38Z",
+  "generated_at": "2026-04-17T01:37:30Z",
   "docs_audited": [
     "README.md",
     "docs/README.md",
     "models/README.md",
-    "src/README.md"
+    "src/README.md",
+    "src/models/README.md"
   ],
   "audit_passed": true,
   "issue_count": 0,

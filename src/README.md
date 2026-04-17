@@ -11,6 +11,12 @@ src/
 └── training/     # Training utilities retained from the study codebase
 ```
 
+## Canonical Boundary
+
+- `models/` at the repository root is the canonical checkpoint/artifact location.
+- `src/models/` is code only.
+- The workflow integrity checks treat checkpoint files under `src/models/` as a structural error.
+
 ## Public Surface
 
 The most stable repo-local entry point is `src.models`.

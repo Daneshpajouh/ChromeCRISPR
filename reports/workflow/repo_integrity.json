@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-17T01:27:38Z",
+  "generated_at": "2026-04-17T01:37:30Z",
   "integrity_passed": true,
   "issue_count": 0,
   "issues": [],
@@ -12,6 +12,7 @@
       "deep_models": 4,
       "deep_models_with_gc": 4,
       "chromecrispr_hybrid_models": 3
-    }
+    },
+    "duplicate_checkpoint_count_under_src_models": 0
   }
 }

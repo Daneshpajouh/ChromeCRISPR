@@ -1,8 +1,8 @@
 # ChromeCRISPR Public Examples Audit
 
-Generated at: `2026-04-17T01:27:38Z`
+Generated at: `2026-04-17T01:37:30Z`
 
-- Docs audited: `4`
+- Docs audited: `5`
 - Audit passed: `true`
 - Issue count: `0`
 

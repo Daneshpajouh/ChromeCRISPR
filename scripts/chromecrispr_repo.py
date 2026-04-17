@@ -38,6 +38,7 @@ PACKAGE_READMES = [
     "docs/README.md",
     "models/README.md",
     "src/README.md",
+    "src/models/README.md",
 ]
 
 
