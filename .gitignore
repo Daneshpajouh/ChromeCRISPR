@@ -1,0 +1,152 @@
+# ChromeCRISPR Repository .gitignore
+
+# Manuscript file (internal only - DO NOT UPLOAD)
+2024.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyTorch
+*.pth
+*.pt
+*.pkl
+*.pickle
+*.joblib
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.workflow-venv/
+.smoke-venv/
+.snakemake/
+.nextflow/
+work/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+*.out
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Data files (large datasets)
+*.csv
+*.tsv
+*.json
+*.npy
+*.npz
+data/
+datasets/
+raw_data/
+processed_data/
+
+# Model files (except the manuscript models)
+models/
+!models/**/*.pth
+!models/**/*.joblib
+!models/**/*.json
+!models/**/*.py
+!models/**/*.md
+!src/models/
+!src/models/**/*.py
+!src/models/**/*.md
+
+# Documentation files
+!docs/**/*.json
+!docs/**/*.md
+!reports/
+!reports/**/*.json
+!reports/**/*.md
+!workflow/**/*.yaml
+!workflow/**/*.md
+!workflow/**/*.txt
+!workflow/**/*.smk
+!workflow/Snakefile
+
+# Backup files
+*.bak
+*.backup
+backup/
+backups/
+
+# Cluster and external drive files
+cluster_*
+beluga_*
+external_*
+*.cluster
+
+# Scratch test artefacts. The test suite in tests/ is tracked.
+/test_*
+!tests/
+!tests/**
+
+# Documentation drafts
+*_draft.md
+*_temp.md
+*_old.md
+
+# Performance reports (keep only final ones)
+*_PERFORMANCE_*.md
+!FINAL_EXACT_20_MANUSCRIPT_COMPLIANCE_REPORT.md
+!CHROMECRISPR_EXACT_20_MANUSCRIPT_ORGANIZATION_SUMMARY.md
+
+# Organizer scripts
+*_organizer.py
+
+# Keep only essential files
+# ✅ KEEP: models/ (complete manuscript models)
+# ✅ KEEP: src/ (source code)
+# ✅ KEEP: docs/ (documentation)
+# ✅ KEEP: README.md (main documentation)
+# ✅ KEEP: requirements.txt (dependencies)
+# ✅ KEEP: setup.py (installation)
+# ✅ KEEP: Final compliance reports
+models/

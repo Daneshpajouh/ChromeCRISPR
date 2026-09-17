@@ -1,0 +1,9 @@
+{
+  "RF": {
+    "spearman_correlation": 0.7485,
+    "mean_squared_error": 0.0206,
+    "hyperparameters": {},
+    "checkpoint": "models/RF.joblib",
+    "minutes": 0.3
+  }
+}

@@ -1,0 +1,655 @@
+{
+  "total_checks": 75,
+  "failed": 0,
+  "passed": 75,
+  "all_passed": true,
+  "checks": [
+    {
+      "model": "CNN",
+      "property": "two convolutional layers ()",
+      "expected": 2,
+      "observed": 2,
+      "passed": true
+    },
+    {
+      "model": "CNN",
+      "property": "each with 128 filters",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "CNN",
+      "property": "a kernel size of 3",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "CNN",
+      "property": "stride of 1",
+      "expected": 1,
+      "observed": 1,
+      "passed": true
+    },
+    {
+      "model": "CNN",
+      "property": "padding of 1",
+      "expected": 1,
+      "observed": 1,
+      "passed": true
+    },
+    {
+      "model": "CNN",
+      "property": "first dense layer has 64 units",
+      "expected": 64,
+      "observed": 64,
+      "passed": true
+    },
+    {
+      "model": "CNN",
+      "property": "second has one output unit",
+      "expected": 1,
+      "observed": 1,
+      "passed": true
+    },
+    {
+      "model": "CNN",
+      "property": "fully connected layers with batch normalization",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "model": "GRU",
+      "property": "two recurrent layers (Sections 2.5.3 to 2.5.5)",
+      "expected": 2,
+      "observed": 2,
+      "passed": true
+    },
+    {
+      "model": "GRU",
+      "property": "each with 128 hidden units",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "GRU",
+      "property": "bidirectional only for BiLSTM",
+      "expected": false,
+      "observed": false,
+      "passed": true
+    },
+    {
+      "model": "GRU",
+      "property": "first dense layer has 64 units",
+      "expected": 64,
+      "observed": 64,
+      "passed": true
+    },
+    {
+      "model": "GRU",
+      "property": "second has one output unit",
+      "expected": 1,
+      "observed": 1,
+      "passed": true
+    },
+    {
+      "model": "GRU",
+      "property": "fully connected layers with batch normalization",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "model": "LSTM",
+      "property": "two recurrent layers (Sections 2.5.3 to 2.5.5)",
+      "expected": 2,
+      "observed": 2,
+      "passed": true
+    },
+    {
+      "model": "LSTM",
+      "property": "each with 128 hidden units",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "LSTM",
+      "property": "bidirectional only for BiLSTM",
+      "expected": false,
+      "observed": false,
+      "passed": true
+    },
+    {
+      "model": "LSTM",
+      "property": "first dense layer has 64 units",
+      "expected": 64,
+      "observed": 64,
+      "passed": true
+    },
+    {
+      "model": "LSTM",
+      "property": "second has one output unit",
+      "expected": 1,
+      "observed": 1,
+      "passed": true
+    },
+    {
+      "model": "LSTM",
+      "property": "fully connected layers with batch normalization",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "model": "BiLSTM",
+      "property": "two recurrent layers (Sections 2.5.3 to 2.5.5)",
+      "expected": 2,
+      "observed": 2,
+      "passed": true
+    },
+    {
+      "model": "BiLSTM",
+      "property": "each with 128 hidden units",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "BiLSTM",
+      "property": "bidirectional only for BiLSTM",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "model": "BiLSTM",
+      "property": "first dense layer has 64 units",
+      "expected": 64,
+      "observed": 64,
+      "passed": true
+    },
+    {
+      "model": "BiLSTM",
+      "property": "second has one output unit",
+      "expected": 1,
+      "observed": 1,
+      "passed": true
+    },
+    {
+      "model": "BiLSTM",
+      "property": "fully connected layers with batch normalization",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "model": "deepCNN",
+      "property": "three convolutional layers with 128 filters each (2.5.6)",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "deepCNN",
+      "property": "128 filters each",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "deepCNN",
+      "property": "dense layers of 128, 64 and 32, then the output layer",
+      "expected": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "observed": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "deepGRU",
+      "property": "three recurrent layers ()",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "deepGRU",
+      "property": "with 128 hidden units each",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "deepGRU",
+      "property": "dense layers of 128, 64 and 32, then the output layer",
+      "expected": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "observed": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "deepLSTM",
+      "property": "three recurrent layers ()",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "deepLSTM",
+      "property": "with 128 hidden units each",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "deepLSTM",
+      "property": "dense layers of 128, 64 and 32, then the output layer",
+      "expected": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "observed": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "deepBiLSTM",
+      "property": "three recurrent layers ()",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "deepBiLSTM",
+      "property": "with 128 hidden units each",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "deepBiLSTM",
+      "property": "dense layers of 128, 64 and 32, then the output layer",
+      "expected": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "observed": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC",
+      "property": "CNN branch includes three convolutional layers (2.5.7)",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC",
+      "property": "with 128 filters each",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC",
+      "property": "kernel size of 3",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC",
+      "property": "RNN branch includes three recurrent layers",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC",
+      "property": "with 128 hidden units each",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC",
+      "property": "CNN followed by RNN: the RNN reads the CNN features",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC",
+      "property": "256 features concatenated, combined with GC content (257 features)",
+      "expected": 257,
+      "observed": 257,
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC",
+      "property": "three dense layers (128, 64, 32 units) before the final output layer",
+      "expected": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "observed": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC",
+      "property": "a single output unit",
+      "expected": [
+        2,
+        1
+      ],
+      "observed": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "CNN_LSTM+GC",
+      "property": "CNN branch includes three convolutional layers (2.5.7)",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "CNN_LSTM+GC",
+      "property": "with 128 filters each",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "CNN_LSTM+GC",
+      "property": "kernel size of 3",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "CNN_LSTM+GC",
+      "property": "RNN branch includes three recurrent layers",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "CNN_LSTM+GC",
+      "property": "with 128 hidden units each",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "CNN_LSTM+GC",
+      "property": "CNN followed by RNN: the RNN reads the CNN features",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "CNN_LSTM+GC",
+      "property": "256 features concatenated, combined with GC content (257 features)",
+      "expected": 257,
+      "observed": 257,
+      "passed": true
+    },
+    {
+      "model": "CNN_LSTM+GC",
+      "property": "three dense layers (128, 64, 32 units) before the final output layer",
+      "expected": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "observed": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "CNN_LSTM+GC",
+      "property": "a single output unit",
+      "expected": [
+        2,
+        1
+      ],
+      "observed": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "CNN_BiLSTM+GC",
+      "property": "CNN branch includes three convolutional layers (2.5.7)",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "CNN_BiLSTM+GC",
+      "property": "with 128 filters each",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "CNN_BiLSTM+GC",
+      "property": "kernel size of 3",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "CNN_BiLSTM+GC",
+      "property": "RNN branch includes three recurrent layers",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "CNN_BiLSTM+GC",
+      "property": "with 128 hidden units each",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "CNN_BiLSTM+GC",
+      "property": "CNN followed by RNN: the RNN reads the CNN features",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "CNN_BiLSTM+GC",
+      "property": "256 features concatenated, combined with GC content (257 features)",
+      "expected": 257,
+      "observed": 257,
+      "passed": true
+    },
+    {
+      "model": "CNN_BiLSTM+GC",
+      "property": "three dense layers (128, 64, 32 units) before the final output layer",
+      "expected": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "observed": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "CNN_BiLSTM+GC",
+      "property": "a single output unit",
+      "expected": [
+        2,
+        1
+      ],
+      "observed": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "Transformer",
+      "property": "three transformer layers ()",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "model": "Transformer",
+      "property": "multi-head self-attention consisting of 8 attention heads",
+      "expected": 8,
+      "observed": 8,
+      "passed": true
+    },
+    {
+      "model": "Transformer",
+      "property": "with 128 hidden units each",
+      "expected": 128,
+      "observed": 128,
+      "passed": true
+    },
+    {
+      "model": "Transformer",
+      "property": "uses layer normalization",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "model": "Transformer",
+      "property": "includes positional encoding to maintain sequence order information",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "model": "Transformer",
+      "property": "followed by dense layers with batch normalization",
+      "expected": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "observed": [
+        128,
+        64,
+        32,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "Transformer",
+      "property": "a single output unit",
+      "expected": [
+        2,
+        1
+      ],
+      "observed": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC[flatten_proj]",
+      "property": "every faithful reading of the unspecified CNN readout runs",
+      "expected": [
+        2,
+        1
+      ],
+      "observed": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC[max]",
+      "property": "every faithful reading of the unspecified CNN readout runs",
+      "expected": [
+        2,
+        1
+      ],
+      "observed": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "model": "CNN_GRU+GC[mean]",
+      "property": "every faithful reading of the unspecified CNN readout runs",
+      "expected": [
+        2,
+        1
+      ],
+      "observed": [
+        2,
+        1
+      ],
+      "passed": true
+    }
+  ]
+}

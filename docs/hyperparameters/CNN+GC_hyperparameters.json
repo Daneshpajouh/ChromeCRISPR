@@ -1,0 +1,48 @@
+{
+  "model_name": "CNN+GC",
+  "architecture": {
+    "encoding": "one-hot 21 x 4, embedded to 128 ()",
+    "dense_layers": [
+      64
+    ],
+    "output_units": 1,
+    "batch_norm": "on the dense layers",
+    "cnn_branch": {
+      "layers": 2,
+      "filters": 128,
+      "kernel_size": 3,
+      "stride": 1,
+      "padding": 1,
+      "activation": "ReLU"
+    },
+    "gc_content": "added as a single input in the last layer ()"
+  },
+  "configurable": {
+    "note": "The publication does not state these. They are recorded as unspecified rather than filled with values that cannot be traced to it.",
+    "items": [
+      "optimizer",
+      "learning rate",
+      "batch size",
+      "epoch count",
+      "loss function",
+      "dropout rate",
+      "weight decay",
+      "learning-rate schedule",
+      "batch normalisation on the convolutional layers",
+      "how the CNN branch's 21 positions reduce to its stated 128-dimensional output"
+    ]
+  },
+  "performance": {
+    "spearman_correlation": 0.781,
+    "spearman_correlation_median": 0.7807,
+    "mean_squared_error": 0.017,
+    "mean_squared_error_median": 0.0172,
+    "test_set_size": 8341,
+    "as_printed": {
+      "spearman_correlation": "0.7810",
+      "spearman_correlation_median": "0.7807",
+      "mean_squared_error": "0.0170",
+      "mean_squared_error_median": "0.0172"
+    }
+  }
+}
