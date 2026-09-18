@@ -16,17 +16,21 @@ import csv, json, os, re, sys
 import numpy as np
 from scipy.stats import spearmanr
 from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import KFold
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
-SPEARMAN_TOLERANCE = 0.001      # the table is quoted to four decimals
-MSE_TOLERANCE = 0.001
+# The table reports the mean and median of the per-fold score over ten shuffled partitions
+# of the test predictions, not a single score over the whole test set.
+N_FOLDS = 10
+FOLD_SEED = 42
+TOLERANCE = 0.00005             # the table is quoted to four decimals, so this is exact
 PREDICTION_TOLERANCE = 1e-5     # checkpoint against its own stored vector
 
 
 def published_table(path):
-    """Read the model rows out of the results table."""
+    """Read the four reported columns for each model out of the results table."""
     out = {}
     for line in open(path, encoding="utf-8"):
         if not line.lstrip().startswith("|"):
@@ -37,21 +41,29 @@ def published_table(path):
         name = cells[1]
         if not name or name in {"model", "---"} or set(name) <= {"-"}:
             continue
-        nums = [re.match(r"([0-9.]+)", c) for c in (cells[2], cells[4])]
+        nums = [re.match(r"([0-9.]+)", c) for c in cells[2:6]]
         if not all(nums):
             continue
-        out[name] = (float(nums[0].group(1)), float(nums[1].group(1)))
+        out[name] = tuple(float(n.group(1)) for n in nums)
     return out
 
 
-def score(path):
+def load(path):
     pred, actual = [], []
     for row in csv.DictReader(open(path, encoding="utf-8")):
         pred.append(float(row["Predicted Score"]))
         actual.append(float(row["Actual Score"]))
-    pred, actual = np.array(pred), np.array(actual)
-    return pred, actual, float(spearmanr(pred, actual).correlation), \
-        float(mean_squared_error(actual, pred))
+    return np.array(pred), np.array(actual)
+
+
+def fold_scores(pred, actual):
+    """Mean and median of the per-fold Spearman and MSE, as the table reports them."""
+    kf = KFold(n_splits=N_FOLDS, shuffle=True, random_state=FOLD_SEED)
+    idx = [i for _, i in kf.split(pred)]
+    rho = [float(spearmanr(pred[i], actual[i]).correlation) for i in idx]
+    mse = [float(mean_squared_error(actual[i], pred[i])) for i in idx]
+    return (float(np.mean(rho)), float(np.median(rho)),
+            float(np.mean(mse)), float(np.median(mse)))
 
 
 def main():
@@ -59,7 +71,9 @@ def main():
     pred_dir = os.path.join(ROOT, "artifacts", "predictions")
     failures = []
 
-    print(f"{'model':16s} {'published':>10s} {'recomputed':>11s} {'delta':>10s}   MSE")
+    labels = ("Spearman mean", "Spearman median", "MSE mean", "MSE median")
+    checked, models = 0, 0
+    print(f"{'model':16s} " + " ".join(f"{l:>16s}" for l in labels))
     for name in sorted(os.listdir(pred_dir)):
         if not name.endswith(".csv"):
             continue
@@ -67,14 +81,18 @@ def main():
         if model not in table:
             failures.append(f"{model}: no row in docs/results.md")
             continue
-        want_rho, want_mse = table[model]
-        _, _, rho, mse = score(os.path.join(pred_dir, name))
-        drho, dmse = rho - want_rho, mse - want_mse
-        ok = abs(drho) <= SPEARMAN_TOLERANCE and abs(dmse) <= MSE_TOLERANCE
-        print(f"{model:16s} {want_rho:10.4f} {rho:11.6f} {drho:+10.6f}   "
-              f"{want_mse:.4f} vs {mse:.6f} {'' if ok else '  FAIL'}")
-        if not ok:
-            failures.append(f"{model}: rho {rho:.6f} vs {want_rho}, mse {mse:.6f} vs {want_mse}")
+        want = table[model]
+        models += 1
+        got = fold_scores(*load(os.path.join(pred_dir, name)))
+        cells, ok = [], True
+        for w, g in zip(want, got):
+            hit = abs(g - w) <= TOLERANCE
+            ok &= hit
+            checked += 1
+            if not hit:
+                failures.append(f"{model}: {w} published, {g:.6f} recomputed")
+            cells.append(f"{g:.4f}{'' if hit else '!'}")
+        print(f"{model:16s} " + " ".join(f"{c:>16s}" for c in cells))
 
     # The checkpoint must reproduce the vector attributed to it.
     from src.models.published import load_published_chromecrispr, predict
@@ -85,7 +103,7 @@ def main():
 
     model = load_published_chromecrispr(os.path.join(ROOT, "artifacts", "models", "CNN_GRU_GC.pth"))
     got = predict(model, X, gc)
-    stored, _, _, _ = score(os.path.join(pred_dir, "CNN_GRU+GC.csv"))
+    stored, _ = load(os.path.join(pred_dir, "CNN_GRU+GC.csv"))
     drift = float(np.abs(got - stored).max())
     rho = float(spearmanr(got, y).correlation)
     mse = float(mean_squared_error(y, got))
@@ -99,7 +117,8 @@ def main():
         for f in failures:
             print(f"  {f}")
         return 1
-    print(f"\nall {len(table)} published figures reproduced from artifacts in this repository")
+    print(f"\nall {checked} published figures reproduced exactly from artifacts in this "
+          f"repository ({models} models x {len(labels)} reported columns)")
     return 0
 
 

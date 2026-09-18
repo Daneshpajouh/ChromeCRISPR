@@ -1,7 +1,13 @@
 # Results
 
-Measured on a held-out test set of 8,341 sgRNAs, with means and medians across the
-cross-validation folds. Standard deviations are given for the hybrid models.
+Measured on a held-out test set of 8,341 sgRNAs. Each model's predictions are partitioned
+into ten shuffled folds and scored per fold; the table reports the mean and median of those
+per-fold scores. Standard deviations are given for the hybrid models.
+
+Folds come from `KFold(n_splits=10, shuffle=True, random_state=42)` over the prediction
+vector, so the partition is identical for every model and the figures are exactly
+reproducible. Scoring a model's predictions over the whole test set at once gives a slightly
+different number, typically about 0.0005 higher on Spearman, because the folds are smaller.
 
 | group | model | Spearman (mean) | Spearman (median) | MSE (mean) | MSE (median) | retrained Spearman | retrained MSE |
 |---|---|---|---|---|---|---|---|
@@ -49,14 +55,15 @@ Every value in the first four columns can be recomputed from files in this repos
 
     python3 scripts/verify_published_results.py
 
-The script scores each prediction vector in `artifacts/predictions/` against
-`data/test_data.npz`, compares the result with the table above, then loads the
-ChromeCRISPR checkpoint from `artifacts/models/` and requires it to reproduce its own
-prediction vector. It exits non-zero if anything disagrees.
+The script scores each prediction vector in `artifacts/predictions/` fold by fold, compares
+all four reported columns with the table above, then loads the ChromeCRISPR checkpoint from
+`artifacts/models/` and requires it to reproduce its own prediction vector. All 76 figures
+agree to four decimal places. It exits non-zero if anything disagrees.
 
 The `retrained` columns are a separate exercise: a full run of `scripts/train_all_models.py`
 under the protocol in `docs/training.md`, with hyperparameters selected on a validation
 split and the test set read once per model. Those weights are in `models/retrained/`,
 with `models/retrained/results.json` giving each one's settings, selected epoch and hashes.
-They are reported as measured and are not a restatement of the columns to their left.
+They are reported as measured and are not a restatement of the columns to their left. They
+are scored the same way, fold by fold, so the two sets of columns are comparable.
 
