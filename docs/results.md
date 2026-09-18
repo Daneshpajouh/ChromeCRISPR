@@ -12,25 +12,25 @@ different number, typically about 0.0005 higher on Spearman, because the folds a
 | group | model | Spearman (mean) | Spearman (median) | MSE (mean) | MSE (median) | retrained Spearman | retrained MSE |
 |---|---|---|---|---|---|---|---|
 | Baseline | RF | 0.7550 | 0.7554 | 0.0197 | 0.0195 | 0.7543 | 0.0200 |
-| Base models | CNN | 0.7925 | 0.7902 | 0.0161 | 0.0156 | 0.8453 | 0.0116 |
-|  | GRU | 0.8368 | 0.8396 | 0.0121 | 0.0122 | 0.8576 | 0.0108 |
-|  | LSTM | 0.8371 | 0.8365 | 0.0122 | 0.0122 | 0.8499 | 0.0121 |
-|  | BiLSTM | 0.8432 | 0.8466 | 0.0120 | 0.0123 | 0.8599 | 0.0101 |
-| Base models with GC content | CNN+GC | 0.7810 | 0.7807 | 0.0170 | 0.0172 | 0.8448 | 0.0116 |
-|  | GRU+GC | 0.8401 | 0.8421 | 0.0122 | 0.0123 | 0.8652 | 0.0099 |
-|  | LSTM+GC | 0.8564 | 0.8598 | 0.0112 | 0.0113 | 0.8573 | 0.0106 |
-|  | BiLSTM+GC | 0.8550 | 0.8582 | 0.0110 | 0.0111 | 0.8485 | 0.0110 |
-| Deep models | deepCNN | 0.8694 | 0.8740 | 0.0098 | 0.0098 | 0.8526 | 0.0109 |
-|  | deepGRU | 0.8684 | 0.8697 | 0.0099 | 0.0097 | 0.8556 | 0.0106 |
-|  | deepLSTM | 0.8620 | 0.8641 | 0.0103 | 0.0103 | 0.8458 | 0.0116 |
-|  | deepBiLSTM | 0.8617 | 0.8623 | 0.0104 | 0.0103 | 0.8486 | 0.0112 |
-| Deep models with GC content | deepCNN+GC | 0.8728 | 0.8756 | 0.0093 | 0.0092 | 0.8530 | 0.0123 |
-|  | deepGRU+GC | 0.8668 | 0.8689 | 0.0098 | 0.0099 | 0.8527 | 0.0113 |
-|  | deepLSTM+GC | 0.8602 | 0.8623 | 0.0104 | 0.0106 | 0.8504 | 0.0114 |
-|  | deepBiLSTM+GC | 0.8671 | 0.8690 | 0.0098 | 0.0100 | 0.8522 | 0.0108 |
-| ChromeCRISPR hybrids | CNN_LSTM+GC | 0.8668 ± 0.009 | 0.8659 | 0.0115 ± 0.0009 | 0.0117 | 0.8537 | 0.0111 |
-|  | CNN_BiLSTM+GC | 0.8700 ± 0.009 | 0.8708 | 0.0096 ± 0.0007 | 0.0097 | 0.8560 | 0.0112 |
-|  | CNN_GRU+GC | 0.8760 ± 0.008 | 0.8796 | 0.0093 ± 0.0006 | 0.0093 | 0.8498 | 0.0117 |
+| Base models | CNN | 0.7925 | 0.7902 | 0.0161 | 0.0156 | 0.8546 | 0.0114 |
+|  | GRU | 0.8368 | 0.8396 | 0.0121 | 0.0122 | 0.8613 | 0.0100 |
+|  | LSTM | 0.8371 | 0.8365 | 0.0122 | 0.0122 | 0.8638 | 0.0101 |
+|  | BiLSTM | 0.8432 | 0.8466 | 0.0120 | 0.0123 | 0.8638 | 0.0099 |
+| Base models with GC content | CNN+GC | 0.7810 | 0.7807 | 0.0170 | 0.0172 | 0.8546 | 0.0115 |
+|  | GRU+GC | 0.8401 | 0.8421 | 0.0122 | 0.0123 | 0.8647 | 0.0098 |
+|  | LSTM+GC | 0.8564 | 0.8598 | 0.0112 | 0.0113 | 0.8626 | 0.0102 |
+|  | BiLSTM+GC | 0.8550 | 0.8582 | 0.0110 | 0.0111 | 0.8643 | 0.0099 |
+| Deep models | deepCNN | 0.8694 | 0.8740 | 0.0098 | 0.0098 | 0.8646 | 0.0102 |
+|  | deepGRU | 0.8684 | 0.8697 | 0.0099 | 0.0097 | 0.8667 | 0.0099 |
+|  | deepLSTM | 0.8620 | 0.8641 | 0.0103 | 0.0103 | 0.8603 | 0.0101 |
+|  | deepBiLSTM | 0.8617 | 0.8623 | 0.0104 | 0.0103 | 0.8616 | 0.0106 |
+| Deep models with GC content | deepCNN+GC | 0.8728 | 0.8756 | 0.0093 | 0.0092 | 0.8658 | 0.0101 |
+|  | deepGRU+GC | 0.8668 | 0.8689 | 0.0098 | 0.0099 | 0.8653 | 0.0100 |
+|  | deepLSTM+GC | 0.8602 | 0.8623 | 0.0104 | 0.0106 | 0.8604 | 0.0103 |
+|  | deepBiLSTM+GC | 0.8671 | 0.8690 | 0.0098 | 0.0100 | 0.8632 | 0.0100 |
+| ChromeCRISPR hybrids | CNN_LSTM+GC | 0.8668 ± 0.009 | 0.8659 | 0.0115 ± 0.0009 | 0.0117 | 0.8667 | 0.0097 |
+|  | CNN_BiLSTM+GC | 0.8700 ± 0.009 | 0.8708 | 0.0096 ± 0.0007 | 0.0097 | 0.8688 | 0.0097 |
+|  | CNN_GRU+GC | 0.8760 ± 0.008 | 0.8796 | 0.0093 ± 0.0006 | 0.0093 | 0.8711 | 0.0096 |
 
 The best performing model is `CNN_GRU+GC`, at a Spearman correlation of 0.8760
 and a mean squared error of 0.0093.
@@ -60,10 +60,16 @@ all four reported columns with the table above, then loads the ChromeCRISPR chec
 `artifacts/models/` and requires it to reproduce its own prediction vector. All 76 figures
 agree to four decimal places. It exits non-zero if anything disagrees.
 
-The `retrained` columns are a separate exercise: a full run of `scripts/train_all_models.py`
-under the protocol in `docs/training.md`, with hyperparameters selected on a validation
-split and the test set read once per model. Those weights are in `models/retrained/`,
-with `models/retrained/results.json` giving each one's settings, selected epoch and hashes.
-They are reported as measured and are not a restatement of the columns to their left. They
-are scored the same way, fold by fold, so the two sets of columns are comparable.
+The `retrained` columns are a separate exercise: models trained here in the same architecture
+as the published checkpoint, with hyperparameters and the epoch count chosen on a validation
+split, a refit on the training and validation rows, and the test set read once. Those weights
+are in `models/published_family/`, their predictions in `artifacts/retrained_predictions/`,
+and `models/published_family/results.json` gives each one's settings, selected epoch and
+hashes. They are scored fold by fold like the columns to their left, so the two are
+comparable, and they are reported as measured rather than as a restatement.
+
+Nine of the nineteen meet or exceed their published value and two more fall within the
+table's rounding width; see `models/published_family/README.md` for what accounts for the
+rest. `models/retrained/` keeps an earlier set trained in the architecture described in the
+Methods, for comparison.
 
