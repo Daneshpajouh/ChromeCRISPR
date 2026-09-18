@@ -306,28 +306,30 @@
   "validation_spearman": 0.8574
  },
  "deepBiLSTM+GC": {
-  "delta": -0.0092,
+  "delta": -0.0039,
   "hyperparameters": {
-   "act": "elu",
-   "batch_size": 64,
-   "dropout": 0.2,
+   "act": "leaky_relu",
+   "batch_size": 32,
+   "batchnorm": false,
+   "depth_delta": 0,
+   "dropout": 0.5,
    "hidden": 256,
-   "kernel": 5,
+   "kernel": 7,
    "learning_rate": 8.553091992093682e-05,
    "n_fc": 3,
-   "weight_decay": 0.0
+   "weight_decay": 0.001
   },
-  "mse_mean": 0.0103,
-  "mse_median": 0.0102,
+  "mse_mean": 0.0101,
+  "mse_median": 0.0099,
   "params": 6484737,
   "published_spearman_mean": 0.8671,
-  "selected_epoch": 31,
-  "selected_run": "narrow",
-  "selected_seed": 0,
-  "sha256": "6a9bda144a88972e5c99460d31b303169c9ae273572c596e5701dcdf334fb218",
-  "spearman_mean": 0.8579,
-  "spearman_median": 0.8581,
-  "validation_spearman": 0.8562
+  "selected_epoch": 38,
+  "selected_run": "seed",
+  "selected_seed": 18,
+  "sha256": "273b1b015b16abf447607fb47e83e04a1825af86020c0c2cd43ab6e831fa6ab8",
+  "spearman_mean": 0.8632,
+  "spearman_median": 0.8635,
+  "validation_spearman": 0.8568
  },
  "deepCNN": {
   "delta": -0.0058,

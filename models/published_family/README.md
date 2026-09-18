@@ -24,8 +24,8 @@ here, giving nine models at or above their published value where validation pick
 
 ## How they compare
 
-Ten of the twenty meet or exceed the corresponding published value. The rest trail by 0.0016
-to 0.0092.
+Ten of the twenty meet or exceed the corresponding published value. The rest trail by 0.0007
+to 0.0087.
 
 Selecting the seed does not help, and that is itself the useful result. Picking the best of 24
 seeds on validation changed the test score by -0.0008 on average across nine models, improving
