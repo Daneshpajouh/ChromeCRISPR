@@ -11,7 +11,7 @@ different number, typically about 0.0005 higher on Spearman, because the folds a
 
 | group | model | Spearman (mean) | Spearman (median) | MSE (mean) | MSE (median) | retrained Spearman | retrained MSE |
 |---|---|---|---|---|---|---|---|
-| Baseline | RF | 0.7550 | 0.7554 | 0.0197 | 0.0195 | 0.7543 | 0.0200 |
+| Baseline | RF | 0.7550 | 0.7554 | 0.0197 | 0.0195 | 0.7534 | 0.0201 |
 | Base models | CNN | 0.7925 | 0.7902 | 0.0161 | 0.0156 | 0.8546 | 0.0114 |
 |  | GRU | 0.8368 | 0.8396 | 0.0121 | 0.0122 | 0.8613 | 0.0100 |
 |  | LSTM | 0.8371 | 0.8365 | 0.0122 | 0.0122 | 0.8638 | 0.0101 |

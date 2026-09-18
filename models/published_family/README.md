@@ -29,3 +29,28 @@ which is above that run's median epoch. The gap to the reported figure is the di
 a typical epoch and the best of two hundred, so it narrows with repeated evaluation rather
 than with a better model, and five successive search campaigns moved it by less than 0.001 in
 total.
+
+## Random Forest
+
+`RF.joblib` is the documented configuration: `RandomForestRegressor(n_estimators=100)`, which
+is the only setting the publication states. It scores Spearman 0.7534 mean / 0.7519 median and
+MSE 0.0201 mean / 0.0200 median, against 0.7550 / 0.7554 and 0.0197 / 0.0195 reported.
+
+RF is the one model with no stored prediction vector, so unlike the others there is nothing to
+recompute the reported figures from. Sweeping the tree count on the same split shows why the
+gap does not close:
+
+| trees | Spearman mean | Spearman median | MSE mean |
+|---|---|---|---|
+| 100 | 0.7534 | 0.7519 | 0.0201 |
+| 200 | 0.7563 | 0.7554 | 0.0200 |
+| 500 | 0.7583 | 0.7589 | 0.0199 |
+| 1200 | 0.7585 | 0.7595 | 0.0199 |
+| reported | 0.7550 | 0.7554 | 0.0197 |
+
+More trees push Spearman past the reported value while the mean squared error settles at
+0.0199 and does not move below it, so no tree count reproduces both columns. Richer encodings
+move it further away, not closer: adding the reverse complement changes Spearman by 0.0002,
+while adding bigrams and trigrams overshoots to 0.7819. The documented setting is therefore
+what is shipped, and the difference is recorded rather than tuned away.
+

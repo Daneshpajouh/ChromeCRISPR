@@ -245,6 +245,20 @@
   "spearman_mean": 0.8626,
   "spearman_median": 0.8644
  },
+ "RF": {
+  "delta": -0.0016,
+  "hyperparameters": {
+   "n_estimators": 100,
+   "random_state": 0
+  },
+  "mse_mean": 0.0201,
+  "mse_median": 0.02,
+  "published_spearman_mean": 0.755,
+  "search": "documented configuration, no search",
+  "sha256": "7fb639b279412414d2cae5caf82b525d21f60858822f942fa0a4b7b553bd4039",
+  "spearman_mean": 0.7534,
+  "spearman_median": 0.7519
+ },
  "deepBiLSTM": {
   "delta": -0.0001,
   "hyperparameters": {
