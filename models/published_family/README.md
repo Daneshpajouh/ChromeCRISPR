@@ -11,15 +11,27 @@ Scored the same way as `docs/results.md`: ten shuffled folds of the prediction v
 reporting the mean and median per fold. Predictions are in
 `artifacts/retrained_predictions/`, so every number here is recomputable.
 
-Protocol for all of them: hyperparameters and the epoch count chosen on a validation split
-drawn from the training portion and ranked by validation Spearman, then a refit on the
-training and validation rows for that epoch count, then the test set read once.
+Protocol for all of them: hyperparameters, the epoch count and the seed are chosen on a
+validation split drawn from the training portion and ranked by validation Spearman, then the
+model is refitted on the training and validation rows for that epoch count, then the test set
+is read once.
+
+Several search campaigns were run per model, differing in budget and search space. **Which
+campaign's model is shipped is decided by its validation score, never by its test score**, and
+`results.json` records the campaign chosen and the validation figure that chose it. Taking the
+best test result across campaigns would be selecting on the test set; it is also not better
+here, giving nine models at or above their published value where validation picking gives ten.
 
 ## How they compare
 
-Nine of the nineteen meet or exceed the corresponding published value, and two more sit within
-0.0002, which is the width the table is rounded to. The eight below it trail by 0.0012 to
-0.0070.
+Ten of the twenty meet or exceed the corresponding published value. The rest trail by 0.0016
+to 0.0092.
+
+Selecting the seed does not help, and that is itself the useful result. Picking the best of 24
+seeds on validation changed the test score by -0.0008 on average across nine models, improving
+one and leaving or worsening the other eight. If validation could resolve differences of this
+size, best-of-24 would have lifted the test score; it does not, so the remaining gaps sit below
+what any honest selection can distinguish.
 
 The remaining difference is a property of what the published figures are rather than of these
 models. The training log shipped with the published checkpoint records 200 epochs for
