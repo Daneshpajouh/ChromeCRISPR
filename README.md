@@ -1,7 +1,5 @@
 # ChromeCRISPR
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17058361.svg)](https://doi.org/10.5281/zenodo.17058361)
-
 Hybrid CNN-RNN models for predicting CRISPR/Cas9 on-target activity from sgRNA sequence.
 
 ## Quick start
@@ -23,13 +21,22 @@ content as a second argument of shape `(batch,)`.
 **0.0093** on a held-out test set of 8,341 sgRNAs. Full table for all twenty models in
 [`docs/results.md`](docs/results.md).
 
+Every figure in that table can be recomputed from files in this repository:
+
+    python3 scripts/verify_published_results.py
+
+It scores the prediction vectors in `artifacts/predictions/` against the test set, compares
+each with the table, and requires the checkpoint in `artifacts/models/` to reproduce its own
+prediction vector. Non-zero exit on any disagreement.
+
 ![CNN_GRU+GC](docs/architectures/CNN_GRU_plus_GC.svg)
 
 ## Models
 
 Twenty models in five groups: a Random Forest baseline; CNN, GRU, LSTM and BiLSTM base models;
 the same four with GC content; deep variants of each; and the three ChromeCRISPR hybrids. A
-Transformer is also included. See [`docs/architectures.md`](docs/architectures.md).
+Transformer implementation is also provided in `src/models/architectures.py`; it is not one of
+the twenty and has no reported result. See [`docs/architectures.md`](docs/architectures.md).
 
 ## Layout
 
@@ -42,7 +49,9 @@ Transformer is also included. See [`docs/architectures.md`](docs/architectures.m
 | `docs/hyperparameters/` | one machine-readable record per model |
 | `docs/architectures/` | one diagram per model |
 | `data/` | the dataset and its encoded arrays |
-| `models/` | a checkpoint per model |
+| `artifacts/predictions/` | one prediction vector per model, aligned to the test set |
+| `artifacts/models/` | the ChromeCRISPR checkpoint |
+| `models/retrained/` | a trained checkpoint per model, with settings and hashes |
 | `scripts/` | dataset build, training, and the record, diagram and results generators |
 | `tests/` | test suite |
 
@@ -62,11 +71,13 @@ The split holds out 15% for testing and is fixed by a seed, so it is identical o
 
 ## Training
 
-    python3 scripts/train_all_models.py --data-dir data --out-dir models
+    python3 scripts/train_all_models.py --data-dir data --out-dir models/retrained
 
-Hyperparameters are searched on a validation split drawn from the training portion; the
-held-out set is read once, after the final model is fitted. The run is seeded, so the same
-command reproduces the same weights.
+Hyperparameters and the epoch count are chosen on a validation split drawn from the training
+portion, ranked by validation Spearman. The model is then refitted on the training and
+validation rows together for that epoch count, and the held-out set is read once afterwards.
+The run is seeded, so the same command reproduces the same weights. Full protocol in
+[`docs/training.md`](docs/training.md).
 
 ## Regenerating the derived files
 
@@ -74,6 +85,7 @@ command reproduces the same weights.
     python3 scripts/build_model_records.py
     python3 scripts/build_architecture_diagrams.py
     python3 scripts/build_results_page.py
+    python3 scripts/verify_published_results.py
 
 ## Citation
 

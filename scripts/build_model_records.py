@@ -47,7 +47,7 @@ def arch(name):
     deep = core.startswith("deep")
     spec = DEEP if deep else BASE
     kind = core.replace("deep", "")
-    a = {"encoding": "one-hot 21 x 4, embedded to 128 ()",
+    a = {"encoding": "one-hot 21 x 4, embedded to 128",
          "dense_layers": spec["dense"], "output_units": 1,
          "batch_norm": "on the dense layers"}
     if "_" in kind:                                    # hybrid
@@ -68,7 +68,7 @@ def arch(name):
         a["rnn_branch"] = {"type": kind, "layers": spec["layers"], "hidden_size": 128,
                            "bidirectional": kind == "BiLSTM"}
     if gc:
-        a["gc_content"] = "added as a single input in the last layer ()"
+        a["gc_content"] = "added as a single input in the last layer"
     return a
 
 

@@ -72,7 +72,7 @@ def _dense_stack(in_features, widths, dropout):
 
 
 class _Embedding(nn.Module):
-    """One-hot 21 x 4 to a 128-dimensional representation per position ()."""
+    """One-hot 21 x 4 to a 128-dimensional representation per position."""
 
     def __init__(self, embed_dim=EMBED_DIM):
         super().__init__()

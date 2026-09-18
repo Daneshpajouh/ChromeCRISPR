@@ -1,7 +1,7 @@
 {
   "model_name": "LSTM",
   "architecture": {
-    "encoding": "one-hot 21 x 4, embedded to 128 ()",
+    "encoding": "one-hot 21 x 4, embedded to 128",
     "dense_layers": [
       64
     ],

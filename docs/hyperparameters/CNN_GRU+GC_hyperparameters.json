@@ -1,7 +1,7 @@
 {
   "model_name": "CNN_GRU+GC",
   "architecture": {
-    "encoding": "one-hot 21 x 4, embedded to 128 ()",
+    "encoding": "one-hot 21 x 4, embedded to 128",
     "dense_layers": [
       128,
       64,
@@ -30,7 +30,7 @@
       "total_concat_dim": 256,
       "plus_gc_content": 257
     },
-    "gc_content": "added as a single input in the last layer ()"
+    "gc_content": "added as a single input in the last layer"
   },
   "configurable": {
     "note": "The publication does not state these. They are recorded as unspecified rather than filled with values that cannot be traced to it.",

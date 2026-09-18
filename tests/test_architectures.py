@@ -41,7 +41,7 @@ def test_every_model_runs(name):
 
 @pytest.mark.parametrize("name", ["CNN", "CNN+GC"])
 def test_base_cnn_matches_article(name):
-    """: two convolutional layers, 128 filters, kernel 3, stride 1, padding 1."""
+    """two convolutional layers, 128 filters, kernel 3, stride 1, padding 1."""
     c = _convs(MODELS[name]())
     assert len(c) == 2
     assert c[0].out_channels == 128
@@ -52,7 +52,7 @@ def test_base_cnn_matches_article(name):
 
 @pytest.mark.parametrize("name", ["GRU", "LSTM", "BiLSTM"])
 def test_base_rnn_matches_article(name):
-    """Sections 2.5.3 to 2.5.5: two recurrent layers of 128 hidden units."""
+    """two recurrent layers of 128 hidden units."""
     r = _rnns(MODELS[name]())[0]
     assert r.num_layers == 2
     assert r.hidden_size == 128
@@ -67,7 +67,7 @@ def test_base_head_matches_article(name):
 
 @pytest.mark.parametrize("name", ["deepCNN", "deepGRU", "deepLSTM", "deepBiLSTM"])
 def test_deep_models_match_article(name):
-    """: three specialized layers, dense 128, 64, 32, then the output."""
+    """three specialized layers, dense 128, 64, 32, then the output."""
     model = MODELS[name]()
     layers = _convs(model) if name == "deepCNN" else _rnns(model)
     assert (len(layers) if name == "deepCNN" else layers[0].num_layers) == 3
@@ -76,7 +76,7 @@ def test_deep_models_match_article(name):
 
 @pytest.mark.parametrize("name", ["CNN_GRU+GC", "CNN_LSTM+GC", "CNN_BiLSTM+GC"])
 def test_hybrids_match_article(name):
-    """: 3 conv x 128 and 3 recurrent x 128, fused to 256, plus GC to 257."""
+    """3 conv x 128 and 3 recurrent x 128, fused to 256, plus GC to 257."""
     model = MODELS[name]()
     c, r = _convs(model), _rnns(model)[0]
     assert len(c) == 3 and c[0].out_channels == 128 and c[0].kernel_size == (3,)
@@ -119,7 +119,7 @@ def test_every_parameter_receives_gradient():
 
 
 def test_transformer_matches_article():
-    """: 8 attention heads, three layers of 128 hidden units, positional
+    """8 attention heads, three layers of 128 hidden units, positional
     encoding, layer normalisation, then dense layers with batch normalisation."""
     model = MODELS["Transformer"]()
     enc = [l for l in model.modules() if isinstance(l, nn.TransformerEncoderLayer)]
@@ -133,5 +133,5 @@ def test_transformer_matches_article():
 
 
 def test_random_forest_matches_article():
-    """: RandomForestRegressor with 100 estimators."""
+    """RandomForestRegressor with 100 estimators."""
     assert create_random_forest().n_estimators == 100
