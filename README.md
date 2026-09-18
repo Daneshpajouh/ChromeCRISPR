@@ -41,38 +41,39 @@ Transformer is also included. See [`docs/architectures.md`](docs/architectures.m
 | `docs/results.md` | results for all twenty models |
 | `docs/hyperparameters/` | one machine-readable record per model |
 | `docs/architectures/` | one diagram per model |
-| `scripts/` | training, and generators for the records and diagrams |
+| `data/` | the dataset and its encoded arrays |
+| `models/` | a checkpoint per model |
+| `scripts/` | dataset build, training, and the record, diagram and results generators |
 | `tests/` | test suite |
-
-## Training
-
-```python
-from src.training.trainer import ChromeCRISPRTrainer
-from src.models.hybrid_models import create_cnn_gru_model
-
-trainer = ChromeCRISPRTrainer(create_cnn_gru_model, {})
-results = trainer.train_model(sequences, targets,
-                              {"batch_size": 64, "learning_rate": 1e-3}, epochs=100)
-```
-
-Hyperparameters are selected on a validation split drawn from the training portion. GC content
-is derived from the sequence, so it does not need to be supplied.
 
 ## Tests
 
     pip install -r requirements-dev.txt
     pytest
 
-## Regenerating the derived files
-
-    python3 scripts/build_model_records.py
-    python3 scripts/build_architecture_diagrams.py
-
 ## Data
 
-From the DeepHF study, available from the NCBI Sequence Read Archive under
-[PRJNA522677](https://www.ncbi.nlm.nih.gov/bioproject/522677/). See
-[`DATASET_REFERENCE.md`](DATASET_REFERENCE.md).
+`data/deephf.csv` holds 55,604 sgRNAs with their wild-type SpCas9 activity. The encoded arrays
+and the train/test split are rebuilt from it:
+
+    python3 scripts/build_dataset.py
+
+The split holds out 15% for testing and is fixed by a seed, so it is identical on every run.
+
+## Training
+
+    python3 scripts/train_all_models.py --data-dir data --out-dir models
+
+Hyperparameters are searched on a validation split drawn from the training portion; the
+held-out set is read once, after the final model is fitted. The run is seeded, so the same
+command reproduces the same weights.
+
+## Regenerating the derived files
+
+    python3 scripts/build_dataset.py
+    python3 scripts/build_model_records.py
+    python3 scripts/build_architecture_diagrams.py
+    python3 scripts/build_results_page.py
 
 ## Citation
 

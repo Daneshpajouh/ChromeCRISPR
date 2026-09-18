@@ -27,11 +27,9 @@ wheels/
 MANIFEST
 
 # PyTorch
-*.pth
-*.pt
+
 *.pkl
 *.pickle
-*.joblib
 
 # Jupyter Notebook
 .ipynb_checkpoints
@@ -78,18 +76,17 @@ temp/
 tmp/
 
 # Data files (large datasets)
-*.csv
+
 *.tsv
 *.json
 *.npy
-*.npz
-data/
+
 datasets/
 raw_data/
 processed_data/
 
 # Model files (except the manuscript models)
-models/
+
 !models/**/*.pth
 !models/**/*.joblib
 !models/**/*.json
@@ -149,4 +146,4 @@ external_*
 # ✅ KEEP: requirements.txt (dependencies)
 # ✅ KEEP: setup.py (installation)
 # ✅ KEEP: Final compliance reports
-models/
+

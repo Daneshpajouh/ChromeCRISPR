@@ -29,7 +29,7 @@ def load(data_dir):
 
 def run(name, Xtr, ytr, gtr, Xva, yva, gva, Xte, yte, gte, device, epochs, patience, trials):
     if name == "RF":
-        model = create_random_forest()
+        model = create_random_forest(random_state=SEED)
         model.fit(np.concatenate([Xtr.reshape(len(Xtr), -1), gtr[:, None]], 1), ytr)
         p = model.predict(np.concatenate([Xte.reshape(len(Xte), -1), gte[:, None]], 1))
         return model, float(spearmanr(p, yte).correlation), float(mean_squared_error(yte, p))
@@ -52,6 +52,8 @@ def predict(model, X, g, uses_gc, device, chunk=4096):
         out.append((model(xb, gb) if uses_gc else model(xb)).squeeze(-1).cpu().numpy())
     return np.concatenate(out)
 
+
+SEED = 0
 
 SEARCH_SPACE = {
     "learning_rate": [3e-4, 5e-4, 1e-3, 2e-3],
@@ -79,8 +81,13 @@ def search(name, Xtr, ytr, gtr, Xva, yva, gva, device, trials, seed=0):
 
 
 def fit(name, Xtr, ytr, gtr, Xva, yva, gva, device, epochs, patience,
-        learning_rate, batch_size, dropout):
-    """Fit one model and return it with its best validation loss."""
+        learning_rate, batch_size, dropout, seed=SEED):
+    """Fit one model and return it with its best validation loss.
+
+    Seeded, so the same inputs and settings give the same weights on a rerun.
+    """
+    torch.manual_seed(seed)
+    np.random.seed(seed)
     model = MODELS[name](dropout=dropout).to(device)
     uses_gc = getattr(model, "use_gc_content", False)
     opt = torch.optim.Adam(model.parameters(), lr=learning_rate)
@@ -88,9 +95,10 @@ def fit(name, Xtr, ytr, gtr, Xva, yva, gva, device, epochs, patience,
     X, y, g = (torch.as_tensor(Xtr, device=device), torch.as_tensor(ytr, device=device),
                torch.as_tensor(gtr, device=device))
     best, best_state, bad = np.inf, None, 0
+    generator = torch.Generator(device=device).manual_seed(seed)
     for _ in range(epochs):
         model.train()
-        order = torch.randperm(len(X), device=device)
+        order = torch.randperm(len(X), device=device, generator=generator)
         for i in range(0, len(order), batch_size):
             idx = order[i:i + batch_size]
             if len(idx) < 2:
@@ -123,8 +131,12 @@ def main():
     ap.add_argument("--trials", type=int, default=10)
     ap.add_argument("--patience", type=int, default=25)
     ap.add_argument("--only", nargs="*")
+    ap.add_argument("--seed", type=int, default=SEED)
     a = ap.parse_args()
 
+    globals()["SEED"] = a.seed
+    torch.manual_seed(a.seed)
+    np.random.seed(a.seed)
     device = ("cuda" if torch.cuda.is_available()
               else "mps" if torch.backends.mps.is_available() else "cpu")
     X, y, g, Xte, yte, gte = load(a.data_dir)
@@ -145,7 +157,7 @@ def main():
         path = os.path.join(a.out_dir, f"{name}.pt" if name != "RF" else "RF.joblib")
         if name == "RF":
             import joblib
-            joblib.dump(model, path)
+            joblib.dump(model, path, compress=3)   # 328 MB uncompressed, 70 MB compressed
         else:
             torch.save(model.state_dict(), path)
         results[name] = {"spearman_correlation": round(sp, 4),

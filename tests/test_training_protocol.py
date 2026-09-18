@@ -72,16 +72,31 @@ def test_held_out_partition_does_not_reach_the_training_loop():
     assert hits == []
 
 
-def test_evaluation_reads_the_held_out_set_after_training():
-    """scripts/train_all_models.py evaluates once, after the epoch loop has finished."""
+def test_the_epoch_loop_never_sees_the_held_out_set():
+    """`fit` runs the epoch loop and is not given the held-out arrays at all."""
+    import ast
+
     source = (ROOT / "scripts" / "train_all_models.py").read_text()
-    lines = source.splitlines()
-    epoch_loop = next(i for i, l in enumerate(lines) if re.search(r"for ep in range\(epochs\)", l))
-    loop_indent = len(lines[epoch_loop]) - len(lines[epoch_loop].lstrip())
-    end = next((i for i in range(epoch_loop + 1, len(lines))
-                if lines[i].strip() and
-                (len(lines[i]) - len(lines[i].lstrip())) <= loop_indent), len(lines))
-    inside = "\n".join(lines[epoch_loop:end])
-    assert "Xte" not in inside and "yte" not in inside, \
-        "the held-out set must not be read inside the epoch loop"
-    assert "Xte" in "\n".join(lines[end:]), "the held-out set is evaluated after training"
+    tree = ast.parse(source)
+    fit = next(n for n in tree.body
+               if isinstance(n, ast.FunctionDef) and n.name == "fit")
+    args = {a.arg for a in fit.args.args}
+    assert not {"Xte", "yte", "gte"} & args, "the training function takes no held-out data"
+    body = ast.get_source_segment(source, fit)
+    assert "Xte" not in body and "yte" not in body
+    assert any(isinstance(n, ast.For) for n in ast.walk(fit)), "fit contains the epoch loop"
+
+
+def test_the_held_out_set_is_read_once_after_fitting():
+    """`run` fits first, then predicts on the held-out set."""
+    import ast
+
+    source = (ROOT / "scripts" / "train_all_models.py").read_text()
+    tree = ast.parse(source)
+    run = next(n for n in tree.body
+               if isinstance(n, ast.FunctionDef) and n.name == "run")
+    body = ast.get_source_segment(source, run)
+    fit_at = body.index("fit(")
+    read_at = body.index("predict(model, Xte")
+    assert fit_at < read_at, "the held-out set is read after the model is fitted"
+    assert body.count("predict(model, Xte") == 1, "the held-out set is read once"
