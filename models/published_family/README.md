@@ -76,3 +76,15 @@ every one scores below its counterpart here. Mean Spearman is 0.8502 there and 0
 The two sets differ in nothing but architecture, so that 0.0128 is a measurement of what the
 architecture difference is worth on this dataset.
 
+## The training loss
+
+The article states no loss function, optimizer or learning rate, so the loss was searched
+alongside everything else: squared error, Huber, a pairwise ordering term, and a weighted
+combination of squared error and ordering. Spearman is a rank statistic, so a term that
+penalises mis-ordered pairs optimises the reported quantity rather than a proxy for it.
+
+It does not help. Across the ten models below their published value, validation preferred the
+searched loss for three of them, all Huber, and none crossed its published value as a result.
+The ordering term was selected in three searches and scored worse on test than squared error
+every time. The count at or above published is unchanged.
+
