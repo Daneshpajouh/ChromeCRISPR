@@ -53,9 +53,9 @@ import torch.nn as nn
 
 SEQ_LEN = 21
 N_BASES = 4
-EMBED_DIM = 128          # 
+EMBED_DIM = 128
 FILTERS = 128
-KERNEL = 3               # 
+KERNEL = 3
 HIDDEN = 128
 
 
