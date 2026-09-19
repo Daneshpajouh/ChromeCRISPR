@@ -2,8 +2,7 @@
   "model_name": "RF",
   "architecture": {
     "type": "RandomForestRegressor",
-    "n_estimators": 100,
-    "reference": ""
+    "n_estimators": 100
   },
   "configurable": {
     "note": "The publication does not state these. They are recorded as unspecified rather than filled with values that cannot be traced to it.",

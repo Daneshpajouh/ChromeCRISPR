@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Regenerate docs/hyperparameters/ from this work, and from nothing else.
+"""Regenerate docs/hyperparameters/ from the article, and from nothing else.
 
-Every performance value below is quoted from a figure caption or table in the published
-article, with the line reference given. Architecture fields follow the model descriptions in
-. Nothing here is a measurement made by this repository.
+Every performance value below is quoted from a figure caption or table. Architecture fields
+follow the model descriptions in the Methods. Nothing here is a measurement made by this
+repository; measured values live in models/published_family/results.json.
 """
 import argparse, json, os
 
@@ -42,8 +42,7 @@ def arch(name):
     gc = name.endswith("+GC")
     core = name[:-3] if gc else name
     if core == "RF":
-        return {"type": "RandomForestRegressor", "n_estimators": 100,
-                "reference": ""}
+        return {"type": "RandomForestRegressor", "n_estimators": 100}
     deep = core.startswith("deep")
     spec = DEEP if deep else BASE
     kind = core.replace("deep", "")
