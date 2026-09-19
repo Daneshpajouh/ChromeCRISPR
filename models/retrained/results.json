@@ -1,354 +1,382 @@
 {
  "BiLSTM": {
-  "checkpoint": "models/retrained/BiLSTM.pt",
+  "delta": 0.0052,
   "hyperparameters": {
    "batch_size": 128,
-   "dropout": 0.2,
-   "learning_rate": 0.0002,
+   "dropout": 0.1,
+   "learning_rate": 0.0005,
    "schedule": "cosine",
-   "weight_decay": 0.3
+   "weight_decay": 1.0080191575450062e-05
   },
-  "mean_squared_error": 0.0101,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 133,
-   "validation_spearman": 0.8526
-  },
-  "sha256": "50c628421e89eb487104ae05ba83f51da61770f5676543ba7d831dadd71942dd",
-  "spearman_correlation": 0.8599
+  "mse_mean": 0.0115,
+  "mse_median": 0.0117,
+  "params": 676737,
+  "published_spearman_mean": 0.8432,
+  "selected_epoch": 79,
+  "selected_seed": 0,
+  "sha256": "5ba239c8e947e547644618571a4b1d30d5d3be1b32f3992530ac2d268bc5ba9a",
+  "spearman_mean": 0.8484,
+  "spearman_median": 0.8502,
+  "validation_spearman": 0.851
  },
  "BiLSTM+GC": {
-  "checkpoint": "models/retrained/BiLSTM+GC.pt",
+  "delta": -0.011,
   "hyperparameters": {
-   "batch_size": 128,
-   "dropout": 0.2,
+   "batch_size": 256,
+   "dropout": 0.1,
    "learning_rate": 0.0002,
    "schedule": "cosine",
-   "weight_decay": 0.3
+   "weight_decay": 1.0080191575450062e-05
   },
-  "mean_squared_error": 0.011,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 76,
-   "validation_spearman": 0.8436
-  },
-  "sha256": "d73bc91271bae33da4e4cdf8a0f7268e57295141da3fa1f1b1bdf2e364c28661",
-  "spearman_correlation": 0.8485
+  "mse_mean": 0.0114,
+  "mse_median": 0.0114,
+  "params": 676801,
+  "published_spearman_mean": 0.855,
+  "selected_epoch": 114,
+  "selected_seed": 3,
+  "sha256": "a45fc3da20616ad584b7f3fd1ec84eb35e54ae3516c056c9d00c80b00a771c80",
+  "spearman_mean": 0.844,
+  "spearman_median": 0.8457,
+  "validation_spearman": 0.844
  },
  "CNN": {
-  "checkpoint": "models/retrained/CNN.pt",
+  "delta": 0.0567,
   "hyperparameters": {
    "batch_size": 256,
-   "dropout": 0.2,
-   "learning_rate": 0.002,
-   "schedule": "cosine",
-   "weight_decay": 0.01
+   "dropout": 0.3388134505129095,
+   "learning_rate": 0.0001,
+   "schedule": "none",
+   "weight_decay": 0.0
   },
-  "mean_squared_error": 0.0116,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 26,
-   "validation_spearman": 0.8436
-  },
-  "sha256": "7c0f2738024d5207b70458f718c75dd653980a71205d2b5b437bf42305f175b9",
-  "spearman_correlation": 0.8453
+  "mse_mean": 0.0111,
+  "mse_median": 0.011,
+  "params": 271489,
+  "published_spearman_mean": 0.7925,
+  "selected_epoch": 74,
+  "selected_seed": 0,
+  "sha256": "d0c95f4ddb92463d5dad8bcf8dc052e9d418d90edfe67e2c1ec1c104d93553c7",
+  "spearman_mean": 0.8492,
+  "spearman_median": 0.854,
+  "validation_spearman": 0.8464
  },
  "CNN+GC": {
-  "checkpoint": "models/retrained/CNN+GC.pt",
+  "delta": 0.0571,
   "hyperparameters": {
-   "batch_size": 256,
-   "dropout": 0.2,
-   "learning_rate": 0.002,
+   "batch_size": 128,
+   "dropout": 0.3388134505129095,
+   "learning_rate": 0.001,
    "schedule": "cosine",
-   "weight_decay": 0.01
+   "weight_decay": 1.0080191575450062e-05
   },
-  "mean_squared_error": 0.0116,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 24,
-   "validation_spearman": 0.8438
-  },
-  "sha256": "7768abdf6bf3e7fa7dec8048cb4699626c435ac6aaf6ae044f2badf83f74ad32",
-  "spearman_correlation": 0.8448
+  "mse_mean": 0.0123,
+  "mse_median": 0.0123,
+  "params": 271553,
+  "published_spearman_mean": 0.781,
+  "selected_epoch": 24,
+  "selected_seed": 0,
+  "sha256": "a6b1dc65055cc4616d07138c4fb2e0638b41e3e45e593ecd2e6cc78cc26dbdcf",
+  "spearman_mean": 0.8381,
+  "spearman_median": 0.8381,
+  "validation_spearman": 0.8467
  },
  "CNN_BiLSTM+GC": {
-  "checkpoint": "models/retrained/CNN_BiLSTM+GC.pt",
+  "delta": -0.016,
   "hyperparameters": {
-   "batch_size": 256,
-   "dropout": 0.2,
-   "learning_rate": 0.002,
+   "batch_size": 32,
+   "dropout": 0.45,
+   "learning_rate": 8.553091992093682e-05,
    "schedule": "cosine",
-   "weight_decay": 0.01
+   "weight_decay": 0.0
   },
-  "mean_squared_error": 0.0112,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 27,
-   "validation_spearman": 0.85
-  },
-  "sha256": "f9400a17cb25be971de94282cb5f3e3fdf24d5e2d78dfb74aa24f8ceb3f0fb8c",
-  "spearman_correlation": 0.856
+  "mse_mean": 0.0116,
+  "mse_median": 0.0116,
+  "params": 1624129,
+  "published_spearman_mean": 0.87,
+  "selected_epoch": 26,
+  "selected_seed": 0,
+  "sha256": "25a4cae2bb65cec24f5f37c8832526a64657ae1537a4f17df655df40496ab38b",
+  "spearman_mean": 0.854,
+  "spearman_median": 0.856,
+  "validation_spearman": 0.852
  },
  "CNN_GRU+GC": {
-  "checkpoint": "models/retrained/CNN_GRU+GC.pt",
+  "delta": -0.0221,
   "hyperparameters": {
    "batch_size": 256,
-   "dropout": 0.1,
+   "dropout": 0.2,
    "learning_rate": 0.001,
-   "schedule": "none",
-   "weight_decay": 0.3
+   "schedule": "cosine",
+   "weight_decay": 0.0
   },
-  "mean_squared_error": 0.0117,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 28,
-   "validation_spearman": 0.8498
-  },
-  "sha256": "ea4d06c97bb41805b63597d8ad1a4dbf92405934b781e4d2c736639b4f3dee83",
-  "spearman_correlation": 0.8498
+  "mse_mean": 0.0108,
+  "mse_median": 0.011,
+  "params": 833729,
+  "published_spearman_mean": 0.876,
+  "selected_epoch": 26,
+  "selected_seed": 3,
+  "sha256": "d0be8d9b65b9122962183390975bccec48432b758c399ff1739607d21a329a2c",
+  "spearman_mean": 0.8539,
+  "spearman_median": 0.8528,
+  "validation_spearman": 0.851
  },
  "CNN_LSTM+GC": {
-  "checkpoint": "models/retrained/CNN_LSTM+GC.pt",
+  "delta": -0.0143,
   "hyperparameters": {
    "batch_size": 256,
-   "dropout": 0.15,
+   "dropout": 0.2,
    "learning_rate": 0.001,
-   "schedule": "cosine",
-   "weight_decay": 0.1
+   "schedule": "none",
+   "weight_decay": 0.0001
   },
-  "mean_squared_error": 0.0111,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 28,
-   "validation_spearman": 0.8507
-  },
-  "sha256": "26c72ba1147a01cfe4dbb33208172879dd0dcca87bca524abd2629703977d2fe",
-  "spearman_correlation": 0.8537
+  "mse_mean": 0.0109,
+  "mse_median": 0.0109,
+  "params": 932801,
+  "published_spearman_mean": 0.8668,
+  "selected_epoch": 27,
+  "selected_seed": 3,
+  "sha256": "383966021c75fee572f303a29b1c6e4772f083a9e3406732ea37c92d0928f461",
+  "spearman_mean": 0.8525,
+  "spearman_median": 0.8544,
+  "validation_spearman": 0.8511
  },
  "GRU": {
-  "checkpoint": "models/retrained/GRU.pt",
+  "delta": 0.0205,
   "hyperparameters": {
-   "batch_size": 128,
-   "dropout": 0.2,
-   "learning_rate": 0.0002,
-   "schedule": "cosine",
-   "weight_decay": 0.3
+   "batch_size": 256,
+   "dropout": 0.3388134505129095,
+   "learning_rate": 0.0001,
+   "schedule": "none",
+   "weight_decay": 0.0
   },
-  "mean_squared_error": 0.0108,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 172,
-   "validation_spearman": 0.8549
-  },
-  "sha256": "8a581ec72fcf086a5ff22b17bc9978a33a0b0b6bb5b08abaff8730bc503a4b23",
-  "spearman_correlation": 0.8576
+  "mse_mean": 0.0106,
+  "mse_median": 0.0105,
+  "params": 207233,
+  "published_spearman_mean": 0.8368,
+  "selected_epoch": 229,
+  "selected_seed": 0,
+  "sha256": "6d024f48ab38c5000ef847866549cac3bdd4f896b50892a2226331a2485573b2",
+  "spearman_mean": 0.8573,
+  "spearman_median": 0.8612,
+  "validation_spearman": 0.8509
  },
  "GRU+GC": {
-  "checkpoint": "models/retrained/GRU+GC.pt",
+  "delta": 0.0147,
   "hyperparameters": {
    "batch_size": 128,
-   "dropout": 0.2,
-   "learning_rate": 0.0002,
-   "schedule": "cosine",
-   "weight_decay": 0.3
+   "dropout": 0.3,
+   "learning_rate": 8.553091992093682e-05,
+   "schedule": "none",
+   "weight_decay": 0.01
   },
-  "mean_squared_error": 0.0099,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 238,
-   "validation_spearman": 0.8572
-  },
-  "sha256": "fb7e318cbb5efba6300961692b3358f4608e8f527799cb8cf2b5b602e5621eb2",
-  "spearman_correlation": 0.8652
+  "mse_mean": 0.0106,
+  "mse_median": 0.0107,
+  "params": 207297,
+  "published_spearman_mean": 0.8401,
+  "selected_epoch": 176,
+  "selected_seed": 7,
+  "sha256": "028488d84aea90a4a52b74af9860057bc961ac97c92590374eb300df0c06d5f8",
+  "spearman_mean": 0.8548,
+  "spearman_median": 0.8563,
+  "validation_spearman": 0.85
  },
  "LSTM": {
-  "checkpoint": "models/retrained/LSTM.pt",
+  "delta": 0.0192,
   "hyperparameters": {
    "batch_size": 256,
-   "dropout": 0.1,
-   "learning_rate": 0.001,
+   "dropout": 0.3388134505129095,
+   "learning_rate": 0.0001,
    "schedule": "none",
-   "weight_decay": 0.3
+   "weight_decay": 0.0
   },
-  "mean_squared_error": 0.0121,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 56,
-   "validation_spearman": 0.8469
-  },
-  "sha256": "baa4979c67d2e45e4ca7fd8b63f2382abcec0c009f77316f42f431bdbab4f842",
-  "spearman_correlation": 0.8499
+  "mse_mean": 0.0105,
+  "mse_median": 0.0104,
+  "params": 273281,
+  "published_spearman_mean": 0.8371,
+  "selected_epoch": 249,
+  "selected_seed": 2,
+  "sha256": "1f9bed08607f9b99713eb6cea192c6106f6dfd3e4e94f074f37588c54a994b3f",
+  "spearman_mean": 0.8563,
+  "spearman_median": 0.8555,
+  "validation_spearman": 0.848
  },
  "LSTM+GC": {
-  "checkpoint": "models/retrained/LSTM+GC.pt",
+  "delta": -0.0037,
   "hyperparameters": {
    "batch_size": 128,
-   "dropout": 0.2,
-   "learning_rate": 0.0002,
-   "schedule": "cosine",
-   "weight_decay": 0.3
-  },
-  "mean_squared_error": 0.0106,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 144,
-   "validation_spearman": 0.8462
-  },
-  "sha256": "7b140823112d13d01760fb725e73d61c6e90e32fed04a99a20357effa1d9e338",
-  "spearman_correlation": 0.8573
- },
- "RF": {
-  "checkpoint": "models/retrained/RF.joblib",
-  "hyperparameters": {},
-  "mean_squared_error": 0.02,
-  "selection": {
-   "rows": 47263
-  },
-  "sha256": "acd74158d08473245251bb96c8ca59a73392804de9b289c4ed6db0e998ecce04",
-  "spearman_correlation": 0.7543
- },
- "deepBiLSTM": {
-  "checkpoint": "models/retrained/deepBiLSTM.pt",
-  "hyperparameters": {
-   "batch_size": 256,
-   "dropout": 0.1,
-   "learning_rate": 0.001,
-   "schedule": "none",
-   "weight_decay": 0.3
-  },
-  "mean_squared_error": 0.0112,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 49,
-   "validation_spearman": 0.8464
-  },
-  "sha256": "dc8aba4c4aa6f09acc4a020ac269296cf18eeb724f73e30cbf5dc22821a7da24",
-  "spearman_correlation": 0.8486
- },
- "deepBiLSTM+GC": {
-  "checkpoint": "models/retrained/deepBiLSTM+GC.pt",
-  "hyperparameters": {
-   "batch_size": 128,
-   "dropout": 0.1,
-   "learning_rate": 0.0005,
-   "schedule": "none",
-   "weight_decay": 0.3
-  },
-  "mean_squared_error": 0.0108,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 49,
-   "validation_spearman": 0.8482
-  },
-  "sha256": "7e72dd61209ef837eed130538731bd655de7bbc2aca86739980486e23a4b3850",
-  "spearman_correlation": 0.8522
- },
- "deepCNN": {
-  "checkpoint": "models/retrained/deepCNN.pt",
-  "hyperparameters": {
-   "batch_size": 128,
-   "dropout": 0.2,
-   "learning_rate": 0.0002,
-   "schedule": "cosine",
-   "weight_decay": 0.3
-  },
-  "mean_squared_error": 0.0109,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 26,
-   "validation_spearman": 0.8507
-  },
-  "sha256": "d6a13f03b9aea7db6b106ccb36d23accd7f0c596cebf0f8811626ebe2fc23483",
-  "spearman_correlation": 0.8526
- },
- "deepCNN+GC": {
-  "checkpoint": "models/retrained/deepCNN+GC.pt",
-  "hyperparameters": {
-   "batch_size": 256,
-   "dropout": 0.2,
-   "learning_rate": 0.002,
+   "dropout": 0.3388134505129095,
+   "learning_rate": 8.553091992093682e-05,
    "schedule": "cosine",
    "weight_decay": 0.01
   },
-  "mean_squared_error": 0.0123,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 40,
-   "validation_spearman": 0.848
+  "mse_mean": 0.0107,
+  "mse_median": 0.0106,
+  "params": 273345,
+  "published_spearman_mean": 0.8564,
+  "selected_epoch": 219,
+  "selected_seed": 5,
+  "sha256": "5d96fd060232620f051d494a93a3fd88b8b22bad43875099c912156971465b69",
+  "spearman_mean": 0.8527,
+  "spearman_median": 0.8523,
+  "validation_spearman": 0.8439
+ },
+ "deepBiLSTM": {
+  "delta": -0.0145,
+  "hyperparameters": {
+   "batch_size": 64,
+   "dropout": 0.45,
+   "learning_rate": 0.0003,
+   "schedule": "none",
+   "weight_decay": 0.0
   },
-  "sha256": "9d2de2b556da28503d5e5729c10e430d5a4b272517954ba930bc30fbbed758b4",
-  "spearman_correlation": 0.853
+  "mse_mean": 0.0115,
+  "mse_median": 0.0117,
+  "params": 1099073,
+  "published_spearman_mean": 0.8617,
+  "selected_epoch": 34,
+  "selected_seed": 2,
+  "sha256": "864fa4f03993c34c4b990c114a6ad3216297563773a0389f6a45f229a3e24250",
+  "spearman_mean": 0.8472,
+  "spearman_median": 0.8493,
+  "validation_spearman": 0.8467
+ },
+ "deepBiLSTM+GC": {
+  "delta": -0.021,
+  "hyperparameters": {
+   "batch_size": 32,
+   "dropout": 0.1,
+   "learning_rate": 0.0003,
+   "schedule": "none",
+   "weight_decay": 0.0001
+  },
+  "mse_mean": 0.0116,
+  "mse_median": 0.0115,
+  "params": 1099201,
+  "published_spearman_mean": 0.8671,
+  "selected_epoch": 23,
+  "selected_seed": 0,
+  "sha256": "b3b2cbe1e53aef9447fbcc1e7fba1bc817a478a8f5997f8d3efc84734d8e750a",
+  "spearman_mean": 0.8461,
+  "spearman_median": 0.8478,
+  "validation_spearman": 0.8422
+ },
+ "deepCNN": {
+  "delta": -0.0089,
+  "hyperparameters": {
+   "batch_size": 32,
+   "dropout": 0.45,
+   "learning_rate": 8.553091992093682e-05,
+   "schedule": "cosine",
+   "weight_decay": 0.0
+  },
+  "mse_mean": 0.0115,
+  "mse_median": 0.0117,
+  "params": 503489,
+  "published_spearman_mean": 0.8694,
+  "selected_epoch": 29,
+  "selected_seed": 0,
+  "sha256": "9a8a94d376dbfad7ede61a68c3390ec7f25c5ad7ec10d64799d1c155fb2b3d5d",
+  "spearman_mean": 0.8605,
+  "spearman_median": 0.8642,
+  "validation_spearman": 0.853
+ },
+ "deepCNN+GC": {
+  "delta": -0.0202,
+  "hyperparameters": {
+   "batch_size": 32,
+   "dropout": 0.45,
+   "learning_rate": 0.002,
+   "schedule": "none",
+   "weight_decay": 0.0001
+  },
+  "mse_mean": 0.0133,
+  "mse_median": 0.0133,
+  "params": 503617,
+  "published_spearman_mean": 0.8728,
+  "selected_epoch": 22,
+  "selected_seed": 4,
+  "sha256": "32c5a5c5cc2d4da5a817b05624fe3ff41135d5fb7bc84458ea3e8f1543ba0d9c",
+  "spearman_mean": 0.8526,
+  "spearman_median": 0.8534,
+  "validation_spearman": 0.8516
  },
  "deepGRU": {
-  "checkpoint": "models/retrained/deepGRU.pt",
-  "hyperparameters": {
-   "batch_size": 128,
-   "dropout": 0.2,
-   "learning_rate": 0.0002,
-   "schedule": "cosine",
-   "weight_decay": 0.3
-  },
-  "mean_squared_error": 0.0106,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 159,
-   "validation_spearman": 0.8506
-  },
-  "sha256": "5a58168a2f51046aa0eea8acb6bc66306cc25544f8f4b8c7a4c6ac02c4e9ae92",
-  "spearman_correlation": 0.8556
- },
- "deepGRU+GC": {
-  "checkpoint": "models/retrained/deepGRU+GC.pt",
-  "hyperparameters": {
-   "batch_size": 128,
-   "dropout": 0.1,
-   "learning_rate": 0.0005,
-   "schedule": "none",
-   "weight_decay": 0.3
-  },
-  "mean_squared_error": 0.0113,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 81,
-   "validation_spearman": 0.8516
-  },
-  "sha256": "dade2aee09c758e1f74ced493811336639f1a49dbac17021e0381b3ede6ca1e7",
-  "spearman_correlation": 0.8527
- },
- "deepLSTM": {
-  "checkpoint": "models/retrained/deepLSTM.pt",
+  "delta": -0.0163,
   "hyperparameters": {
    "batch_size": 256,
-   "dropout": 0.1,
-   "learning_rate": 0.001,
+   "dropout": 0.3388134505129095,
+   "learning_rate": 0.0001,
    "schedule": "none",
-   "weight_decay": 0.3
+   "weight_decay": 0.0
   },
-  "mean_squared_error": 0.0116,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 62,
-   "validation_spearman": 0.85
+  "mse_mean": 0.0111,
+  "mse_median": 0.0111,
+  "params": 325185,
+  "published_spearman_mean": 0.8684,
+  "selected_epoch": 218,
+  "selected_seed": 0,
+  "sha256": "dc6f95d617d77dba9b1305d768a009b834f3147921fd4e2efd1e27ea03a02f10",
+  "spearman_mean": 0.8521,
+  "spearman_median": 0.8537,
+  "validation_spearman": 0.8458
+ },
+ "deepGRU+GC": {
+  "delta": -0.0213,
+  "hyperparameters": {
+   "batch_size": 32,
+   "dropout": 0.0,
+   "learning_rate": 0.0002,
+   "schedule": "none",
+   "weight_decay": 0.0
   },
-  "sha256": "4851f07593f37a5dc5386c567cfc7cd947e70e7b80496d5b439be0a5e6a61701",
-  "spearman_correlation": 0.8458
+  "mse_mean": 0.0116,
+  "mse_median": 0.0117,
+  "params": 325313,
+  "published_spearman_mean": 0.8668,
+  "selected_epoch": 26,
+  "selected_seed": 5,
+  "sha256": "ad6eff5994980defbb67acdb52e4bffa89795d135329a0cbd075f45c3491cb73",
+  "spearman_mean": 0.8455,
+  "spearman_median": 0.8458,
+  "validation_spearman": 0.8461
+ },
+ "deepLSTM": {
+  "delta": -0.0162,
+  "hyperparameters": {
+   "batch_size": 256,
+   "dropout": 0.3388134505129095,
+   "learning_rate": 0.0001,
+   "schedule": "none",
+   "weight_decay": 0.0
+  },
+  "mse_mean": 0.0129,
+  "mse_median": 0.013,
+  "params": 424257,
+  "published_spearman_mean": 0.862,
+  "selected_epoch": 226,
+  "selected_seed": 7,
+  "sha256": "a68fa8c21f3f88ce108c66111b0de3730cad7513b198dfdb0b8a9d54c7d6f2f1",
+  "spearman_mean": 0.8458,
+  "spearman_median": 0.8474,
+  "validation_spearman": 0.8417
  },
  "deepLSTM+GC": {
-  "checkpoint": "models/retrained/deepLSTM+GC.pt",
+  "delta": -0.0175,
   "hyperparameters": {
-   "batch_size": 128,
-   "dropout": 0.2,
-   "learning_rate": 0.002,
-   "schedule": "cosine",
-   "weight_decay": 0.3
+   "batch_size": 32,
+   "dropout": 0.0,
+   "learning_rate": 0.0002,
+   "schedule": "none",
+   "weight_decay": 0.0
   },
-  "mean_squared_error": 0.0114,
-  "selection": {
-   "rows": 47263,
-   "selected_epoch": 127,
-   "validation_spearman": 0.8491
-  },
-  "sha256": "e349348a9536065e0c9521eaedc0a10ab58155dadc282e1bd5389994819b0307",
-  "spearman_correlation": 0.8504
+  "mse_mean": 0.0126,
+  "mse_median": 0.0126,
+  "params": 424385,
+  "published_spearman_mean": 0.8602,
+  "selected_epoch": 39,
+  "selected_seed": 7,
+  "sha256": "edd3116e169f29644b076a3ce17711b091d18de5297d0f6b97a0fed8006ba3a5",
+  "spearman_mean": 0.8427,
+  "spearman_median": 0.841,
+  "validation_spearman": 0.8456
  }
 }

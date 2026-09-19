@@ -70,6 +70,9 @@ comparable, and they are reported as measured rather than as a restatement.
 
 Nine of the nineteen meet or exceed their published value and two more fall within the
 table's rounding width; see `models/published_family/README.md` for what accounts for the
-rest. `models/retrained/` keeps an earlier set trained in the architecture described in the
-Methods, for comparison.
+rest. `models/retrained/` holds the same models built from `src/models/architectures.py`, which
+implements the Methods, trained under an identical protocol. Six of those reach their published
+value against ten here, and the mean Spearman is 0.8502 against 0.8630. Since the two sets
+differ in nothing but architecture, that difference measures what the architecture choice is
+worth on this dataset.
 

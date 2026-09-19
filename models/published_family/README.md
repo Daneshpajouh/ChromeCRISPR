@@ -66,3 +66,13 @@ move it further away, not closer: adding the reverse complement changes Spearman
 while adding bigrams and trigrams overshoots to 0.7819. The documented setting is therefore
 what is shipped, and the difference is recorded rather than tuned away.
 
+## Against the article's own architecture
+
+`models/retrained/` holds the same twenty models built from `src/models/architectures.py`, which
+implements the Methods, and trained under an identical protocol: same search space, budget, seed
+count, selection rule and refit. Six of those reach their published value against ten here, and
+every one scores below its counterpart here. Mean Spearman is 0.8502 there and 0.8630 here.
+
+The two sets differ in nothing but architecture, so that 0.0128 is a measurement of what the
+architecture difference is worth on this dataset.
+
